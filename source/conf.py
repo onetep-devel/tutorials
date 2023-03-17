@@ -15,7 +15,7 @@ release = '0.0.1'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ["sphinx_rtd_dark_mode"]
-default_dark_mode = True
+default_dark_mode = False
 
 templates_path = ['_templates']
 exclude_patterns = []
