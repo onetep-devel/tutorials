@@ -13,6 +13,7 @@ Welcome to Onetep's Tutorials!
    Introduction
    T1_spe_silicon
 
+**Note:** A pdf version of the tutorials can be downloaded :download:`here <_static/oneteptutorials.pdf>`
 
 Indices and tables
 ==================
