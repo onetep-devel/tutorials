@@ -18,6 +18,13 @@ extensions = []
 
 templates_path = ['_templates']
 exclude_patterns = []
+latex_engine = 'lualatex'
+latex_elements = {
+'papersize': 'a4paper',
+'pointsize': '12pt',
+'figure_align': '!htbp',
+}
+
 
 
 

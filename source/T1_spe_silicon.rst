@@ -296,26 +296,28 @@ eliminate those failures and perform accurate simulations.
 - Problem: Repeated ’safe’ steps (of 0.150 or 0.100) during NGWF
 Conjugate Gradients optimisation, leading to poor or no convergence.
 This often means that the step length cap for NGWF CG is too short.
-Solution: increase ngwf_cg_max_step, eg to 8.0.
+**Solution:** increase ngwf_cg_max_step, eg to 8.0.
 
 - Problem: Repeated ‘safe’ steps (of 0.150 or 0.100) during LNV
 Conjugate Gradients optimisation, leading to poor or no convergence.
 This often means that the step length cap for LNV CG is too short.
-Solution: increase lnv_cg_max_step, eg to 8.0.
+**Solution:** increase lnv_cg_max_step, eg to 8.0.
 
 - Problem: Occupancies \`break’ during LNV optimisation of kernel.
 Examine the output with output_detail: VERBOSE and look at the occupancy
 error and occupancy bounds during the “Penalty functional idempotency
 correction” section of each LNV step. Check for occupancies outside the
 stable range (approx -0.3:1.3) or RMS occupancy errors not decreasing
-(particularly if no kernel truncation is applied).  Solution: Activate
+(particularly if no kernel truncation is applied).
+**Solution:** Activate
 LNV line step checking with lnv_check_trial_steps: T. This checks that
 the kernel is still stable after the proposed line step is taken.
 
 - Problem: Occupancies are \`broken’ from start of calculation. Symptoms
 as above. Palser Manolopoulos may be unstable due to degeneracy or
 near-degeneracy at the Fermi level. Check the output of Palser
-Manolopoulos for warnings.  Solution: If there is an initial degeneracy
+Manolopoulos for warnings.
+**Solution:** If there is an initial degeneracy
 at the Fermi level, an O(N3 ) diagonalisation may be required to get a
 good starting kernel. Set maxit_palser_mano : -1.
 
@@ -326,14 +328,16 @@ matrix that both reproduces the electron density that generated the
 Hamiltonian while simultaneously describing the occupied eigenstates of
 that Hamiltonian. If this problem does not start to go away after a few
 steps of NGWF optimisation, a better or larger initial set of NGWFs may
-be required.  Solutions: Increase number of NGWFs per atom, increase
+be required.
+**Solutions:** Increase number of NGWFs per atom, increase
 radius of NGWFs, improve initial guess for NGWFs.
 
 - Problem: RMS NGWF gradient stagnates (stops going down) during NGWF CG
 optimisation, while energy is still going down slowly. This often
 suggests that the NGWFs may have expanded away from their centres to
 have significant value near the edge of their localisation region, and
-thus cannot optimise successfully.  Solution: Increase NGWF radius.
+thus cannot optimise successfully.
+**Solution:** Increase NGWF radius.
 Sometimes increasing the kinetic energy cutoff helps as well. For
 smaller systems and initial tests, a useful check on the accuracy of the
 final result is to perform a full O(N\ :math:`^3`) diagonalisation at

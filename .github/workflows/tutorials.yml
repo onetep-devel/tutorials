@@ -23,18 +23,20 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    container: sphinxdoc/sphinx:5.3.0
+    container: sphinxdoc/sphinx-latexpdf:5.3.0
 
     steps:
     - uses: actions/checkout@v3
     - name: sphinx
       run: |
+        make latexpdf
+        cp build/latex/oneteptutorials.pdf  source/_static/
         make html
     - name: upload
       uses: actions/upload-pages-artifact@v1
       with:
         # Upload entire repository
-        path: './_build/html/.'
+        path: './build/html/.'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v1
