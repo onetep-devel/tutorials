@@ -1,5 +1,5 @@
 Introduction
 ============
 
-this is simple set of tutorials for onetep.
+This is simple set of tutorials for ONETEP.
 

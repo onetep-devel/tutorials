@@ -353,13 +353,15 @@ within a sensible range.
 One final note if you’re not getting the result you expect – check the
 units on your atomic positions! ONETEP expects positions in Bohr if the
 units are not specified, so if your positions are in Angstroms, you will
-need to add ‘ang’ as the first line of the positions_abs block
+need to add ‘ang’ as the first line of the positions_abs block.
 
-Files for tutorials:
+This completes tutorial 1.
 
- - :download:`SiH4.dat <_static/SiH4.dat>`
- - :download:`Si8000.dat <_static/Si8000.dat>`
- - :download:`Si64.dat <_static/Si64.dat>`
- - :download:`Si1000.dat <_static/Si1000.dat>`
+Files for this tutorial:
+
+ - :download:`SiH4.dat <_static/tutorial_1/SiH4.dat>`
+ - :download:`Si8000.dat <_static/tutorial_1/Si8000.dat>`
+ - :download:`Si64.dat <_static/tutorial_1/Si64.dat>`
+ - :download:`Si1000.dat <_static/tutorial_1/Si1000.dat>`
 
 

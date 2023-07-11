@@ -1,0 +1,187 @@
+@article{Gundelach2021,
+abstract = {Quantum mechanical binding free energies based on thousands of full-protein DFT calculations are tractable, reproducible and converge well.The accurate prediction of protein–ligand binding free energies with tractable computational methods has the potential to revolutionize drug discovery. Modeling the protein–ligand interaction at a quantum mechanical level, instead of relying on empirical classical-mechanics methods, is an important step toward this goal. In this study, we explore the QM-PBSA method to calculate the free energies of binding of seven ligands to the T4-lysozyme L99A/M102Q mutant using linear-scaling density functional theory on the whole protein–ligand complex. By leveraging modern high-performance computing we perform over 2900 full-protein (2600 atoms) DFT calculations providing new insights into the convergence, precision and reproducibility of the QM-PBSA method. We find that even at moderate sampling over 50 snapshots, the convergence of QM-PBSA is similar to traditional MM-PBSA and that the DFT-based energy evaluations are very reproducible. We show that in the QM-PBSA framework, the physically-motivated GGA exchange–correlation functional PBE outperforms the more modern, dispersion-including non-local and meta-GGA-nonlocal functionals VV10 and B97M-rV. Different empirical dispersion corrections perform similarly well but the three-body dispersion term, as included in Grimme's D3 dispersion, is significant and improves results slightly. Inclusion of an entropy correction term sampled over less than 25 snapshots is detrimental while an entropy correction sampled over the same 50 or 100 snapshots as the enthalpies improves the accuracy of the QM-PBSA method. As full-protein DFT calculations can now be performed on modest computational resources our study demonstrates that they can be a useful addition to the toolbox of free energy calculations.},
+author = {Gundelach, Lennart and Fox, Thomas and Tautermann, Christofer S. and Skylaris, Chris-Kriton},
+doi = {10.1039/d1cp00206f},
+file = {:Users/lennartgundelach/Documents/Mendeley Desktop/Gundelach et al.{\_}2021{\_}Physical Chemistry Chemical Physics.pdf:pdf},
+issn = {1463-9076},
+journal = {Physical Chemistry Chemical Physics},
+month = {apr},
+number = {15},
+pages = {9381},
+publisher = {Royal Society of Chemistry (RSC)},
+title = {{Protein–ligand free energies of binding from full-protein DFT calculations: convergence and choice of exchange–correlation functional}},
+url = {https://pubs.rsc.org/en/content/articlehtml/2021/cp/d1cp00206f https://pubs.rsc.org/en/content/articlelanding/2021/cp/d1cp00206f},
+volume = {23},
+year = {2021}
+}
+@article{Prentice2020,
+abstract = {We present an overview of the onetep program for linear-scaling density functional theory (DFT) calculations with large basis set (plane-wave) accuracy on parallel computers. The DFT energy is computed from the density matrix, which is constructed from spatially localized orbitals we call Non-orthogonal Generalized Wannier Functions (NGWFs), expressed in terms of periodic sinc (psinc) functions. During the calculation, both the density matrix and the NGWFs are optimized with localization constraints. By taking advantage of localization, onetep is able to perform calculations including thousands of atoms with computational effort, which scales linearly with the number or atoms. The code has a large and diverse range of capabilities, explored in this paper, including different boundary conditions, various exchange-correlation functionals (with and without exact exchange), finite electronic temperature methods for metallic systems, methods for strongly correlated systems, molecular dynamics, vibrational calculations, time-dependent DFT, electronic transport, core loss spectroscopy, implicit solvation, quantum mechanical (QM)/molecular mechanical and QM-in-QM embedding, density of states calculations, distributed multipole analysis, and methods for partitioning charges and interactions between fragments. Calculations with onetep provide unique insights into large and complex systems that require an accurate atomic-level description, ranging from biomolecular to chemical, to materials, and to physical problems, as we show with a small selection of illustrative examples. onetep has always aimed to be at the cutting edge of method and software developments, and it serves as a platform for developing new methods of electronic structure simulation. We therefore conclude by describing some of the challenges and directions for its future developments and applications.},
+author = {Prentice, Joseph C.A. and Aarons, Jolyon and Womack, James C. and Allen, Alice E.A. and Andrinopoulos, Lampros and Anton, Lucian and Bell, Robert A. and Bhandari, Arihant and Bramley, Gabriel A. and Charlton, Robert J. and Clements, Rebecca J. and Cole, Daniel J. and Constantinescu, Gabriel and Corsetti, Fabiano and Dubois, Simon M.M. and Duff, Kevin K.B. and Escart{\'{i}}n, Jos{\'{e}} Mari{\'{a}} and Greco, Andrea and Hill, Quintin and Lee, Louis P. and Linscott, Edward and O'Regan, David D. and Phipps, Maximillian J.S. and Ratcliff, Laura E. and Serrano, {\'{A}}lvaro Ruiz and Tait, Edward W. and Teobaldi, Gilberto and Vitale, Valerio and Yeung, Nelson and Zuehlsdorff, Tim J. and Dziedzic, Jacek and Haynes, Peter D. and Hine, Nicholas D.M. and Mostofi, Arash A. and Payne, Mike C. and Skylaris, Chris Kriton},
+doi = {10.1063/5.0004445},
+file = {:Users/lennartgundelach/Documents/Mendeley Desktop/Prentice et al.{\_}2020{\_}Journal of Chemical Physics.pdf:pdf},
+issn = {10897690},
+journal = {Journal of Chemical Physics},
+month = {may},
+number = {17},
+pages = {174111},
+pmid = {32384832},
+publisher = {NLM (Medline)},
+title = {{The ONETEP linear-scaling density functional theory program}},
+url = {https://doi.org/10.1063/5.0004445},
+volume = {152},
+year = {2020}
+}
+@article{Bowler2012,
+abstract = {Linear-scaling methods, or O(N) methods, have computational and memory requirements which scale linearly with the number of atoms in the system, N, in contrast to standard approaches which scale with the cube of the number of atoms. These methods, which rely on the short-ranged nature of electronic structure, will allow accurate, ab initio simulations of systems of unprecedented size. The theory behind the locality of electronic structure is described and related to physical properties of systems to be modelled, along with a survey of recent developments in real-space methods which are important for efficient use of high-performance computers. The linear-scaling methods proposed to date can be divided into seven different areas, and the applicability, efficiency and advantages of the methods proposed in these areas are then discussed. The applications of linear-scaling methods, as well as the implementations available as computer programs, are considered. Finally, the prospects for and the challenges facing linear-scaling methods are discussed. {\textcopyright} 2012 IOP Publishing Ltd.},
+annote = {Read: NO
+relevance medium
+
+Review on linear scaling methods},
+archivePrefix = {arXiv},
+arxivId = {1108.5976},
+author = {Bowler, D. R. and Miyazaki, T.},
+doi = {10.1088/0034-4885/75/3/036503},
+eprint = {1108.5976},
+issn = {00344885},
+journal = {Reports on Progress in Physics},
+month = {mar},
+number = {3},
+pages = {036503},
+publisher = {IOP Publishing},
+title = {{O(N) methods in electronic structure calculations}},
+url = {https://iopscience.iop.org/article/10.1088/0034-4885/75/3/036503 https://iopscience.iop.org/article/10.1088/0034-4885/75/3/036503/meta},
+volume = {75},
+year = {2012}
+}
+@article{Womack2018,
+abstract = {The solution of the Poisson equation is a crucial step in electronic structure calculations, yielding the electrostatic potential - a key component of the quantum mechanical Hamiltonian. In recent decades, theoretical advances and increases in computer performance have made it possible to simulate the electronic structure of extended systems in complex environments. This requires the solution of more complicated variants of the Poisson equation, featuring nonhomogeneous dielectric permittivities, ionic concentrations with nonlinear dependencies, and diverse boundary conditions. The analytic solutions generally used to solve the Poisson equation in vacuum (or with homogeneous permittivity) are not applicable in these circumstances, and numerical methods must be used. In this work, we present DL-MG, a flexible, scalable, and accurate solver library, developed specifically to tackle the challenges of solving the Poisson equation in modern large-scale electronic structure calculations on parallel computers. Our solver is based on the multigrid approach and uses an iterative high-order defect correction method to improve the accuracy of solutions. Using two chemically relevant model systems, we tested the accuracy and computational performance of DL-MG when solving the generalized Poisson and Poisson-Boltzmann equations, demonstrating excellent agreement with analytic solutions and efficient scaling to ∼109 unknowns and 100s of CPU cores. We also applied DL-MG in actual large-scale electronic structure calculations, using the ONETEP linear-scaling electronic structure package to study a 2615 atom protein-ligand complex with routinely available computational resources. In these calculations, the overall execution time with DL-MG was not significantly greater than the time required for calculations using a conventional FFT-based solver.},
+author = {Womack, James C and Anton, Lucian and Dziedzic, Jacek and Hasnip, Phil J and Probert, Matt I.J. and Skylaris, Chris Kriton},
+doi = {10.1021/acs.jctc.7b01274},
+file = {:Users/lennartgundelach/Documents/Mendeley Desktop//Womack et al.{\_}2018{\_}Journal of Chemical Theory and Computation.pdf:pdf},
+issn = {15499626},
+journal = {Journal of Chemical Theory and Computation},
+number = {3},
+pages = {1412--1432},
+title = {{DL-MG: A Parallel Multigrid Poisson and Poisson-Boltzmann Solver for Electronic Structure Calculations in Vacuum and Solution}},
+url = {https://pubs.acs.org/sharingguidelines},
+volume = {14},
+year = {2018}
+}
+@article{Fox2014,
+abstract = {{\textcopyright} 2014 Wiley Periodicals, Inc.In drug optimization calculations, the molecular mechanics Poisson-Boltzmann surface area (MM-PBSA) method can be used to compute free energies of binding of ligands to proteins. The method involves the evaluation of the energy of configurations in an implicit solvent model. One source of errors is the force field used, which can potentially lead to large errors due to the restrictions in accuracy imposed by its empirical nature. To assess the effect of the force field on the calculation of binding energies, in this article we use large-scale density functional theory (DFT) calculations as an alternative method to evaluate the energies of the configurations in a "QM-PBSA" approach. Our DFT calculations are performed with a near-complete basis set and a minimal parameter implicit solvent model, within the self-consistent calculation, using the ONETEP program on protein-ligand complexes containing more than 2600 atoms. We apply this approach to the T4-lysozyme double mutant L99A/M102Q protein, which is a well-studied model of a polar binding site, using a set of eight small aromatic ligands. We observe that there is very good correlation between the MM and QM binding energies in vacuum but less so in the solvent. The relative binding free energies from DFT are more accurate than the ones from the MM calculations, and give markedly better agreement with experiment for six of the eight ligands. Furthermore, in contrast to MM-PBSA, QM-PBSA is able to correctly predict a nonbinder.},
+author = {Fox, Stephen J. and Dziedzic, Jacek and Fox, Thomas and Tautermann, Christofer S and Skylaris, Chris Kriton},
+doi = {10.1002/prot.24686},
+file = {:Users/lennartgundelach/Documents/Mendeley Desktop/Fox et al.{\_}2014{\_}Proteins Structure, Function and Bioinformatics.pdf:pdf},
+issn = {10970134},
+journal = {Proteins: Structure, Function and Bioinformatics},
+keywords = {DFT,Free energies of binding,Large-scale DFT,ONETEP,Protein-ligand interactions,QM-PBSA,T4-lysozyme L99A/M102Q},
+number = {12},
+pages = {3335--3346},
+publisher = {Wiley Periodicals, Inc},
+title = {{Density functional theory calculations on entire proteins for free energies of binding: Application to a model polar binding site}},
+volume = {82},
+year = {2014}
+}
+@article{Mobley2017,
+abstract = {Binding free energy calculations based on molecular simulations provide predicted affinities for biomolecular complexes. These calculations begin with a detailed description of a system, including its chemical composition and the interactions among its components. Simulations of the system are then used to compute thermodynamic information, such as binding affinities. Because of their promise for guiding molecular design, these calculations have recently begun to see widespread applications in early-stage drug discovery. However, many hurdles remain in making them a robust and reliable tool. In this review, we highlight key challenges of these calculations, discuss some examples of these challenges, and call for the designation of standard community benchmark test systems that will help the research community generate and evaluate progress. In our view, progress will require careful assessment and evaluation of new methods, force fields, and modeling innovations on well-characterized benchmark systems, and we lay out our vision for how this can be achieved.},
+annote = {read : sort of
+relevance : high
+
+collection of binding free energy benchmarking systems with input files avail online},
+author = {Mobley, David L. and Gilson, Michael K.},
+doi = {10.1146/annurev-biophys-070816-033654},
+file = {:Users/lennartgundelach/Documents/Mendeley Desktop/Mobley, Gilson{\_}2017{\_}Annual Review of Biophysics(2).pdf:pdf},
+issn = {19361238},
+journal = {Annual Review of Biophysics},
+keywords = {Alchemical,Benchmark,Binding affinity,Binding free energy,Biomolecular interactions,Molecular simulation},
+month = {may},
+number = {1},
+pages = {531--558},
+pmid = {28399632},
+publisher = {Annual Reviews Inc.},
+title = {{Predicting Binding Free Energies: Frontiers and Benchmarks}},
+url = {http://www.annualreviews.org/doi/10.1146/annurev-biophys-070816-033654},
+volume = {46},
+year = {2017}
+}
+@article{Dziedzic2011,
+abstract = {We present an implicit solvent model for ab initio electronic-structure calculations which is fully self-consistent and is based on direct solution of the nonhomogeneous Poisson equation. The solute cavity is naturally defined in terms of an isosurface of the electronic density according to the formula of Fattebert and Gygi (J. Comput. Chem., 23 (2002) 662). While this model depends on only two parameters, we demonstrate that by using appropriate boundary conditions and dispersion-repulsion contributions, solvation energies obtained for an extensive test set including neutral and charged molecules show dramatic improvement compared to existing models. Our approach is implemented in, but not restricted to, a linear-scaling density functional theory (DFT) framework, opening the path for self-consistent implicit solvent DFT calculations on systems of unprecedented size, which we demonstrate with calculations on a 2615-atom protein-ligand complex. {\textcopyright} 2011 Europhysics Letters Association.},
+annote = {read : yes
+relevacne : low
+
+Onetep solvent model paper, old version},
+author = {Dziedzic, J. and Helal, H. H. and Skylaris, C. K. and Mostofi, A. A. and Payne, M. C.},
+doi = {10.1209/0295-5075/95/43001},
+issn = {02955075},
+journal = {EPL},
+month = {jul},
+number = {4},
+pages = {43001},
+publisher = {IOP Publishing},
+title = {{Minimal parameter implicit solvent model for ab initio electronic-structure calculations}},
+volume = {95},
+year = {2011}
+}
+@article{Wilkinson2014,
+abstract = {We present a hybrid MPI-OpenMP implementation of Linear-Scaling Density Functional Theory within the ONETEP code. We illustrate its performance on a range of high performance computing (HPC) platforms comprising shared-memory nodes with fast interconnect. Our work has focused on applying OpenMP parallelism to the routines which dominate the computational load, attempting where possible to parallelize different loops from those already parallelized within MPI. This includes 3D FFT box operations, sparse matrix algebra operations, calculation of integrals, and Ewald summation. While the underlying numerical methods are unchanged, these developments represent significant changes to the algorithms used within ONETEP to distribute the workload across CPU cores. The new hybrid code exhibits much- improved strong scaling relative to the MPI-only code and permits calculations with a much higher ratio of cores to atoms. These developments result in a significantly shorter time to solution than was possible using MPI alone and facilitate the application of the ONETEP code to systems larger than previously feasible. We illustrate this with benchmark calculations from an amyloid fibril trimer containing 41,907 atoms. We use the code to study the mechanism of delamination of cellulose nanofibrils when undergoing sonification, a process which is controlled by a large number of interactions that collectively determine the structural properties of the fibrils. Many energy evaluations were needed for these simulations, and as these systems comprise up to 21,276 atoms this would not have been feasible without the developments described here.},
+annote = {relevance: low
+read: no
+
+description of onetep MPI-OMP hybrid parallelisation
+Describes the hybrid parallelism in Onetep and outlines best performance practices.},
+author = {Wilkinson, Karl A. and Hine, Nicholas D.M. and Skylaris, Chris Kriton},
+doi = {10.1021/ct500686r},
+file = {:Users/lennartgundelach/Documents/Mendeley Desktop/Wilkinson, Hine, Skylaris{\_}2014{\_}Journal of Chemical Theory and Computation.pdf:pdf},
+issn = {15499626},
+journal = {Journal of Chemical Theory and Computation},
+month = {nov},
+number = {11},
+pages = {4782--4794},
+publisher = {American Chemical Society},
+title = {{Hybrid MPI-OpenMP parallelism in the ONETEP linear-scaling electronic structure code: Application to the delamination of cellulose nanofibrils}},
+volume = {10},
+year = {2014}
+}
+@article{Genheden2010,
+abstract = {Recent investigations have indicated that different solvation methods give qualitatively different results for the nonpolar solvation contribution to ligand-binding affinities. Therefore, we have calculated the nonpolar solvation contribution to the free energy of benzene binding to the T4 lysozyme Leu99Ala mutant using thermodynamic integration (TI) and three approximate methods. The total binding free energy was calculated with TI and then decomposed into contributions from the solvent and the solute. The nonpolar contribution from the solute was compared to approximate methods within the framework of the molecular-mechanics and generalized Born with surface area method (MM/GBSA). First, the nonpolar solvation energy was calculated with a linear relation to the solvent-accessible surface area (SASA). Second, a recent approach that divides the nonpolar solvation energy into cavity and dispersion parts was used, and third, the nonpolar solvation energy was calculated with the polarized continuum model (PCM). Surprisingly, the simple SASA estimate reproduces the TI results best. However, the reason for this is that all continuum methods assume that the benzene cavity is filled with water for the free protein, contrary to both experimental and simulation results. We present a method to avoid this assumption and then, PCM provides results that are closest to the results obtained with TI. {\textcopyright} 2010 American Chemical Society.},
+annote = {read : no
+relevance : maybe
+
+Paper about T4 solvation energies(implicit). Looks like it talks about something like our cavity correction term to!},
+author = {Genheden, Samuel and Kongsted, Jacob and S{\"{o}}derhjelm, P{\"{a}}r and Ryde, Ulf},
+doi = {10.1021/ct100272s},
+file = {:Users/lennartgundelach/Documents/Mendeley Desktop/Genheden et al.{\_}2010{\_}Journal of Chemical Theory and Computation.pdf:pdf},
+issn = {15499618},
+journal = {Journal of Chemical Theory and Computation},
+mendeley-groups = {T4-L99A/M102Q,MMPBSA,Solvation,SummaryNov2019},
+number = {11},
+pages = {3558--3568},
+title = {{Nonpolar solvation free energies of protein-ligand complexes}},
+url = {https://pubs.acs.org/sharingguidelines},
+volume = {6},
+year = {2010}
+}
+
+@article{ddec3,
+author = {Manz, Thomas A. and Sholl, David S.},
+title = {Improved Atoms-in-Molecule Charge Partitioning Functional for Simultaneously Reproducing the Electrostatic Potential and Chemical States in Periodic and Nonperiodic Materials},
+journal = {Journal of Chemical Theory and Computation},
+volume = {8},
+number = {8},
+pages = {2844-2867},
+year = {2012},
+doi = {10.1021/ct3002199},
+    note ={PMID: 26592125},
+
+URL = { 
+        https://doi.org/10.1021/ct3002199
+    
+},
+eprint = { 
+        https://doi.org/10.1021/ct3002199
+    
+}
+
+}
+
+

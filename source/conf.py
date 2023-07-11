@@ -26,7 +26,8 @@ latex_elements = {
 'figure_align': '!htbp',
 }
 
-
+# jd: For proper referencing of figures.
+numfig = True
 
 
 # -- Options for HTML output -------------------------------------------------

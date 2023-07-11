@@ -1,0 +1,69 @@
+!====================================================!
+! Input for calculation with the ONETEP program      !
+!                                                    !
+! Single point energy of a C2SiH6 molecule.          ! 
+!                                                    !
+! Created by CKS:  04/07/2008                        !
+! Minor modifications by jd 04/2010.                 !
+! Revised by jd for more accuracy 07/2023.           !
+!                                                    !
+! Chris-Kriton Skylaris                              !
+! School of Chemistry                                !
+! University of Southampton                          !
+! Highfield                                          !
+! Southampton SO17 1BJ                               !
+! UK                                                 !
+!====================================================!
+
+TASK SINGLEPOINT
+CUTOFF_ENERGY 800.0 eV
+XC_FUNCTIONAL PBE
+OUTPUT_DETAIL VERBOSE
+
+DO_PROPERTIES T
+CUBE_FORMAT T
+WRITE_NGWF_PLOT T
+NNHO T
+POPN_CALCULATE T
+NGWF_ANALYSIS T
+
+%block lattice_cart
+28.345894694999998      0.000000000000000       0.000000000000000       
+0.000000000000000       28.345894694999998      0.000000000000000       
+0.000000000000000       0.000000000000000       28.345894694999998      
+%endblock lattice_cart
+
+%block positions_abs
+H1 12.84888946148123      11.60405013890257      14.51921613030661      
+C1 13.04542554569333      13.02380105885841      13.02926157406609      
+C2 15.66282365513812      13.18434978478609      11.71645658487154      
+H2 15.65120170304359      13.36395382613898      9.65673132240065       
+Si 14.84019738767126      15.97987363679295      13.69516955207894     
+H2 14.05246153238437      18.36631500986775      12.45105842405935      
+H2 11.38981418602686      13.10391358549183      11.79361733097560      
+H2 17.10944499136242      11.86494562472703      12.38077594342717      
+H2 16.05920317485529      16.30347528739126      16.19971533251324      
+%endblock positions_abs
+
+
+%block species
+H1 H 1 1 8.0
+C1 C 6 4 8.0
+H2 H 1 1 8.0
+C2 C 6 4 8.0
+Si Si 14 4 8.0
+%endblock species
+
+%block species_pot
+H1 H_04.recpot
+C1 C_01.recpot
+H2 H_04.recpot
+C2 C_01.recpot
+Si Si_00.recpot
+%endblock species_pot
+
+%block species_ngwf_plot
+H1
+C1
+Si
+%endblock species_ngwf_plot

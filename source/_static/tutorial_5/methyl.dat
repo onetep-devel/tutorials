@@ -1,0 +1,51 @@
+!====================================================!
+! Input for calculation with the ONETEP program      !
+!                                                    !
+! Single point energy of a methyl radical            !
+!                                                    !
+! Created by CKS:  04/07/2008                        !
+! Minor modifications by jd 04/2010.                 !
+! Revised by jd for more accuracy 07/2023.           !
+!                                                    !
+! Chris-Kriton Skylaris                              !
+! School of Chemistry                                !
+! University of Southampton                          !
+! Highfield                                          !
+! Southampton SO17 1BJ                               !
+! UK                                                 !
+!====================================================!
+
+TASK SINGLEPOINT
+
+CUTOFF_ENERGY 800.0 eV
+MAXIT_NGWF_CG 50
+XC_FUNCTIONAL CAPZ
+SPINPOLARIZED TRUE
+
+OUTPUT_DETAIL VERBOSE 
+
+DO_PROPERTIES T
+CUBE_FORMAT T
+
+%block lattice_cart
+18.897263129999999      0.0000000000000000      0.000000000000000
+0.0000000000000000      18.897263129999999      0.000000000000000
+0.0000000000000000      0.0000000000000000      18.89726312999999
+%endblock lattice_cart
+
+%block positions_abs
+C 9.91028143074812       9.80903540245093       9.75690175838795
+H 10.91359794134945      8.00667802794912       9.73681972798573
+H 10.96958100054825      11.57892780618616      9.78699041087775
+H 7.84766613515804       9.84150251339653       9.74674187567885
+%endblock positions_abs
+
+%block species
+C C 6 4 8.0 
+H H 1 1 8.0
+%endblock species
+
+%block species_pot
+C C_01.recpot
+H H_04.recpot
+%endblock species_pot
