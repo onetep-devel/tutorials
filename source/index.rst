@@ -14,6 +14,7 @@ Welcome to ONETEP's Tutorials!
    T1_spe_silicon
    T5_analysis_and_visualization
    T8_lysozyme
+   T9_hematite_dftu.rst
 
 PDF version of all tutorials
 ============================
