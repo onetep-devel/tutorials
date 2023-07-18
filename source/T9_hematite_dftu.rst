@@ -1,6 +1,6 @@
-===========================================================================================
-DFT+U on strongly correlated magnetic materials: A case study on antiferromagnetic Hematite
-===========================================================================================
+=======================================================================================================
+Tutorial 9: DFT+U on strongly correlated magnetic materials: A case study on antiferromagnetic Hematite
+=======================================================================================================
 
 :Author: Davide Sarpa
 :Date:   July 2023
@@ -22,7 +22,7 @@ a melting point of :math:`1350` °C.
 It belongs to the hexagonal crystal family, 
 in particular, it is a Ditrigonal scalenohedral with a 
 :math:`R\bar{3}C` space group (167), sharing the same structure as corundum. 
-The lattice parameters :math:`a,b,c` are :math:`a=b=5.0356 \AA` and :math:`c=13.7489\AA` with 6 formula units per cell 
+The lattice parameters :math:`a,b,c` are :math:`a=b=5.0356` Å and :math:`c=13.7489` Å with 6 formula units per cell 
 with a band gap of :math:`1.9-2.2` eV. 
 Its structure is an hpc anion stacking of :math:`\text{O}^{2-}` along the [001] direction 
 with :math:`\text{Fe}^{3+}` occupying :math:`2/3` of the interstitial octahedrical positions [Cornell2003]_.
@@ -112,10 +112,10 @@ ONETEP requires different files to work properly.
 
 All the files needed for the simulation can be downloaded from
 
-- :download:`Fe_NCP19_PBE_OTF.usp <_statitc/tutorial_9/Fe_NCP19_PBE_OTF>` 
-- :download:`O_NCP19_PBE_OTF.usp <_statitc/tutorial_9/O_NCP19_PBE_OTF>`
-- :download:`hematite.out <_statitc/tutorial_9/hematite.out>`
-- :download:`hematite.dat <_statitc/tutorial_9/hematite.dat>`
+- :download:`Fe_NCP19_PBE_OTF.usp <_static/tutorial_9/Fe_NCP19_PBE_OTF>` 
+- :download:`O_NCP19_PBE_OTF.usp <_static/tutorial_9/O_NCP19_PBE_OTF>`
+- :download:`hematite.out <_static/tutorial_9/hematite.out>`
+- :download:`hematite.dat <_static/tutorial_9/hematite.dat>`
 
 
 **Dat**
