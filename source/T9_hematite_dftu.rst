@@ -1,3 +1,4 @@
+
 =======================================================================================================
 Tutorial 9: DFT+U on strongly correlated magnetic materials: A case study on antiferromagnetic Hematite
 =======================================================================================================
@@ -407,4 +408,3 @@ References
 
 .. [Anisimov1997] V.I. Anisimov, F. Aryasetiawan, and A. I. Liechtenstein, J. Phys.: Condens. Matter 9, 767 (1997).
 
-.. [Dudarev1998] S.L. Dudarev, Phys. Rev. B 57, 3 (1998).
