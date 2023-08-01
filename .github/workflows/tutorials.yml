@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  tutorials-buils:
+  tutorials-builds:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -34,7 +34,7 @@ jobs:
         make html
 
   tutorials-deploy:
-    if: github.repository == ‘onetep-devel/tutorials’
+    if: github.repository == 'onetep-devel/tutorials'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
