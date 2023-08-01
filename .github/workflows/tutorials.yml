@@ -19,8 +19,6 @@ concurrency:
 
 jobs:
   tutorials-builds:
-    environment:
-      name: github-pages
     runs-on: ubuntu-latest
     container: sphinxdoc/sphinx-latexpdf:5.3.0
     steps:
