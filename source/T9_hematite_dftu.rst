@@ -4,7 +4,7 @@ Tutorial 9: DFT+U on strongly correlated magnetic materials: A case study on ant
 =======================================================================================================
 
 :Author: Davide Sarpa
-:Date:   July 2023
+:Date:   July/Aug 2023
 
 .. role:: raw-latex(raw)
    :format: latex
