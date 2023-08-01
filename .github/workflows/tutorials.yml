@@ -18,7 +18,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  tutorials:
+  tutorials-buils:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    container: sphinxdoc/sphinx-latexpdf:5.3.0
+    steps:
+    - uses: actions/checkout@v3
+    - name: sphinx
+      run: |
+        pip install sphinx-rtd-dark-mode
+        make latexpdf
+        cp build/latex/oneteptutorials.pdf  source/_static/
+        make html
+
+  tutorials-deploy:
+    if: github.repository == ‘onetep-devel/tutorials’
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -39,7 +55,6 @@ jobs:
         # Upload entire repository
         path: './build/html/.'
     - name: Deploy to GitHub Pages
-      if: github.repository == ‘onetep-devel/tutorials’
       id: deployment
       uses: actions/deploy-pages@v1
 
