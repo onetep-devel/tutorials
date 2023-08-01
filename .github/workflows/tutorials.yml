@@ -39,6 +39,7 @@ jobs:
         # Upload entire repository
         path: './build/html/.'
     - name: Deploy to GitHub Pages
+      if: github.repository == ‘onetep-devel/tutorials’
       id: deployment
       uses: actions/deploy-pages@v1
 
