@@ -127,11 +127,15 @@ of the second iteration:
 Finally, we see that in the third iteration the cell has been 
 relaxed. The relaxed cell is printed:
 
-Relaxed cell:
-  bohr
-     19.07668106      0.00000000      0.00000000
-      0.00000000     19.07668106      0.00000000
-      0.00000000      0.00000000     27.83315074
+*Relaxed cell:*
+
+  *bohr*
+
+*19.07668106      0.00000000      0.00000000*
+
+*0.00000000     19.07668106      0.00000000*
+
+*0.00000000      0.00000000     27.83315074*
 
 
 
