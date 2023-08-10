@@ -1,5 +1,5 @@
 ======================================
-Tutorial X: Simulation cell relaxation
+Tutorial 10: Simulation cell relaxation
 ======================================
 
 :Author:  Chris-Kriton Skylaris
