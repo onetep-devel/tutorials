@@ -1,6 +1,6 @@
-======================================
+=======================================
 Tutorial 10: Simulation cell relaxation
-======================================
+=======================================
 
 :Author:  Chris-Kriton Skylaris
 :Date:   August 2023
@@ -20,12 +20,23 @@ Cell relaxation of bulk crystalline silica
 ==========================================================================================
  
 
+This calculation will relax the lattice of a silica (SiO\ :sub:`2`) 
+simulation cell, which is depicted below:
+
+.. _Figure fig:T4:
+.. figure:: _static/tutorial_10/T10_silica.png
+   :alt: The simulation cell of silica. 
+   :name: fig:T10
+   :width: 95.0%
+   :target: _static/tutorial_10/T10_silica.png
+
+The simulation cell of silica used 
+in this tutorial. The silicon atoms are 
+beige and the oxygen atoms are red.
+
 Input file keywords
 -------------------
 
-
-This calculation will relax the lattice of a silica (SiO\ :sub:`2`) 
-simulation cell. 
 
 The input file, which is provided, is called "silica96.dat" 
 and contains 96 atoms in total.
@@ -138,7 +149,11 @@ relaxed. The relaxed cell is printed:
 *0.00000000      0.00000000     27.83315074*
 
 
+This completes tutorial 10.
 
+Files for this tutorial:
+
+ - :download:`T10_files.zip <_static/tutorial_10/T10_files.zip>`
 
 
 
