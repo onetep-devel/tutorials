@@ -13,6 +13,7 @@ Welcome to ONETEP's Tutorials!
    Introduction
    T1_spe_silicon
    T5_analysis_and_visualization
+   T6_TDDFT
    T8_lysozyme
    T9_hematite_dftu.rst
    T10_simulation_cell_relaxation.rst
