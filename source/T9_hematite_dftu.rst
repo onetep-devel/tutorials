@@ -4,7 +4,7 @@ Tutorial 9: DFT+U on strongly correlated magnetic materials: A case study on ant
 =======================================================================================================
 
 :Author: Davide Sarpa
-:Date:   July 2023
+:Date:   July/Aug 2023
 
 .. role:: raw-latex(raw)
    :format: latex
@@ -408,4 +408,4 @@ References
 
 .. [Anisimov1997] V.I. Anisimov, F. Aryasetiawan, and A. I. Liechtenstein, J. Phys.: Condens. Matter 9, 767 (1997).
 
-..  [Dudarev1998] S.L. Dudarev, Phys. Rev. B 57, 3 (1998).
+.. [Dudarev1998] S.L. Dudarev, Phys. Rev. B 57, 3 (1998).
