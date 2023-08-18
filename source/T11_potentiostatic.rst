@@ -41,9 +41,10 @@ For the purposes of this tutorial ONETEP will require only two files to work:
 **Both of the aforementioned files, as well as a few output files can be downloaded below:**
 
 - :download:`Li.out <_static/tutorial_11/Li.out>`
-- :download:`Keywords.dat <_static/tutorial_11/Keywords.dat>`
-- :download:`Li_surface.dat <_static/tutorial_11/Li.dat>`
-- :download:`T11_workbook.ipynb <_static/tutorial_11/T11_workbook.ipynb>`
+- :download:`outputs.zip <_static/tutorial_11/outputs.zip>`
+- :download:`Keywords.dat </_static/tutorial_11/keywords.dat>`
+- :download:`Li_surface.dat <_static/tutorial_11/Li_surface.dat>`
+- :download:`T11_workbook.ipynb </_static/tutorial_11/T11_workbook.ipynb>`
 - :download:`Li_NCP19_PBE_OTF.usp <_static/tutorial_11/Li_NCP19_PBE_OTF.usp>`
 
 
