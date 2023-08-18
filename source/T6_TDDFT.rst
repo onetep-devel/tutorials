@@ -12,7 +12,7 @@ Tutorial 6: Time-Dependent DFT
 .. |figure1| image:: _static/tutorial_6/ribbon.jpeg
    :width: 30%
 
-.. |figure2| image:: _static/tutorial_6/ribbon.jpeg
+.. |figure2| image:: _static/tutorial_6/ribbon_NN.jpeg
    :width: 30%
   
 
@@ -146,7 +146,7 @@ and replace them by two N at the same positions where the C were located.
 
  |figure1| |figure2| 
 
-Right: Pristine nanoribbon. Left: Nanoribbon with for two carbons and two hidrogen substituted for two nitrogens
+Left: Pristine nanoribbon. Right: Nanoribbon with two carbons and two hydrogens substituted for two nitrogens
 
 Note that in order to run the calculation, you will have to add the nitrogen species to the 
 ``%block species_pot``, ``%block species`` and ``%block species_cond`` blocks. 
