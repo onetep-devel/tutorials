@@ -1,0 +1,119 @@
+TASK: SINGLEPOINT
+!GEOM_CONTINUATION T
+!---------------------------------------------------------------------------------------------------------------
+SPIN                    : 0.0
+EDFT_SPIN_FIX           : 2
+SPIN_POLARIZED          : T
+!---------------------------------------------------------------------------------------------------------------
+DISPERSION 4   
+XC_FUNCTIONAL PBE
+CUTOFF_ENERGY 1000 eV
+OUTPUT_DETAIL VERBOSE
+!CALCUALTION PARAMETERS ----------------------------------------------------------------------------------------  
+
+!OUTPUTS--------------------------------------------------------------------------------------------------------
+WRITE_XYZ T                                                             
+DX_FORMAT T  
+CUBE_FORMAT F   
+DO_PROPERTIES T                                                                 
+WRITE_DENSKERN T                                                                                                                     
+WRITE_HAMILTONIAN T  
+WRITE_TIGHTBOX_NGWFS T    
+!OUTPUTS--------------------------------------------------------------------------------------------------------
+
+!EDFT PARAMETERS------------------------------------------------------------------------------------------------
+EDFT T
+EDFT_MAXIT 35
+MAXIT_NGWF_CG 100
+EIGENSOLVER_ORFAC : -1
+EIGENSOLVER_ABSTOL: -1
+EDFT_SMEARING_WIDTH 0.1 eV
+!EDFT PARAMETERS------------------------------------------------------------------------------------------------
+
+!GRANDCANONICAL PARAMETERS--------------------------------------------------------------------------------------
+EDFT_GRAND_CANONICAL T
+EDFT_REFERENCE_POTENTIAL  -1.20 eV
+EDFT_ELECTRODE_POTENTIAL  -0.40 V
+!GRANDCANONICAL PARAMETERS--------------------------------------------------------------------------------------
+
+!CONVERGENCE PARAMETERS-----------------------------------------------------------------------------------------
+ELEC_ENERGY_TOL     1E-7 Ha                                                         
+EDFT_FERMI_THRES    1E-8 Ha
+EDFT_NELEC_THRES    1E-8 
+NGWF_THRESHOLD_ORIG 5E-7 
+!CONVERGENCE PARAMETERS-----------------------------------------------------------------------------------------
+
+!IMPLICIT SOLVATION---------------------------------------------------------------------------------------------
+IS_INCLUDE_APOLAR T     
+IS_SMEARED_ION_REP T     
+IS_IMPLICIT_SOLVENT T
+IS_PBE_ENERGY_TOLERANCE 1E+50 Ha
+!IMPLICIT SOLVATION---------------------------------------------------------------------------------------------
+
+!ELECTROLYE-----------------------------------------------------------------------------------------------------
+IS_PBE               FULL
+IS_PBE_BC_DEBYE_SCREENING T
+IS_PBE_TEMPERATURE   298.15  
+IS_PBE_NEUTRALISATION_SCHEME COUNTERIONS_AUTO
+!---------------------------------------------------------------------------------------------------------------
+
+!SOLVENT--------------------------------------------------------------------------------------------------------
+IS_SOLVATION_PROPERTIES T
+IS_BULK_PERMITTIVITY 90.7           
+IS_DIELECTRIC_FUNCTION SOFT_SPHERE
+IS_SOLVENT_SURF_TENSION 0.0506 N/m  
+!---------------------------------------------------------------------------------------------------------------
+
+!ACCESSABILITY OF NON-QUANTUM SYSTEM TO QUANTUM SYSTEM ---------------------------------------------------------
+IS_STERIC_POT_TYPE M
+IS_HC_STERIC_SMEARING       0.4 Bohr 
+IS_HC_STERIC_DENS_ISOVALUE  0.001   
+!---------------------------------------------------------------------------------------------------------------
+
+!BOUNDARY CONDITIONS--------------------------------------------------------------------------------------------
+PSPOT_BC:       P P P
+ION_ION_BC:     P P P
+MULTIGRID_BC:   P P P
+SMEARED_ION_BC: P P P
+!BOUNDARY CONDITIONS--------------------------------------------------------------------------------------------
+
+!DL_MG KEYWORDS ~ PARAMETERS FOR SOLVER-------------------------------------------------------------------------
+MG_MAX_RES_RATIO 1000.0
+MG_MAX_ITERS_VCYCLE 500
+MG_MAX_ITERS_NEWTON 300
+MG_VCYC_SMOOTHER_ITER_PRE 4
+MG_VCYC_SMOOTHER_ITER_POST 4
+!DL_MG KEYWORDS ~ PARAMETERS FOR SOLVER-------------------------------------------------------------------------
+
+!SPECIES & ELECTROLYTE------------------------------------------------------------------------------------------
+%BLOCK SPECIES
+Li Li 3 5 9.0
+%ENDBLOCK SPECIES
+
+%BLOCK SOL_IONS
+ Li    +1 1.0
+ PF6   -1 1.0
+%ENDBLOCK SOL_IONS
+
+%BLOCK SPECIES_POT
+Li Li_NCP19_PBE_OTF.usp
+%ENDBLOCK SPECIES_POT
+
+%BLOCK SPECIES_ATOMIC_SET
+Li SOLVE
+%ENDBLOCK SPECIES_ATOMIC_SET 
+
+%BLOCK SPECIES_SOLVENT_RADIUS
+Li 3.0 ! 3 Bohr for each Li 
+%ENDBLOCK SPECIES_SOLVENT_RADIUS
+!SPECIES & ELECTROLYTE------------------------------------------------------------------------------------------
+
+%BLOCK LATTICE_CART 
+10 0 0 
+0 10 0 
+0 0 10
+%ENDBLOCK LATTICE_CART 
+
+%BLOCK POSITIONS_ABS
+Li 0 0 0 
+%ENDBLOCK POSITIONS_ABS

@@ -1,0 +1,178 @@
+cube_format : F
+cutoff_energy : 1000 eV
+dispersion : 4
+do_properties : T
+dx_format : T
+edft : T
+edft_electrode_potential : -0.40 V
+edft_fermi_thres : 1E-8 Ha
+edft_grand_canonical : T
+edft_maxit : 35
+edft_nelec_thres : 1E-8
+edft_reference_potential : -1.20 eV
+edft_smearing_width : 0.1 eV
+edft_spin_fix : 2
+eigensolver_abstol : -1
+eigensolver_orfac : -1
+elec_energy_tol : 1E-7 Ha
+forces_output_detail : verbose
+ion_ion_bc : P P P
+is_bulk_permittivity : 90.7
+is_dielectric_function : SOFT_SPHERE
+is_hc_steric_dens_isovalue : 0.001
+is_hc_steric_smearing : 0.4 Bohr
+is_implicit_solvent : T
+is_include_apolar : T
+is_pbe : FULL
+is_pbe_bc_debye_screening : T
+is_pbe_energy_tolerance : 1E+50 Ha
+is_pbe_neutralisation_scheme : COUNTERIONS_AUTO
+is_pbe_temperature : 298.15
+is_smeared_ion_rep : T
+is_solvation_properties : T
+is_solvent_surf_tension : 0.0506 N/m
+is_steric_pot_type : M
+maxit_ngwf_cg : 100
+mg_max_iters_newton : 300
+mg_max_iters_vcycle : 500
+mg_max_res_ratio : 1000.0
+mg_vcyc_smoother_iter_post : 4
+mg_vcyc_smoother_iter_pre : 4
+multigrid_bc : P P P
+ngwf_threshold_orig : 5E-7
+output_detail : VERBOSE
+paw : F
+pseudo_path : .
+pspot_bc : P P P
+smeared_ion_bc : P P P
+spin : 0.0
+spin_polarized : T
+task : SINGLEPOINT
+write_denskern : T
+write_forces : T
+write_hamiltonian : T
+write_tightbox_ngwfs : T
+write_xyz : T
+xc_functional : PBE
+
+%BLOCK LATTICE_CART
+ang
+     10.39800000       0.00000000       0.00000000
+      0.00000000      10.39800000       0.00000000
+      0.00000000       0.00000000      65.59700000
+%ENDBLOCK LATTICE_CART
+
+%BLOCK POSITIONS_ABS
+ang
+   Li     1.733000     1.733000    25.000000
+   Li     5.199000     1.733000    25.000000
+   Li     8.665000     1.733000    25.000000
+   Li     1.733000     5.199000    25.000000
+   Li     5.199000     5.199000    25.000000
+   Li     8.665000     5.199000    25.000000
+   Li     1.733000     8.665000    25.000000
+   Li     5.199000     8.665000    25.000000
+   Li     8.665000     8.665000    25.000000
+   Li     0.000000     0.000000    26.733000
+   Li     3.466000     0.000000    26.733000
+   Li     6.932000     0.000000    26.733000
+   Li     0.000000     3.466000    26.733000
+   Li     3.466000     3.466000    26.733000
+   Li     6.932000     3.466000    26.733000
+   Li     0.000000     6.932000    26.733000
+   Li     3.466000     6.932000    26.733000
+   Li     6.932000     6.932000    26.733000
+   Li     1.733000     1.733000    28.466000
+   Li     5.199000     1.733000    28.466000
+   Li     8.665000     1.733000    28.466000
+   Li     1.733000     5.199000    28.466000
+   Li     5.199000     5.199000    28.466000
+   Li     8.665000     5.199000    28.466000
+   Li     1.733000     8.665000    28.466000
+   Li     5.199000     8.665000    28.466000
+   Li     8.665000     8.665000    28.466000
+   Li     0.000000     0.000000    30.199000
+   Li     3.466000     0.000000    30.199000
+   Li     6.932000     0.000000    30.199000
+   Li     0.000000     3.466000    30.199000
+   Li     3.466000     3.466000    30.199000
+   Li     6.932000     3.466000    30.199000
+   Li     0.000000     6.932000    30.199000
+   Li     3.466000     6.932000    30.199000
+   Li     6.932000     6.932000    30.199000
+   Li     1.733000     1.733000    31.932000
+   Li     5.199000     1.733000    31.932000
+   Li     8.665000     1.733000    31.932000
+   Li     1.733000     5.199000    31.932000
+   Li     5.199000     5.199000    31.932000
+   Li     8.665000     5.199000    31.932000
+   Li     1.733000     8.665000    31.932000
+   Li     5.199000     8.665000    31.932000
+   Li     8.665000     8.665000    31.932000
+   Li     0.000000     0.000000    33.665000
+   Li     3.466000     0.000000    33.665000
+   Li     6.932000     0.000000    33.665000
+   Li     0.000000     3.466000    33.665000
+   Li     3.466000     3.466000    33.665000
+   Li     6.932000     3.466000    33.665000
+   Li     0.000000     6.932000    33.665000
+   Li     3.466000     6.932000    33.665000
+   Li     6.932000     6.932000    33.665000
+   Li     1.733000     1.733000    35.398000
+   Li     5.199000     1.733000    35.398000
+   Li     8.665000     1.733000    35.398000
+   Li     1.733000     5.199000    35.398000
+   Li     5.199000     5.199000    35.398000
+   Li     8.665000     5.199000    35.398000
+   Li     1.733000     8.665000    35.398000
+   Li     5.199000     8.665000    35.398000
+   Li     8.665000     8.665000    35.398000
+   Li     0.000000     0.000000    37.131000
+   Li     3.466000     0.000000    37.131000
+   Li     6.932000     0.000000    37.131000
+   Li     0.000000     3.466000    37.131000
+   Li     3.466000     3.466000    37.131000
+   Li     6.932000     3.466000    37.131000
+   Li     0.000000     6.932000    37.131000
+   Li     3.466000     6.932000    37.131000
+   Li     6.932000     6.932000    37.131000
+   Li     1.733000     1.733000    38.864000
+   Li     5.199000     1.733000    38.864000
+   Li     8.665000     1.733000    38.864000
+   Li     1.733000     5.199000    38.864000
+   Li     5.199000     5.199000    38.864000
+   Li     8.665000     5.199000    38.864000
+   Li     1.733000     8.665000    38.864000
+   Li     5.199000     8.665000    38.864000
+   Li     8.665000     8.665000    38.864000
+   Li     0.000000     0.000000    40.597000
+   Li     3.466000     0.000000    40.597000
+   Li     6.932000     0.000000    40.597000
+   Li     0.000000     3.466000    40.597000
+   Li     3.466000     3.466000    40.597000
+   Li     6.932000     3.466000    40.597000
+   Li     0.000000     6.932000    40.597000
+   Li     3.466000     6.932000    40.597000
+   Li     6.932000     6.932000    40.597000
+%ENDBLOCK POSITIONS_ABS
+
+%BLOCK SOL_IONS
+Li    +1 1.0
+PF6   -1 1.0
+%ENDBLOCK SOL_IONS
+
+%BLOCK SPECIES
+Li Li 3 5 9.0
+%ENDBLOCK SPECIES
+
+%BLOCK SPECIES_ATOMIC_SET
+Li SOLVE
+%ENDBLOCK SPECIES_ATOMIC_SET
+
+%BLOCK SPECIES_POT
+Li Li_NCP19_PBE_OTF.usp
+%ENDBLOCK SPECIES_POT
+
+%BLOCK SPECIES_SOLVENT_RADIUS
+Li 3.0 ! 3 Bohr for each Li
+%ENDBLOCK SPECIES_SOLVENT_RADIUS
