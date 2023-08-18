@@ -17,6 +17,7 @@ Welcome to ONETEP's Tutorials!
    T8_lysozyme
    T9_hematite_dftu.rst
    T10_simulation_cell_relaxation.rst
+   T11_potentiostatic.rst
 
 PDF version of all tutorials
 ============================
