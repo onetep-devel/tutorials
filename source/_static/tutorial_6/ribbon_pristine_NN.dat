@@ -1,0 +1,86 @@
+TASK: SINGLEPOINT COND LR_TDDFT
+XC_FUNCTIONAL: PBE
+do_properties: T
+cutoff_energy: 600 eV
+
+cond_num_states: 12
+cond_num_extra_states: 8
+cond_num_extra_its: 5
+
+lr_tddft_num_states: 8
+lr_tddft_write_densities: T
+lr_tddft_cg_threshold: 1e-4
+
+%block lattice_cart
+30.00 0.0   0.0
+0.0   24.0  0.0
+0.0   0.0  37.232
+%endblock lattice_cart
+
+%block species
+C C 6 4 8.0 
+H H 1 1 8.0
+N N 7 4 8.0
+%endblock species
+
+%block species_pot
+C carbon.recpot
+H hydrogen.recpot
+N nitrogen.recpot
+%endblock species_pot
+
+%block species_cond
+C C 6 4 10.0
+H H 1 1 10.0
+N N 7 4 10.0
+%endblock species_cond
+
+%block positions_abs
+C 10.90 12.0  0.0
+C 13.58 12.0  0.0
+H  7.50 12.0  2.327
+C  9.56 12.0  2.327
+C 14.93 12.0  2.327
+H 16.99 12.0  2.327
+C 10.90 12.0  4.654
+C 13.58 12.0  4.654
+H  7.50 12.0  6.981
+C  9.56 12.0  6.981
+C 14.93 12.0  6.981
+H 16.99 12.0  6.981
+C 10.90 12.0  9.308
+C 13.58 12.0  9.308
+H  7.50 12.0 11.635
+C  9.56 12.0 11.635
+C 14.93 12.0 11.635
+H 16.99 12.0 11.635
+C 10.90 12.0 13.962
+C 13.58 12.0 13.962
+N  9.56 12.0 16.289
+N 14.93 12.0 16.289
+C 10.90 12.0 18.616
+C 13.58 12.0 18.616
+H  7.50 12.0 20.943
+C  9.56 12.0 20.943
+C 14.93 12.0 20.943
+H 16.99 12.0 20.943
+C 10.90 12.0 23.270
+C 13.58 12.0 23.270
+H  7.50 12.0 25.597
+C  9.56 12.0 25.597
+C 14.93 12.0 25.597
+H 16.99 12.0 25.597
+C 10.90 12.0 27.924
+C 13.58 12.0 27.924
+H  7.50 12.0 30.251
+C  9.56 12.0 30.251
+C 14.93 12.0 30.251
+H 16.99 12.0 30.251
+C 10.90 12.0 32.578
+C 13.58 12.0 32.578
+H  7.50 12.0 34.905
+C  9.56 12.0 34.905
+C 14.93 12.0 34.905
+H 16.99 12.0 34.905
+%endblock positions_abs
+
