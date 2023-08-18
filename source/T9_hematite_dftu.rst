@@ -113,8 +113,8 @@ ONETEP requires different files to work properly.
 
 All the files needed for the simulation can be downloaded from
 
-- :download:`Fe_NCP19_PBE_OTF.usp <_static/tutorial_9/Fe_NCP19_PBE_OTF>` 
-- :download:`O_NCP19_PBE_OTF.usp <_static/tutorial_9/O_NCP19_PBE_OTF>`
+- :download:`Fe_NCP19_PBE_OTF.usp <_static/tutorial_9/Fe_NCP19_PBE_OTF.usp>` 
+- :download:`O_NCP19_PBE_OTF.usp <_static/tutorial_9/O_NCP19_PBE_OTF.usp>`
 - :download:`hematite.out <_static/tutorial_9/hematite.out>`
 - :download:`hematite.dat <_static/tutorial_9/hematite.dat>`
 
