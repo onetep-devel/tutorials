@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to ONETEP's Tutorials!
+Welcome to the ONETEP Tutorials!
 ============================================
 
 .. toctree::
@@ -19,6 +19,7 @@ Welcome to ONETEP's Tutorials!
    T9_hematite_dftu
    T10_simulation_cell_relaxation
    T11_potentiostatic
+   T12_pentacene_embedding
 
 PDF version of all tutorials
 ============================
