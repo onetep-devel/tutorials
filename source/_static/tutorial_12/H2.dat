@@ -1,0 +1,30 @@
+task : singlepoint
+cutoff_energy: 800 eV
+xc_functional: PBE
+minit_lnv: 5
+maxit_lnv: 5
+maxit_ngwf_cg: 50
+
+write_denskern: T
+write_tightbox_ngwfs: T
+
+output_detail: VERBOSE
+
+%block species
+H H 1 1 9.0
+%endblock species
+
+%block species_pot
+H H_NCP19_PBE_OTF.usp
+%endblock species_pot
+
+%BLOCK LATTICE_CART
+50.000000   0.0000000    0.0000000
+0.0000000   50.000000    0.0000000
+0.0000000   0.0000000    50.000000
+%ENDBLOCK LATTICE_CART
+
+%block positions_abs
+H    2.84789157E+001  2.92148416E+001  3.78536566E+001
+H    2.84777529E+001  2.92148416E+001  3.92715061E+001
+%endblock positions_abs
