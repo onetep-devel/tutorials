@@ -40,14 +40,16 @@ For the purposes of this tutorial ONETEP will require only two files to work:
 
 **Both of the aforementioned files, as well as a few output files can be downloaded below:**
 
-- :download:`Li.dat <_static/Li.dat>`
-- :download:`Li.out <_static/Li.out>`
-- :download:`Keywords.dat <_static/Keywords.dat>`
-- :download:`T11_workbook.ipynb <_static/T11_workbook.ipynb>`
-- :download:`Li_NCP19_PBE_OTF.usp <_static/Li_NCP19_PBE_OTF>`
+- :download:`Li.out <_static/tutotial_11/Li.out>`
+- :download:`outputs.zip <_static/tutorial_11/outputs.zip>`
+- :download:`Keywords.dat <_static/tutotial_11/Keywords.dat>`
+- :download:`Li_surface.dat <_static/tutorial_11/Li.dat>`
+- :download:`T11_workbook.ipynb <_static/tutotial_11/T11_workbook.ipynb>`
+- :download:`Li_NCP19_PBE_OTF.usp <_static/tutotial_11/Li_NCP19_PBE_OTF.usp>`
 
 
 Note that the output files required for the visualisation section of this tutorial are within the outputs.zip file, and will need to be extracted to the same directory as the Jupyter notebook.
+Furthermore, Li_surface.dat is the .dat file used for job submission, and Keywords.dat contains the keywords that are taken in by the ASE script to generate the Li_surface.dat file.
 
 The Dat file 
 ------------
