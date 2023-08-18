@@ -11,23 +11,10 @@ Tutorial 6: Time-Dependent DFT
 
 .. |figure1| image:: _static/tutorial_6/ribbon.jpeg
    :width: 30%
-   :align: middle
 
 .. |figure2| image:: _static/tutorial_6/ribbon.jpeg
    :width: 30%
-   :align: middle
   
-.. |newline| raw:: html
-
-   <br />
-
-.. |spacer| raw:: html
-
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-.. |blank| raw:: html
-
-   &nbsp;
 
 
 TDDFT in ONETEP
@@ -75,23 +62,14 @@ character. In a first step, we aim to build an input file for a pristine graphen
 periodic boundary conditions. A primitive unit cell for the nanoribbon in question can be found
 below:
 
-+------------------------------------------------------+
-| %block positions_abs                                 |
-+------------------------------------------------------+
-| C |spacer| 10.90 |spacer| 10.0 |spacer| 0.000        |
-+------------------------------------------------------+
-| C |spacer| 13.58 |spacer| 10.0 |spacer| 0.000        |
-+------------------------------------------------------+
-| H |spacer| 7.50 |blank| |spacer| 10.0 |spacer| 2.327 |
-+------------------------------------------------------+
-| C |spacer| 9.56 |blank| |spacer| 10.0 |spacer| 2.327 |
-+------------------------------------------------------+
-| C |spacer| 14.93 |spacer| 10.0 |spacer| 2.327        |
-+------------------------------------------------------+
-| H |spacer| 16.99 |spacer| 10.0 |spacer| 2.327        |
-+------------------------------------------------------+
-| %endblock positions_abs                              |
-+------------------------------------------------------+
+| %block positions_abs
+| C 10.90 10.0 0.000
+| C 13.58 10.0 0.000
+| H 7.50 10.0 2.327
+| C 9.56 10.0 2.327
+| C 14.93 10.0 2.327
+| H 16.99 10.0 2.327
+| %endblock positions_abs
 
 To generate an appropriate input file, copy the above primitive unit cell block into a new input
 file called ``ribbon.dat``. ONETEP does not make use of any *k*-point sampling and all calculations
@@ -166,9 +144,9 @@ For this purpose, copy the input file ``ribbon.dat`` to a new file ``ribbon_NN.d
 remove two C-H from the ``%block positions_abs`` that are opposite to each other in the ribbon,
 and replace them by two N at the same positions where the C were located.
 
-|spacer| |spacer| |spacer| |figure1| |spacer| |spacer| |spacer| |figure2| |spacer| |spacer| |spacer|
-|spacer| |spacer| |spacer| |spacer| Pristine nanoribbon |spacer| |spacer| Nanoribbon with for two carbons and two hidrogen
-|spacer| |spacer| |spacer| |spacer| |spacer| |spacer| |spacer| |spacer| |spacer| |spacer| |spacer| |spacer| |spacer| |spacer| substituted for two nitrogens
+ |figure1| |figure2| 
+
+Right: Pristine nanoribbon. Left: Nanoribbon with for two carbons and two hidrogen substituted for two nitrogens
 
 Note that in order to run the calculation, you will have to add the nitrogen species to the 
 ``%block species_pot``, ``%block species`` and ``%block species_cond`` blocks. 
