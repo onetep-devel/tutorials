@@ -195,4 +195,7 @@ All the files needed for the simulation can be downloaded from
 
 - :download:`ribbon_pristine.dat <_static/tutorial_6/ribbon_pristine.dat>`
 - :download:`ribbon_pristine_NN.dat <_static/tutorial_6/ribbon_pristine_NN.dat>`
+- :download:`carbon.recpot <_static/tutorial_6/carbon.recpot>`
+- :download:`hydrogen.recpot <_static/tutorial_6/hydrogen.recpot>`
+- :download:`nitrogen.recpot <_static/tutorial_6/nitrogen.recpot>`
 
