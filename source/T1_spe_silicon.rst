@@ -294,61 +294,61 @@ reasons behind common types of convergence failure, and what to do to
 eliminate those failures and perform accurate simulations.
 
 - Problem: Repeated ’safe’ steps (of 0.150 or 0.100) during NGWF
-Conjugate Gradients optimisation, leading to poor or no convergence.
-This often means that the step length cap for NGWF CG is too short.
-**Solution:** increase ngwf_cg_max_step, eg to 8.0.
+  Conjugate Gradients optimisation, leading to poor or no convergence.
+  This often means that the step length cap for NGWF CG is too short.
+  **Solution:** increase ngwf_cg_max_step, eg to 8.0.
 
 - Problem: Repeated ‘safe’ steps (of 0.150 or 0.100) during LNV
-Conjugate Gradients optimisation, leading to poor or no convergence.
-This often means that the step length cap for LNV CG is too short.
-**Solution:** increase lnv_cg_max_step, eg to 8.0.
+  Conjugate Gradients optimisation, leading to poor or no convergence.
+  This often means that the step length cap for LNV CG is too short.
+  **Solution:** increase lnv_cg_max_step, eg to 8.0.
 
 - Problem: Occupancies \`break’ during LNV optimisation of kernel.
-Examine the output with output_detail: VERBOSE and look at the occupancy
-error and occupancy bounds during the “Penalty functional idempotency
-correction” section of each LNV step. Check for occupancies outside the
-stable range (approx -0.3:1.3) or RMS occupancy errors not decreasing
-(particularly if no kernel truncation is applied).
-**Solution:** Activate
-LNV line step checking with lnv_check_trial_steps: T. This checks that
-the kernel is still stable after the proposed line step is taken.
+  Examine the output with output_detail: VERBOSE and look at the occupancy
+  error and occupancy bounds during the “Penalty functional idempotency
+  correction” section of each LNV step. Check for occupancies outside the
+  stable range (approx -0.3:1.3) or RMS occupancy errors not decreasing
+  (particularly if no kernel truncation is applied).
+  **Solution:** Activate
+  LNV line step checking with lnv_check_trial_steps: T. This checks that
+  the kernel is still stable after the proposed line step is taken.
 
 - Problem: Occupancies are \`broken’ from start of calculation. Symptoms
-as above. Palser Manolopoulos may be unstable due to degeneracy or
-near-degeneracy at the Fermi level. Check the output of Palser
-Manolopoulos for warnings.
-**Solution:** If there is an initial degeneracy
-at the Fermi level, an O(N3 ) diagonalisation may be required to get a
-good starting kernel. Set maxit_palser_mano : -1.
+  as above. Palser Manolopoulos may be unstable due to degeneracy or
+  near-degeneracy at the Fermi level. Check the output of Palser
+  Manolopoulos for warnings.
+  **Solution:** If there is an initial degeneracy
+  at the Fermi level, an O(N3 ) diagonalisation may be required to get a
+  good starting kernel. Set maxit_palser_mano : -1.
 
 - Problem: RMS Commutator (HKS-SKH) of kernel and Hamiltonian stagnates
-(stops going down with each iteration) during LNV optimisation. This is
-a sign that the current set of NGWFs is not able to represent a density
-matrix that both reproduces the electron density that generated the
-Hamiltonian while simultaneously describing the occupied eigenstates of
-that Hamiltonian. If this problem does not start to go away after a few
-steps of NGWF optimisation, a better or larger initial set of NGWFs may
-be required.
-**Solutions:** Increase number of NGWFs per atom, increase
-radius of NGWFs, improve initial guess for NGWFs.
+  (stops going down with each iteration) during LNV optimisation. This is
+  a sign that the current set of NGWFs is not able to represent a density
+  matrix that both reproduces the electron density that generated the
+  Hamiltonian while simultaneously describing the occupied eigenstates of
+  that Hamiltonian. If this problem does not start to go away after a few
+  steps of NGWF optimisation, a better or larger initial set of NGWFs may
+  be required.
+  **Solutions:** Increase number of NGWFs per atom, increase
+  radius of NGWFs, improve initial guess for NGWFs.
 
 - Problem: RMS NGWF gradient stagnates (stops going down) during NGWF CG
-optimisation, while energy is still going down slowly. This often
-suggests that the NGWFs may have expanded away from their centres to
-have significant value near the edge of their localisation region, and
-thus cannot optimise successfully.
-**Solution:** Increase NGWF radius.
-Sometimes increasing the kinetic energy cutoff helps as well. For
-smaller systems and initial tests, a useful check on the accuracy of the
-final result is to perform a full O(N\ :math:`^3`) diagonalisation at
-the end of the calculation, if it is computationally feasible to do so.
-To activate this, turn on a properties calculation with do_properties:
-T, and then ask for an eigenvalue calculation of the first 100
-eigenvalues either side of the Fermi energy, for the kernel and
-Hamiltonian matrices, by setting num_eigenvalues: 100. If all is well,
-then the occupation eigenvalues should all be close to 0.00000 or
-1.00000 (empty or full) and the Hamiltonian eigenvalues should all be
-within a sensible range.
+  optimisation, while energy is still going down slowly. This often
+  suggests that the NGWFs may have expanded away from their centres to
+  have significant value near the edge of their localisation region, and
+  thus cannot optimise successfully.
+  **Solution:** Increase NGWF radius.
+  Sometimes increasing the kinetic energy cutoff helps as well. For
+  smaller systems and initial tests, a useful check on the accuracy of the
+  final result is to perform a full O(N\ :math:`^3`) diagonalisation at
+  the end of the calculation, if it is computationally feasible to do so.
+  To activate this, turn on a properties calculation with do_properties:
+  T, and then ask for an eigenvalue calculation of the first 100
+  eigenvalues either side of the Fermi energy, for the kernel and
+  Hamiltonian matrices, by setting num_eigenvalues: 100. If all is well,
+  then the occupation eigenvalues should all be close to 0.00000 or
+  1.00000 (empty or full) and the Hamiltonian eigenvalues should all be
+  within a sensible range.
 
 One final note if you’re not getting the result you expect – check the
 units on your atomic positions! ONETEP expects positions in Bohr if the

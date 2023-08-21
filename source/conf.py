@@ -6,9 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Onetep Tutorials'
-copyright = '2023, Onetep Collective'
-author = 'Onetep Collective'
+project = 'ONETEP Tutorials'
+copyright = '2023, ONETEP Collective'
+author = 'ONETEP Collective'
 release = '0.0.1'
 
 # -- General configuration ---------------------------------------------------

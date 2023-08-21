@@ -49,7 +49,7 @@ Due to the cubic scaling of conventional density functional theory,
 full-protein calculations on many thousands of atoms are not feasible.
 To study larger systems, linear-scaling versions of DFT have been
 developed [Bowler2012]_. The ONETEP
-code [Prentice2020]_ is one such linear-scaling DFT
+code [Prentice2020_T8]_ is one such linear-scaling DFT
 implementation, exploiting hybrid MPI-OMP
 parallelism [Wilkinson2014]_ for efficient and scalable
 calculations. The unique characteristic of ONETEP is that even though it
@@ -646,21 +646,22 @@ Files for this tutorial:
 
 References:
 
-[Bowler2012] D. R. Bowler, and T. Miyazaki, *O(N) methods in electronic structure calculations*, Reports on Progress in Physics, 75 (2012).
+.. [Bowler2012] D. R. Bowler, and T. Miyazaki, *O(N) methods in electronic structure calculations*, Reports on Progress in Physics, 75 (2012).
 
-[Dziedzic2011] J. Dziedzic, H. H. Helal, C.-K. Skylaris, A. A. Mostofi, and M. C. Payne, M. C., *Minimal parameter implicit solvent model for ab initio electronic-structure calculations*, EPL, 95 (2011).
+.. [Dziedzic2011] J. Dziedzic, H. H. Helal, C.-K. Skylaris, A. A. Mostofi, and M. C. Payne, M. C., *Minimal parameter implicit solvent model for ab initio electronic-structure calculations*, EPL, 95 (2011).
 
-[Fox2014] S. J. Fox, J. Dziedzic, T. Fox, C. S. Tautermann, and C.-K. Skylaris, *Density functional theory calculations on entire proteins for free energies of binding: Application to a model polar binding ste*, Proteins: Structure, Function and Bioinformatics, 82 (2014).
+.. [Fox2014] S. J. Fox, J. Dziedzic, T. Fox, C. S. Tautermann, and C.-K. Skylaris, *Density functional theory calculations on entire proteins for free energies of binding: Application to a model polar binding ste*, Proteins: Structure, Function and Bioinformatics, 82 (2014).
 
-[Gundelach2021] L. Gundelach, T. Fox, C. S. Tautermann, and C.-K. Skylaris, *Protein–ligand free energies of binding from full-protein DFT calculations: convergence and choice of exchange–correlation functional*, Physical Chemistry Chemical Physics, 23 (2021).
+.. [Gundelach2021] L. Gundelach, T. Fox, C. S. Tautermann, and C.-K. Skylaris, *Protein–ligand free energies of binding from full-protein DFT calculations: convergence and choice of exchange–correlation functional*, Physical Chemistry Chemical Physics, 23 (2021).
 
-[Manz2012] T. A. Manz, and D. S. Sholl, *Improved Atoms-in-Molecule Charge Partitioning Functional for Simultaneously Reproducing the Electrostatic Potential and Chemical States in Periodic and Nonperiodic Materials*, Journal of Chemical Theory and Computation, 8 (2012).
+.. [Manz2012] T. A. Manz, and D. S. Sholl, *Improved Atoms-in-Molecule Charge Partitioning Functional for Simultaneously Reproducing the Electrostatic Potential and Chemical States in Periodic and Nonperiodic Materials*, Journal of Chemical Theory and Computation, 8 (2012).
 
-[Mobley2017] D. L. Mobley, and M. K. Gilson, Michael K., *Predicting Binding Free Energies: Frontiers and Benchmarks*, Annual Review of Biophysics, 46 (2017).
+.. [Mobley2017] D. L. Mobley, and M. K. Gilson, Michael K., *Predicting Binding Free Energies: Frontiers and Benchmarks*, Annual Review of Biophysics, 46 (2017).
 
-[Prentice2020] J. C. A Prentice, J. Aarons, J. C. Womack, A. E. A. Allen, L. Andrinopoulos, L. Anton, R. A. Bell, A. Bhandari, G. A. Bramley, R. J. Charlton, R. J. Clements, D. J. Cole, G. Constantinescu, F. Corsetti, S. M. M. Dubois, K. K. B. Duff, J. M. Escartin, A. Greco, Q. Hill, L. P. Lee, E. Linscott, D. D. O'Regan, M. J. S. Phipps, L. E. Ratcliff, A. Ruiz Serrano, E. W. Tait, G. Teobaldi, V. Vitale, N. Yeung, T. J. Zuehlsdorff, J. Dziedzic, P. D. Haynes, N. D. M. Hine, A. A. Mostofi, M. C. Payne, and C.-K. Skylaris, *The ONETEP linear-scaling density functional theory program*, Journal of Chemical Physics, 152 (2020).
+.. [Prentice2020_T8] J. C. A Prentice, J. Aarons, J. C. Womack, A. E. A. Allen, L. Andrinopoulos, L. Anton, R. A. Bell, A. Bhandari, G. A. Bramley, R. J. Charlton, R. J. Clements, D. J. Cole, G. Constantinescu, F. Corsetti, S. M. M. Dubois, K. K. B. Duff, J. M. Escartin, A. Greco, Q. Hill, L. P. Lee, E. Linscott, D. D. O'Regan, M. J. S. Phipps, L. E. Ratcliff, A. Ruiz Serrano, E. W. Tait, G. Teobaldi, V. Vitale, N. Yeung, T. J. Zuehlsdorff, J. Dziedzic, P. D. Haynes, N. D. M. Hine, A. A. Mostofi, M. C. Payne, and C.-K. Skylaris, *The ONETEP linear-scaling density functional theory program*, Journal of Chemical Physics, 152 (2020).
 
-[Wilkinson2014] K. A. Wilkinson, N. D. M. Hine, and C.-K. Skylaris, *Hybrid MPI-OpenMP parallelism in the ONETEP linear-scaling electronic structure code: Application to the delamination of cellulose nanofibrils*, Journal of Chemical Theory and Computation, 10 (2014).
+.. [Wilkinson2014] K. A. Wilkinson, N. D. M. Hine, and C.-K. Skylaris, *Hybrid MPI-OpenMP parallelism in the ONETEP linear-scaling electronic structure code: Application to the delamination of cellulose nanofibrils*, Journal of Chemical Theory and Computation, 10 (2014).
 
-[Womack2018] J. C. Womack, L. Anton, J. Dziedzic, P. J. Hasnip, M. I. J. Probert, and C.-K. Skylaris, *DL-MG: A Parallel Multigrid Poisson and Poisson-Boltzmann Solver for Electronic Structure Calculations in Vacuum and Solution*, Journal of Chemical Theory and Computation, 14 (2018).
+.. [Womack2018] J. C. Womack, L. Anton, J. Dziedzic, P. J. Hasnip, M. I. J. Probert, and C.-K. Skylaris, *DL-MG: A Parallel Multigrid Poisson and Poisson-Boltzmann Solver for Electronic Structure Calculations in Vacuum and Solution*, Journal of Chemical Theory and Computation, 14 (2018).
 
+.. [Genheden2010] S. Genhenden, J. Kongsted, P. Soderhjelm, and U. Ryde, *Nonpolar solvation free energies of protein-ligand complexes*, Journal of Chemical Theory and Computation, 11 (2010).
