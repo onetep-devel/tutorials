@@ -1,4 +1,4 @@
-K: SinglePoint COND LR_TDDFT
+TASK: SinglePoint COND LR_TDDFT
 XC_FUNCTIONAL: PBE
 do_properties: T
 cutoff_energy: 600 eV
