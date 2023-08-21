@@ -1,0 +1,2892 @@
+ +---------------------------------------------------------------+
+ |                                                               |
+ |        ####### #     # ####### ####### ####### ######         |
+ |        #     # ##    # #          #    #       #     #        |
+ |        #     # # #   # #          #    #       #     #        |
+ |        #     # #  #  # #####      #    #####   ######         |
+ |        #     # #   # # #          #    #       #              |
+ |        #     # #    ## #          #    #       #              |
+ |        ####### #     # #######    #    ####### #              |
+ |                                                               |
+ |        Linear-Scaling Ab Initio Total Energy Program          |
+ |                                                               |
+ |          Release for academic collaborators of ODG            |
+ |                                             Version 6.1.42    |
+ | Remote: git@bitbucket.org:onetep/onetep.git                   |
+ | Local branch: master                                          |
+ | Commit ID: 4cefaa73311a3a61de2d52f4ca3314cc5ea1ac48           |
+ | Date: Tue May 30 09:39:41 2023 +0000                          |
+ | Working tree clean                                            |
+ |                                                               |
+ +---------------------------------------------------------------+
+ |                                                               |
+ |  Authors:                                                     |
+ |  Jacek Dziedzic, Peter D. Haynes, Nicholas D. M. Hine,        |
+ |  Arash A. Mostofi, Mike C. Payne and Chris-Kriton Skylaris    |
+ |                                                               |
+ |  Contributors:                                                |
+ |  J. Aarons, L. Andrinopoulos, P. W. Avraam, R. A. Bell,       |
+ |  A. Bhandari, G. A. Bramley, R. J. Charlton, S. J. Clark,     |
+ |  R. J. Clements, G. C. Constantinescu, F. Corsetti,           |
+ |  N. Corsini, O. Dieguez, S. M. M. Dubois, K. K. B. Duff,      |
+ |  J. M. Escartin, M. Escobar Azor, A. Greco,                   |
+ |  H. Helal, Q. O. Hill, L. P. Lee, J.-H. Li,                   |
+ |  E. B. Linscott, G. Moynihan, D. D. O`Regan,                  |
+ |  O. K. Okan, M. J. S. Phipps, C. J. Pickard,                  |
+ |  J. C. A. Prentice, M. I. J. Probert, L. E. Ratcliff,         |
+ |  M. Robinson, A. Ruiz Serrano, M. dos Santos Dias,            |
+ |  J. S. Spencer, E. W. Tait, G. Teobaldi, D. Turban,           |
+ |  V. Vitale, K. A. Wilkinson, C. Weber, J. C. Womack,          |
+ |  N. Yeung and T. J. Zuehlsdorff                               |
+ |                                                               |
+ |                                   Copyright (c) 2004-2023     |
+ |                                                               |
+ |  Please cite:                                                 |
+ |  "The ONETEP linear-scaling density functional theory program"|
+ |   J. Chem. Phys. 152(17) 174111 (2020)                        |
+ |                                                               |
+ |          in all publications arising from your use of ONETEP. |
+ |                                                               |
+ +---------------------------------------------------------------+
+ |                                                               |
+ |   ONETEP is based on developments described in the following  |
+ |   publications:                                               |
+ |                                                               |
+ |  "Nonorthogonal generalized Wannier function pseudopotential  |
+ |   plane-wave method".                                         |
+ |   C.-K. Skylaris, A. A. Mostofi, P. D. Haynes, O. Dieguez,    |
+ |   M. C. Payne.                                                |
+ |   Phys. Rev. B 66 035119 (2002).                              |
+ |                                                               |
+ |  "Preconditioned iterative minimization for linear-scaling    |
+ |   electronic structure calculations".                         |
+ |   A. A. Mostofi, P. D. Haynes, C.-K. Skylaris, M. C. Payne.   |
+ |   J. Chem. Phys. 119(17), pp.8842-8848 (2003).                |
+ |                                                               |
+ |  "Total-energy calculations on a real space grid with         |
+ |   localized functions and a plane-wave basis".                |
+ |   A. A. Mostofi, C.-K. Skylaris, P. D. Haynes, M. C. Payne.   |
+ |   Comput. Phys. Commun. 147, pp.788-802 (2002).               |
+ |                                                               |
+ |  "Accurate kinetic energy evaluation in electronic structure  |
+ |   calculations with localized functions on real space grids"  |
+ |   C.-K. Skylaris, A. A. Mostofi, P. D. Haynes, C. J. Pickard, |
+ |   M. C. Payne.                                                |
+ |   Comput. Phys. Commun. 140, pp.315-322 (2001).               |
+ |                                                               |
+ |  "Accurate ionic forces and geometry optimization in linear-  |
+ |   scaling density-functional theory with local orbitals"      |
+ |   N. D. M. Hine, M. Robinson, P. D. Haynes, C.-K. Skylaris,   |
+ |   M. C. Payne, and A. A. Mostofi.                             |
+ |   Phys. Rev. B 83 195102 (2011).                              |
+ |                                                               |
+ +---------------------------------------------------------------+
+
+Job started: 21-08-2023 10:39 (+0100)
+ 
+Reading parameters from file "ribbon_nn.dat" ...... done
+
+If your calculation crashes here, before "Checking processes and threads..."
+is displayed, then your stack size is insufficient.
+If so, use "ulimit -s unlimited" at runtime.
+You can disable this check with "check_stack_size F".
+
+Checking processes and threads...
+      Default threads: 1
+   Running with 8 MPI processes.
+   There are 8 MPI processes running on the same node as the root process.
+   Each MPI process is using: 
+               1 threads for simulation cell FFTs.
+               1 threads for parallel FFT box operations.
+               1 threads for loops over batched FFT box operations.
+               1 threads in other parallel regions.
+   MPI Interface: S2 (use mpi) (-DMPI, no -DUSE_MPI_F08, no -DUSE_INCLUDE_MPIF).
+   MPI_ASYNC_PROTECTS_NONBLOCKING:  No. MPI_SUBARRAYS_SUPPORTED:  No.
+... done
+
+Basic input checks...... done
+
+Reading geometry and species blocks from file "ribbon_nn.dat" ...
+  <species_atomic_set> block not found: NGWF initialisation set to SOLVE
+... done
+
+
+--------------------------------------------------------------------------------
+---------------------------------- INPUT FILE ----------------------------------
+--------------------------------------------------------------------------------
+
+TASK: SINGLEPOINT COND LR_TDDFT                                                 
+XC_FUNCTIONAL: PBE                                                              
+do_properties: T                                                                
+cutoff_energy: 600 eV                                                           
+cond_num_states: 12                                                             
+cond_num_extra_states: 8                                                        
+cond_num_extra_its: 5                                                           
+lr_tddft_num_states: 8                                                          
+lr_tddft_write_densities: T                                                     
+lr_tddft_cg_threshold: 1e-4                                                     
+%block lattice_cart                                                             
+30.00 0.0   0.0                                                                 
+0.0   24.0  0.0                                                                 
+0.0   0.0  37.232                                                               
+%endblock lattice_cart                                                          
+%block species                                                                  
+C C 6 4 8.0                                                                     
+H H 1 1 8.0                                                                     
+N N 7 4 8.0                                                                     
+%endblock species                                                               
+%block species_pot                                                              
+C "/home/theory/phsmea/soft/onetep/pseudo/carbon.recpot"                        
+H "/home/theory/phsmea/soft/onetep/pseudo/hydrogen.recpot"                      
+N "/home/theory/phsmea/soft/onetep/pseudo/nitrogen.recpot"                      
+%endblock species_pot                                                           
+%block species_cond                                                             
+C C 6 4 10.0                                                                    
+H H 1 1 10.0                                                                    
+N N 7 4 10.0                                                                    
+%endblock species_cond                                                          
+%block positions_abs                                                            
+     Hash =   000001828393821193312577
+%endblock positions_abs                                                         
+
+--------------------------------------------------------------------------------
+-------------------------------- END INPUT FILE --------------------------------
+--------------------------------------------------------------------------------
+
+
+ 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Full system >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<< Pseudopotential information >>>>>>>>>>>>>>>>>>>>>>>>>>
+File: /home/theory/phsmea/soft/onetep/pseudo/carbon.recpot [ 2001 points up to Gmax=  52.9 (1/bohr)]
+  Atomic number:  6;  ionic charge:  4.000000
+    Shell 1: l = 0; rc = 1.48 bohr
+File: /home/theory/phsmea/soft/onetep/pseudo/hydrogen.recpot [ 2001 points up to Gmax=  52.9 (1/bohr)]
+  Atomic number:  1;  ionic charge:  1.000000
+    Local potential
+File: /home/theory/phsmea/soft/onetep/pseudo/nitrogen.recpot [ 2001 points up to Gmax=  52.9 (1/bohr)]
+  Atomic number:  7;  ionic charge:  5.000000
+    Shell 1: l = 0; rc = 1.48 bohr
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+-------------------------- Atom counting information ---------------------------
+Symbol    Natoms  Nvalngwfs Ncondngwfs  Nprojs
+  C         30       120       120        30
+  H         14        14        14         0
+  N          2         8         8         2
+.......   ......    ......    ......    ......
+Totals:     46       142       142        32
+--------------------------------------------------------------------------------
+
+=============================== PSINC grid sizes ===============================
+                      Simulation cell:   55 x  45 x  63
+                              FFT-box:   55 x  45 x  63
+                                  PPD:    5 x   5 x   1
+Grid space d1=  0.545454545455a0 (KE cutoff=  25.53212Eh = 694.76433eV)
+Grid space d2=  0.533333333333a0 (KE cutoff=  26.70586Eh = 726.70339eV)
+Grid space d3=  0.590984126984a0 (KE cutoff=  21.74965Eh = 591.83822eV)
+================================================================================
+
+********************* Fourier parallelisation information **********************
+       Coarse grid (whole simulation cell) dimensions:     55    45    63
+          Real-space ('12') slabs/proc (min max mean):      7     8     7
+         Recip-space ('23') slabs/proc (min max mean):      3     4     3
+********************************************************************************
+
+********************* Fourier parallelisation information **********************
+       Double grid (whole simulation cell) dimensions:    110    90   126
+          Real-space ('12') slabs/proc (min max mean):     15    16    15
+         Recip-space ('23') slabs/proc (min max mean):      7     7     7
+********************************************************************************
+
+Atom SCF Calculation for C  : Z (AE atom) =   6 : Z (PS atom) =   4
+Config String:
+Orbitals (num,occ):  2     2.00 2.00
+Orbitals   (num,l):  2        0    1
+Atom SCF converged after  19 iterations to a total energy of     -5.39730916
+
+Atom SCF Calculation for H  : Z (AE atom) =   1 : Z (PS atom) =   1
+Config String:
+Orbitals (num,occ):  1     1.00
+Orbitals   (num,l):  1        0
+Atom SCF converged after  18 iterations to a total energy of     -0.45733103
+
+Atom SCF Calculation for N  : Z (AE atom) =   7 : Z (PS atom) =   5
+Config String:
+Orbitals (num,occ):  2     2.00 3.00
+Orbitals   (num,l):  2        0    1
+Atom SCF converged after  22 iterations to a total energy of     -9.68730260
+
+Atom SCF Calculation for C  : Z (AE atom) =   6 : Z (PS atom) =   4
+Config String:
+Orbitals (num,occ):  2     2.00 2.00
+Orbitals   (num,l):  2        0    1
+Atom SCF converged after  19 iterations to a total energy of     -5.40064701
+
+Atom SCF Calculation for H  : Z (AE atom) =   1 : Z (PS atom) =   1
+Config String:
+Orbitals (num,occ):  1     1.00
+Orbitals   (num,l):  1        0
+Atom SCF converged after  18 iterations to a total energy of     -0.45849885
+
+Atom SCF Calculation for N  : Z (AE atom) =   7 : Z (PS atom) =   5
+Config String:
+Orbitals (num,occ):  2     2.00 3.00
+Orbitals   (num,l):  2        0    1
+Atom SCF converged after  22 iterations to a total energy of     -9.68886653
+
+Determining parallel strategy ...... done
+Calculating Ewald energy ...              413.250750 Hartree
+Basis initialisation ...... done
+Sparse matrix initialisation ... done
+NGWF initialisation ... done
+Up spin density kernel initialisation ...... done
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -1.974404293052E+02     4.6714E-03     4.6065E-03
+    2        -1.975087088005E+02     1.3895E-03     1.3702E-03    -6.8279E-02
+    3        -1.975208230095E+02     6.2144E-04     6.1281E-04    -1.2114E-02
+    4        -1.975241814557E+02     3.3398E-04     3.2934E-04    -3.3584E-03
+    5        -1.975250329445E+02     2.4642E-04     2.4300E-04    -8.5149E-04
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -1.97525032944473E+02  Eh
+     Estimated bandgap           =   2.2948E-02  Eh
+     RMS occupancy error         =   1.4883E-07
+     [H,K] commutator            =   2.4300E-04
+     Occupancy bounds            = [ -0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  001 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  1.8545E-03 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -1.99820160467034E+02 Eh
+   Predicted gain in energy  =      -2.29512752256187E+00 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -1.998131704312E+02     1.8592E-03     1.8334E-03
+    2        -1.998261190836E+02     6.0584E-04     5.9743E-04    -1.2949E-02
+    3        -1.998275058078E+02     1.9624E-04     1.9351E-04    -1.3867E-03
+    4        -1.998278028038E+02     9.5421E-05     9.4096E-05    -2.9700E-04
+    5        -1.998278811401E+02     7.1647E-05     7.0652E-05    -7.8336E-05
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -1.99827881140132E+02  Eh
+     Estimated bandgap           =   4.8338E-02  Eh
+     RMS occupancy error         =   5.8023E-10
+     [H,K] commutator            =   7.0652E-05
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  002 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  6.7808E-04 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -2.00139339230447E+02 Eh
+   Predicted gain in energy  =      -3.11458090315142E-01 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.001401825748E+02     6.5708E-04     6.4795E-04
+    2        -2.001415128255E+02     1.9097E-04     1.8832E-04    -1.3303E-03
+    3        -2.001417141295E+02     7.8460E-05     7.7370E-05    -2.0130E-04
+    4        -2.001417576786E+02     5.3663E-05     5.2918E-05    -4.3549E-05
+    5        -2.001417781843E+02     3.4296E-05     3.3820E-05    -2.0506E-05
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.00141778184287E+02  Eh
+     Estimated bandgap           =   5.3259E-02  Eh
+     RMS occupancy error         =   1.1642E-10
+     [H,K] commutator            =   3.3820E-05
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  003 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  2.8199E-04 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -2.00195765770969E+02 Eh
+   Predicted gain in energy  =      -5.39875866819273E-02 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.001957211105E+02     2.9789E-04     2.9375E-04
+    2        -2.001960377134E+02     1.0577E-04     1.0430E-04    -3.1660E-04
+    3        -2.001960916810E+02     4.3186E-05     4.2586E-05    -5.3968E-05
+    4        -2.001961079082E+02     3.0683E-05     3.0256E-05    -1.6227E-05
+    5        -2.001961138539E+02     1.9844E-05     1.9568E-05    -5.9457E-06
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.00196113853879E+02  Eh
+     Estimated bandgap           =   5.4366E-02  Eh
+     RMS occupancy error         =   2.1823E-11
+     [H,K] commutator            =   1.9568E-05
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  004 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  1.3805E-04 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -2.00209635145740E+02 Eh
+   Predicted gain in energy  =      -1.35212918609113E-02 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.002096039351E+02     1.7606E-04     1.7362E-04
+    2        -2.002097221451E+02     6.8470E-05     6.7519E-05    -1.1821E-04
+    3        -2.002097451749E+02     2.8324E-05     2.7931E-05    -2.3030E-05
+    4        -2.002097520645E+02     2.0579E-05     2.0293E-05    -6.8895E-06
+    5        -2.002097549694E+02     1.4640E-05     1.4437E-05    -2.9049E-06
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.00209754969365E+02  Eh
+     Estimated bandgap           =   5.4809E-02  Eh
+     RMS occupancy error         =   6.1587E-12
+     [H,K] commutator            =   1.4437E-05
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  005 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  7.5834E-05 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -2.00213284657282E+02 Eh
+   Predicted gain in energy  =      -3.52968791708008E-03 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.002132762311E+02     5.9388E-05     5.8563E-05
+    2        -2.002132942146E+02     2.6108E-05     2.5745E-05    -1.7984E-05
+    3        -2.002132971250E+02     1.2346E-05     1.2175E-05    -2.9103E-06
+    4        -2.002132986281E+02     9.0141E-06     8.8889E-06    -1.5031E-06
+    5        -2.002132996575E+02     8.2936E-06     8.1785E-06    -1.0294E-06
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.00213299657497E+02  Eh
+     Estimated bandgap           =   5.4740E-02  Eh
+     RMS occupancy error         =   2.1604E-12
+     [H,K] commutator            =   8.1785E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  006 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  5.1223E-05 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -2.00215924410483E+02 Eh
+   Predicted gain in energy  =      -2.62475298592335E-03 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.002158847502E+02     1.2224E-04     1.2054E-04
+    2        -2.002159566072E+02     5.7628E-05     5.6827E-05    -7.1857E-05
+    3        -2.002159711639E+02     1.9774E-05     1.9499E-05    -1.4557E-05
+    4        -2.002159739762E+02     9.9659E-06     9.8274E-06    -2.8123E-06
+    5        -2.002159746606E+02     7.4370E-06     7.3337E-06    -6.8441E-07
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.00215974660614E+02  Eh
+     Estimated bandgap           =   5.4903E-02  Eh
+     RMS occupancy error         =   9.2691E-14
+     [H,K] commutator            =   7.3337E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  007 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  3.9242E-05 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -2.00217239690820E+02 Eh
+   Predicted gain in energy  =      -1.26503020615587E-03 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.002172052845E+02     1.0602E-04     1.0454E-04
+    2        -2.002172589997E+02     4.9267E-05     4.8582E-05    -5.3715E-05
+    3        -2.002172700529E+02     1.8078E-05     1.7827E-05    -1.1053E-05
+    4        -2.002172724487E+02     9.5465E-06     9.4139E-06    -2.3958E-06
+    5        -2.002172731148E+02     7.4006E-06     7.2978E-06    -6.6605E-07
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.00217273114757E+02  Eh
+     Estimated bandgap           =   5.5083E-02  Eh
+     RMS occupancy error         =   1.0516E-13
+     [H,K] commutator            =   7.2978E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  008 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  2.1402E-05 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -2.00217560289704E+02 Eh
+   Predicted gain in energy  =      -2.87174946180357E-04 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.002175482530E+02     5.3820E-05     5.3073E-05
+    2        -2.002175631733E+02     2.4416E-05     2.4077E-05    -1.4920E-05
+    3        -2.002175657775E+02     9.6571E-06     9.5230E-06    -2.6042E-06
+    4        -2.002175664992E+02     5.4308E-06     5.3554E-06    -7.2162E-07
+    5        -2.002175667845E+02     5.0569E-06     4.9867E-06    -2.8530E-07
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.00217566784465E+02  Eh
+     Estimated bandgap           =   5.5299E-02  Eh
+     RMS occupancy error         =   3.8808E-14
+     [H,K] commutator            =   4.9867E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  009 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  8.1648E-06 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -2.00217587665273E+02 Eh
+   Predicted gain in energy  =      -2.08808083357326E-05 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.002175864378E+02     1.7788E-05     1.7541E-05
+    2        -2.002175882520E+02     6.7178E-06     6.6245E-06    -1.8143E-06
+    3        -2.002175884606E+02     3.7187E-06     3.6670E-06    -2.0851E-07
+    4        -2.002175885815E+02     2.6909E-06     2.6535E-06    -1.2089E-07
+    5        -2.002175886919E+02     3.0713E-06     3.0286E-06    -1.1049E-07
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.00217588691941E+02  Eh
+     Estimated bandgap           =   5.5307E-02  Eh
+     RMS occupancy error         =   2.6420E-14
+     [H,K] commutator            =   3.0286E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  010 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  2.5530E-06 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -2.00217589186612E+02 Eh
+   Predicted gain in energy  =      -4.94671127171387E-07 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.002175891175E+02     5.4004E-06     5.3254E-06
+    2        -2.002175892950E+02     2.7956E-06     2.7568E-06    -1.7757E-07
+    3        -2.002175893430E+02     1.5787E-06     1.5568E-06    -4.7935E-08
+    4        -2.002175893624E+02     1.3287E-06     1.3103E-06    -1.9460E-08
+    5        -2.002175893968E+02     1.7457E-06     1.7214E-06    -3.4393E-08
+Finished density kernel iterations (   5)
+
+Writing density kernel to file "ribbon_nn.dkn" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.00217589396834E+02  Eh
+     Estimated bandgap           =   5.5397E-02  Eh
+     RMS occupancy error         =   6.6756E-15
+     [H,K] commutator            =   1.7214E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+########################### NGWF CG iteration  011 #############################
+################################################################################
+
+>>> Checking for convergence of NGWFs: 
+           ........................................................
+           |         *** NGWF optimisation converged ***          |
+           | RMS NGWF gradient =    0.00000114971105              |
+           | Criteria satisfied:                                  |
+           | -> RMS NGWF gradient lower than set threshold.       |
+           ========================================================
+
+================================================================================
+           ---------------- ENERGY COMPONENTS (Eh) ----------------
+           | Kinetic                    :      143.75481811532185 |
+           | Pseudopotential (local)    :    -1289.57033141165175 |
+           | Pseudo (non-coul chg cor)  :        0.00000000000000
+           | Pseudopotential (non-local):       25.29300363332818 |
+           | Hartree                    :      569.25526678205574 |
+           | Exchange-correlation       :      -62.20109661313663 |
+           | Ewald                      :      413.25075009724821 |
+           | Total                      :     -200.21758939683434 |
+           --------------------------------------------------------
+           Integrated density           :      143.99999999999898
+================================================================================
+
+
+                        <<<<< CALCULATION SUMMARY >>>>>                         
+|ITER|    RMS GRADIENT   |     TOTAL ENERGY    |   step   |     Epredicted              
+   0     0.00185451070806   -197.52503294447260   0.753467   -199.82016046703447        
+   1     0.00067807788886   -199.82788114013184   0.761579   -200.13933923044698        
+   2     0.00028199369823   -200.14177818428689   0.758950   -200.19576577096882        
+   3     0.00013805419954   -200.19611385387933   0.795496   -200.20963514574024        
+   4     0.00007583397159   -200.20975496936524   0.692987   -200.21328465728232        
+   5     0.00005122313481   -200.21329965749658   1.125337   -200.21592441048250        
+   6     0.00003924217211   -200.21597466061422   0.910894   -200.21723969082038        
+   7     0.00002140156170   -200.21727311475735   0.690228   -200.21756028970353        
+   8     0.00000816482585   -200.21756678446479   0.353647   -200.21758766527313        
+   9     0.00000255301012   -200.21758869194079   0.085690   -200.21758918661192        
+  10     0.00000114971105   -200.21758939683440  <-- CG                                 
+
+======================== Writing density and potential =========================
+Writing "ribbon_nn_density.cube" ... done
+Writing "ribbon_nn_potential.cube" ... done
+Writing "ribbon_nn_electrostatic_potential.cube" ... done
+================================================================================
+
+    Mulliken Atomic Populations
+    ---------------------------
+Species  Ion    Total   Charge (e)
+==================================
+  C      1       4.021     -0.021
+  C      2       4.019     -0.019
+  H      3       0.727      0.273
+  C      4       4.240     -0.240
+  C      5       4.242     -0.242
+  H      6       0.725      0.275
+  C      7       4.019     -0.019
+  C      8       4.018     -0.018
+  H      9       0.726      0.274
+  C     10       4.240     -0.240
+  C     11       4.242     -0.242
+  H     12       0.724      0.276
+  C     13       4.017     -0.017
+  C     14       4.015     -0.015
+  H     15       0.710      0.290
+  C     16       4.242     -0.242
+  C     17       4.244     -0.244
+  H     18       0.708      0.292
+  C     19       3.872      0.128
+  C     20       3.872      0.128
+  N     21       5.411     -0.411
+  N     22       5.411     -0.411
+  C     23       3.872      0.128
+  C     24       3.872      0.128
+  H     25       0.709      0.291
+  C     26       4.243     -0.243
+  C     27       4.244     -0.244
+  H     28       0.708      0.292
+  C     29       4.016     -0.016
+  C     30       4.015     -0.015
+  H     31       0.725      0.275
+  C     32       4.241     -0.241
+  C     33       4.243     -0.243
+  H     34       0.724      0.276
+  C     35       4.019     -0.019
+  C     36       4.017     -0.017
+  H     37       0.727      0.273
+  C     38       4.240     -0.240
+  C     39       4.242     -0.242
+  H     40       0.725      0.275
+  C     41       4.020     -0.020
+  C     42       4.019     -0.019
+  H     43       0.727      0.273
+  C     44       4.240     -0.240
+  C     45       4.242     -0.242
+  H     46       0.725      0.275
+==================================
+
+        Bond         Population      Length (bohr)
+==================================================
+ C    39 -- H    40        0.86      2.06000
+ C    33 -- H    34        0.86      2.06000
+ C    11 -- H    12        0.86      2.06000
+ C     5 -- H     6        0.86      2.06000
+ C    27 -- H    28        0.83      2.06000
+ C    45 -- H    46        0.86      2.06000
+ C    17 -- H    18        0.83      2.06000
+ H     9 -- C    10        0.86      2.06000
+ H    25 -- C    26        0.83      2.06000
+ H     3 -- C     4        0.86      2.06000
+ H    43 -- C    44        0.86      2.06000
+ H    31 -- C    32        0.86      2.06000
+ H    37 -- C    38        0.86      2.06000
+ H    15 -- C    16        0.83      2.06000
+ C    19 -- C    20        0.96      2.68000
+ C    23 -- C    24        0.96      2.68000
+ C     7 -- C     8        0.98      2.68000
+ C     1 -- C     2        0.98      2.68000
+ C    41 -- C    42        0.98      2.68000
+ C    13 -- C    14        0.97      2.68000
+ C    29 -- C    30        0.97      2.68000
+ C    35 -- C    36        0.98      2.68000
+ C     1 -- C    44        1.07      2.68524
+ C    38 -- C    41        1.07      2.68524
+ C    23 -- C    26        1.05      2.68524
+ C    32 -- C    35        1.07      2.68524
+ C    13 -- C    16        1.06      2.68524
+ C    10 -- C    13        1.07      2.68524
+ C     4 -- C     7        1.07      2.68524
+ N    21 -- C    23        0.90      2.68524
+ C     7 -- C    10        1.07      2.68524
+ C    19 -- N    21        0.90      2.68524
+ C    16 -- C    19        1.05      2.68524
+ C     1 -- C     4        1.07      2.68524
+ C    41 -- C    44        1.07      2.68524
+ C    26 -- C    29        1.06      2.68524
+ C    35 -- C    38        1.07      2.68524
+ C    29 -- C    32        1.07      2.68524
+ C    24 -- C    27        1.05      2.69025
+ C     2 -- C    45        1.07      2.69025
+ C    39 -- C    42        1.07      2.69025
+ C    33 -- C    36        1.06      2.69025
+ C    17 -- C    20        1.05      2.69025
+ C    20 -- N    22        0.90      2.69025
+ C    14 -- C    17        1.06      2.69025
+ C    11 -- C    14        1.07      2.69025
+ N    22 -- C    24        0.90      2.69025
+ C     2 -- C     5        1.07      2.69025
+ C     5 -- C     8        1.07      2.69025
+ C     8 -- C    11        1.07      2.69025
+ C    42 -- C    45        1.07      2.69025
+ C    36 -- C    39        1.07      2.69025
+ C    30 -- C    33        1.07      2.69025
+ C    27 -- C    30        1.06      2.69025
+ C    23 -- H    25       -0.12      4.12006
+ C     1 -- H    43       -0.11      4.12006
+ H    37 -- C    41       -0.11      4.12006
+ H    31 -- C    35       -0.11      4.12006
+ H     9 -- C    13       -0.11      4.12006
+ H     3 -- C     7       -0.11      4.12006
+ C     1 -- H     3       -0.12      4.12006
+ H    15 -- C    19       -0.12      4.12006
+ C    13 -- H    15       -0.11      4.12006
+ C     7 -- H     9       -0.11      4.12006
+ H    25 -- C    29       -0.11      4.12006
+ C    41 -- H    43       -0.12      4.12006
+ C    35 -- H    37       -0.11      4.12006
+ C    29 -- H    31       -0.11      4.12006
+ C    24 -- H    28       -0.12      4.12832
+ C     2 -- H    46       -0.11      4.12832
+ H    40 -- C    42       -0.11      4.12832
+ H    34 -- C    36       -0.11      4.12832
+ C     8 -- H    12       -0.11      4.12832
+ C    14 -- H    18       -0.10      4.12832
+ C     2 -- H     6       -0.11      4.12832
+ H    12 -- C    14       -0.11      4.12832
+ H     6 -- C     8       -0.11      4.12832
+ H    18 -- C    20       -0.12      4.12832
+ C    42 -- H    46       -0.11      4.12832
+ C    36 -- H    40       -0.11      4.12832
+ C    30 -- H    34       -0.11      4.12832
+ H    28 -- C    30       -0.10      4.12832
+ C    24 -- C    26       -0.17      4.64493
+ C     2 -- C    44       -0.16      4.64493
+ C    38 -- C    42       -0.16      4.64493
+ C    32 -- C    36       -0.16      4.64493
+ N    21 -- C    24       -0.14      4.64493
+ C     8 -- C    10       -0.16      4.64493
+ C    16 -- C    20       -0.17      4.64493
+ C    14 -- C    16       -0.16      4.64493
+ C     2 -- C     4       -0.16      4.64493
+ C    10 -- C    14       -0.16      4.64493
+ C     4 -- C     8       -0.16      4.64493
+ C    20 -- N    21       -0.14      4.64493
+ C    42 -- C    44       -0.16      4.64493
+ C    36 -- C    38       -0.16      4.64493
+ C    30 -- C    32       -0.16      4.64493
+ C    26 -- C    30       -0.16      4.64493
+ C    23 -- C    27       -0.17      4.65358
+ C    39 -- C    41       -0.16      4.65358
+ C     1 -- C    45       -0.16      4.65358
+ C    33 -- C    35       -0.16      4.65358
+ N    22 -- C    23       -0.14      4.65358
+ C     7 -- C    11       -0.16      4.65358
+ C    19 -- N    22       -0.14      4.65358
+ C    17 -- C    19       -0.17      4.65358
+ C     1 -- C     5       -0.16      4.65358
+ C    13 -- C    17       -0.16      4.65358
+ C     5 -- C     7       -0.16      4.65358
+ C    11 -- C    13       -0.16      4.65358
+ C    41 -- C    45       -0.16      4.65358
+ C    35 -- C    39       -0.16      4.65358
+ C    29 -- C    33       -0.16      4.65358
+ C    27 -- C    29       -0.16      4.65358
+ C     4 -- C    44       -0.19      4.65400
+ N    22 -- C    27       -0.17      4.65400
+ N    21 -- C    26       -0.17      4.65400
+ H     3 -- H    43       -0.01      4.65400
+ H     6 -- H    46       -0.01      4.65400
+ C     5 -- C    45       -0.19      4.65400
+ C    24 -- C    30       -0.16      4.65400
+ H     9 -- H    15       -0.01      4.65400
+ C    23 -- C    29       -0.16      4.65400
+ C     8 -- C    14       -0.17      4.65400
+ C     2 -- C    42       -0.17      4.65400
+ C    20 -- C    24       -0.19      4.65400
+ H     3 -- H     9       -0.01      4.65400
+ C    19 -- C    23       -0.19      4.65400
+ H    40 -- H    46       -0.01      4.65400
+ C     7 -- C    13       -0.17      4.65400
+ C    39 -- C    45       -0.19      4.65400
+ C    17 -- N    22       -0.17      4.65400
+ H    37 -- H    43       -0.01      4.65400
+ H     6 -- H    12       -0.01      4.65400
+ C    36 -- C    42       -0.17      4.65400
+ C    16 -- N    21       -0.17      4.65400
+ C    35 -- C    41       -0.17      4.65400
+ H    34 -- H    40       -0.01      4.65400
+ C    14 -- C    20       -0.16      4.65400
+ C     2 -- C     8       -0.17      4.65400
+ C    33 -- C    39       -0.19      4.65400
+ C    32 -- C    38       -0.19      4.65400
+ C     5 -- C    11       -0.19      4.65400
+ H    31 -- H    37       -0.01      4.65400
+ C     1 -- C    41       -0.17      4.65400
+ C    30 -- C    36       -0.17      4.65400
+ C    29 -- C    35       -0.17      4.65400
+ H    12 -- H    18       -0.01      4.65400
+ C    38 -- C    44       -0.19      4.65400
+ C    11 -- C    17       -0.19      4.65400
+ C     4 -- C    10       -0.19      4.65400
+ C     1 -- C     7       -0.17      4.65400
+ C    10 -- C    16       -0.19      4.65400
+ C    13 -- C    19       -0.16      4.65400
+ H    28 -- H    34       -0.01      4.65400
+ C    27 -- C    33       -0.19      4.65400
+ C    26 -- C    32       -0.19      4.65400
+ H    25 -- H    31       -0.01      4.65400
+ N    22 -- H    28       -0.01      5.08953
+ C     4 -- H    43       -0.04      5.08953
+ N    21 -- H    25       -0.01      5.08953
+ H     3 -- C    44       -0.04      5.08953
+ H     6 -- C    45       -0.04      5.08953
+ C     5 -- H    46       -0.04      5.08953
+ H    40 -- C    45       -0.04      5.08953
+ C    39 -- H    46       -0.04      5.08953
+ H    18 -- N    22       -0.01      5.08953
+ H     6 -- C    11       -0.04      5.08953
+ H    34 -- C    39       -0.04      5.08953
+ C    33 -- H    40       -0.04      5.08953
+ C     5 -- H    12       -0.04      5.08953
+ H    12 -- C    17       -0.04      5.08953
+ C    11 -- H    18       -0.04      5.08953
+ C    10 -- H    15       -0.04      5.08953
+ H     9 -- C    16       -0.04      5.08953
+ H     3 -- C    10       -0.04      5.08953
+ C    38 -- H    43       -0.04      5.08953
+ H    37 -- C    44       -0.04      5.08953
+ H    15 -- N    21       -0.01      5.08953
+ C    32 -- H    37       -0.04      5.08953
+ H    31 -- C    38       -0.04      5.08953
+ C     4 -- H     9       -0.04      5.08953
+ H    28 -- C    33       -0.04      5.08953
+ C    27 -- H    34       -0.04      5.08953
+ C    26 -- H    31       -0.04      5.08953
+ H    25 -- C    32       -0.04      5.08953
+ C     4 -- C     5       -0.08      5.37000
+ N    21 -- N    22       -0.05      5.37000
+ C    44 -- C    45       -0.08      5.37000
+ C    38 -- C    39       -0.08      5.37000
+ C    16 -- C    17       -0.07      5.37000
+ C    32 -- C    33       -0.08      5.37000
+ C    26 -- C    27       -0.07      5.37000
+ C    10 -- C    11       -0.08      5.37000
+ C    24 -- C    29       -0.07      5.37049
+ C    23 -- C    30       -0.07      5.37049
+ C     8 -- C    13       -0.08      5.37049
+ C    20 -- C    23       -0.08      5.37049
+ C     7 -- C    14       -0.08      5.37049
+ C    19 -- C    24       -0.08      5.37049
+ C     2 -- C    41       -0.08      5.37049
+ C    36 -- C    41       -0.08      5.37049
+ C    35 -- C    42       -0.08      5.37049
+ C     1 -- C     8       -0.08      5.37049
+ C    14 -- C    19       -0.07      5.37049
+ C    13 -- C    20       -0.07      5.37049
+ C    30 -- C    35       -0.08      5.37049
+ C    29 -- C    36       -0.07      5.37049
+ C     2 -- C     7       -0.08      5.37049
+ C     1 -- C    42       -0.08      5.37049
+==================================================
+
+
+=================== Orbital energy and occupancy information ===================
+
+      Total number of orbitals:     142
+   Number of occupied orbitals:      72.000000000
+   Occupancy sum (eigenvalues):      72.000000000
+                 HOMO-LUMO gap:       0.022506754 Eh
+                 Mid-gap level:      -0.129889775 Eh
+
+                        Orbital | Energy (Eh) | Occupancy
+                            1    -0.825721505   1.0000000
+                        .......   ...........   .........
+                           63    -0.257674305   1.0000000
+                           64    -0.254155920   1.0000000
+                           65    -0.223906960   1.0000000
+                           66    -0.217108714   1.0000000
+                           67    -0.211249511   1.0000000
+                           68    -0.199986432   1.0000000
+                           69    -0.172244377   1.0000000
+                           70    -0.168496647   0.9999999
+                           71    -0.161320834   1.0000000
+                           72    -0.141143152   0.9999997
+                        .......   --- gap ---   .........
+                           73    -0.118636398   0.0000003
+                           74    -0.091878122   0.0000001
+                           75    -0.082994751   0.0000000
+                           76    -0.030183753   0.0000000
+                           77    -0.029817277   0.0000000
+                           78    -0.021725340   0.0000000
+                           79     0.002706909   0.0000000
+                           80     0.007285465   0.0000000
+                           81     0.012504379   0.0000000
+                           82     0.026911183   0.0000000
+                        .......   ...........   .........
+                          142     0.669811204   0.0000000
+
+================================================================================
+
+===================== Writing canonical molecular orbitals =====================
+| Orbital  Energy (eV)  Norm     |
+| HOMO-5   -5.74839169  1.000000 | Writing "ribbon_nn_HOMO-5.cube" ... done
+| HOMO-4   -5.44190770  1.000000 | Writing "ribbon_nn_HOMO-4.cube" ... done
+| HOMO-3   -4.68700799  1.000000 | Writing "ribbon_nn_HOMO-3.cube" ... done
+| HOMO-2   -4.58502707  1.000000 | Writing "ribbon_nn_HOMO-2.cube" ... done
+| HOMO-1   -4.38976327  1.000000 | Writing "ribbon_nn_HOMO-1.cube" ... done
+| HOMO     -3.84070058  1.000000 | Writing "ribbon_nn_HOMO.cube" ... done
+| LUMO     -3.22826064  1.000000 | Writing "ribbon_nn_LUMO.cube" ... done
+| LUMO+1   -2.50013090  1.000000 | Writing "ribbon_nn_LUMO+1.cube" ... done
+| LUMO+2   -2.25840209  1.000000 | Writing "ribbon_nn_LUMO+2.cube" ... done
+| LUMO+3   -0.82134172  1.000000 | Writing "ribbon_nn_LUMO+3.cube" ... done
+| LUMO+4   -0.81136940  1.000000 | Writing "ribbon_nn_LUMO+4.cube" ... done
+| LUMO+5   -0.59117658  1.000000 | Writing "ribbon_nn_LUMO+5.cube" ... done
+================================================================================
+ 
+===================== Density of States (DOS) calculation ======================
+Writing "ribbon_nn_DOS.txt" ...  done
+================================================================================
+ 
+Writing bands to file "ribbon_nn.val_bands" ... done
+
+WARNING: read_denskern overridden to T because of task COND.
+
+
+WARNING: read_tightbox_ngwfs overridden to T because of task COND.
+
+
+Determining parallel strategy ...... done
+Basis initialisation ...... done
+Sparse matrix initialisation ... done
+
+Reading NGWFs from file "ribbon_nn.tightbox_ngwfs" ...  done
+
+Reading density kernel from file "ribbon_nn.dkn" ... done
+Conduction NGWF sparse matrix initialisation ... done
+Conduction NGWF initialisation ... done
++------------------------------------------------------------------------------+
+|                   Starting conduction NGWF optimisation                      |
++------------------------------------------------------------------------------+
+
+Starting conduction NGWF pre-optimisation process
+
+Generating conduction density kernel for    10 'occupied' orbitals
+Up spin density kernel initialisation ...... done
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -2.088330317092E-01      1.037E-15      1.732E-16
+
+                 ..............................................
+                 | RMS LNV GRADIENT=    0.00000000000000      |
+                 | LNV density kernel optimisation converged! |
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -2.08833031709163E-01  Eh
+     Estimated gap above Kc      =   4.2562E-03  Eh
+     RMS occupancy error         =   8.9560E-17
+     [H,K] commutator            =   1.0367E-15
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  001 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  4.2076E-04 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -5.27535645014247E-01 Eh
+   Predicted gain in energy  =      -3.18702613305085E-01 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -5.298603021615E-01     8.3613E-05     5.9365E-04
+    2        -5.299267686526E-01     5.2340E-05     3.7162E-04    -6.6466E-05
+    3        -5.299839028046E-01     1.8481E-05     1.3122E-04    -5.7134E-05
+    4        -5.299869554108E-01     1.1770E-05     8.3566E-05    -3.0526E-06
+    5        -5.299899548065E-01     6.7222E-06     4.7727E-05    -2.9994E-06
+    6        -5.299906195518E-01     6.1687E-06     4.3798E-05    -6.6475E-07
+    7        -5.299911420154E-01     1.8260E-06     1.2964E-05    -5.2246E-07
+    8        -5.299911924241E-01     1.3822E-06     9.8138E-06    -5.0409E-08
+    9        -5.299912112892E-01     6.8869E-07     4.8897E-06    -1.8865E-08
+   10        -5.299912255194E-01     6.1122E-07     4.3397E-06    -1.4230E-08
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -5.29991225519431E-01  Eh
+     Estimated gap above Kc      =   9.0133E-03  Eh
+     RMS occupancy error         =   1.4158E-15
+     [H,K] commutator            =   4.3397E-06
+     Occupancy bounds            = [ -0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  002 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  2.4446E-04 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -6.42711316755549E-01 Eh
+   Predicted gain in energy  =      -1.12720091236118E-01 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -6.432980758779E-01     8.3405E-05     5.9217E-04
+    2        -6.433431940448E-01     1.6942E-05     1.2029E-04    -4.5118E-05
+    3        -6.433440410339E-01     1.6134E-05     1.1455E-04    -8.4699E-07
+    4        -6.433520664308E-01     1.7025E-05     1.2088E-04    -8.0254E-06
+    5        -6.433540364648E-01     1.0204E-05     7.2450E-05    -1.9700E-06
+    6        -6.433546743159E-01     8.4510E-06     6.0002E-05    -6.3785E-07
+    7        -6.433554889718E-01     9.1957E-06     6.5289E-05    -8.1466E-07
+    8        -6.433559741768E-01     4.7341E-06     3.3612E-05    -4.8520E-07
+    9        -6.433562180209E-01     3.3475E-06     2.3767E-05    -2.4384E-07
+   10        -6.433563959212E-01     1.4649E-06     1.0401E-05    -1.7790E-07
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -6.43356395921215E-01  Eh
+     Estimated gap above Kc      =   8.4744E-03  Eh
+     RMS occupancy error         =   9.7712E-14
+     [H,K] commutator            =   1.0401E-05
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  003 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  1.4310E-04 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -6.92164718513030E-01 Eh
+   Predicted gain in energy  =      -4.88083225918151E-02 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -6.921238979758E-01     1.0276E-04     7.2961E-04
+    2        -6.921912933422E-01     1.3303E-05     9.4449E-05    -6.7395E-05
+    3        -6.921960314436E-01     1.2936E-05     9.1845E-05    -4.7381E-06
+    4        -6.921973967551E-01     3.9948E-06     2.8363E-05    -1.3653E-06
+    5        -6.921978762891E-01     4.1013E-06     2.9119E-05    -4.7953E-07
+    6        -6.921980330459E-01     1.8052E-06     1.2817E-05    -1.5676E-07
+    7        -6.921981218402E-01     1.0229E-06     7.2623E-06    -8.8794E-08
+    8        -6.921981287494E-01     3.4709E-07     2.4643E-06    -6.9092E-09
+    9        -6.921981316046E-01     3.3484E-07     2.3774E-06    -2.8553E-09
+   10        -6.921981328672E-01     2.1469E-07     1.5243E-06    -1.2625E-09
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -6.92198132867179E-01  Eh
+     Estimated gap above Kc      =   6.8443E-03  Eh
+     RMS occupancy error         =   6.6068E-17
+     [H,K] commutator            =   1.5243E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  004 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  1.1030E-04 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -7.16581186865488E-01 Eh
+   Predicted gain in energy  =      -2.43830539983090E-02 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -7.163816866480E-01     1.1085E-04     7.8705E-04
+    2        -7.164606010540E-01     9.4686E-06     6.7227E-05    -7.8914E-05
+    3        -7.164621308263E-01     9.4410E-06     6.7031E-05    -1.5298E-06
+    4        -7.164631747199E-01     2.0488E-06     1.4547E-05    -1.0439E-06
+    5        -7.164632250213E-01     1.7445E-06     1.2386E-05    -5.0301E-08
+    6        -7.164632916018E-01     9.1401E-07     6.4895E-06    -6.6581E-08
+    7        -7.164633085077E-01     9.3209E-07     6.6178E-06    -1.6906E-08
+    8        -7.164633146085E-01     3.4908E-07     2.4785E-06    -6.1008E-09
+    9        -7.164633172079E-01     2.6141E-07     1.8560E-06    -2.5994E-09
+   10        -7.164633178437E-01     1.4620E-07     1.0380E-06    -6.3577E-10
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -7.16463317843666E-01  Eh
+     Estimated gap above Kc      =   5.8841E-03  Eh
+     RMS occupancy error         =   8.9548E-17
+     [H,K] commutator            =   1.0380E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  005 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  8.3388E-05 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -7.25348520749562E-01 Eh
+   Predicted gain in energy  =      -8.88520290589601E-03 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -7.253477397226E-01     4.4833E-05     3.1832E-04
+    2        -7.253607994019E-01     1.9842E-06     1.4088E-05    -1.3060E-05
+    3        -7.253608296432E-01     1.0283E-06     7.3010E-06    -3.0241E-08
+    4        -7.253608547401E-01     5.1761E-07     3.6750E-06    -2.5097E-08
+    5        -7.253608565561E-01     1.0357E-07     7.3533E-07    -1.8160E-09
+    6        -7.253608568058E-01     1.0441E-07     7.4134E-07    -2.4969E-10
+    7        -7.253608569248E-01     5.4789E-08     3.8900E-07    -1.1904E-10
+    8        -7.253608569762E-01     5.5785E-08     3.9607E-07    -5.1353E-11
+    9        -7.253608570132E-01     2.7233E-08     1.9335E-07    -3.7003E-11
+   10        -7.253608570154E-01     2.5977E-08     1.8443E-07    -2.1915E-12
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -7.25360857015384E-01  Eh
+     Estimated gap above Kc      =   5.9214E-03  Eh
+     RMS occupancy error         =   7.7715E-17
+     [H,K] commutator            =   1.8443E-07
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+WARNING: maximum number of NGWF CG iterations (   5) exceeded!
+
+                        <<<<< CALCULATION SUMMARY >>>>>                         
+|ITER|    RMS GRADIENT   |     TOTAL ENERGY    |   step   |     Epredicted              
+   0     0.00042076187771     -0.20883303170916   1.040636     -0.52753564501425        
+   1     0.00024446413409     -0.52999122551943   1.073336     -0.64271131675555        
+   2     0.00014309843038     -0.64335639592121   1.358512     -0.69216471851303        
+   3     0.00011030201109     -0.69219813286718   1.152424     -0.71658118686549        
+   4     0.00008338818905     -0.72536085701538  <-- CG                                 
+
+Conduction NGWF pre-optimisation process complete.
+Proceeding with the main conduction NGWF optimisation process.
+
+Generating conduction density kernel for     6 'occupied' orbitals
+Up spin density kernel initialisation ...... done
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -7.617383306473E-01      1.204E-15      1.225E-16
+
+                 ..............................................
+                 | RMS LNV GRADIENT=    0.00000000000000      |
+                 | LNV density kernel optimisation converged! |
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -7.61738330647281E-01  Eh
+     Estimated gap above Kc      =   1.8189E-02  Eh
+     RMS occupancy error         =   4.4541E-17
+     [H,K] commutator            =   1.2037E-15
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  001 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  2.9418E-05 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -7.62966529702766E-01 Eh
+   Predicted gain in energy  =      -1.22819905548555E-03 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -7.629636412071E-01     8.3938E-06     9.9326E-05
+    2        -7.629641009898E-01     1.1714E-06     1.3862E-05    -4.5978E-07
+    3        -7.629641304296E-01     1.5183E-06     1.7967E-05    -2.9440E-08
+    4        -7.629641771536E-01     9.5652E-07     1.1319E-05    -4.6724E-08
+    5        -7.629641798638E-01     9.1890E-07     1.0874E-05    -2.7102E-09
+    6        -7.629642081109E-01     1.2802E-06     1.5149E-05    -2.8247E-08
+    7        -7.629642215698E-01     1.2501E-06     1.4793E-05    -1.3459E-08
+    8        -7.629642292522E-01     9.1826E-07     1.0866E-05    -7.6824E-09
+    9        -7.629642350233E-01     9.7992E-07     1.1596E-05    -5.7711E-09
+   10        -7.629642420168E-01     8.9803E-07     1.0627E-05    -6.9935E-09
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -7.62964242016754E-01  Eh
+     Estimated gap above Kc      =   1.8072E-02  Eh
+     RMS occupancy error         =   5.6618E-14
+     [H,K] commutator            =   1.0627E-05
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  002 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  2.0715E-05 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -7.64240705053100E-01 Eh
+   Predicted gain in energy  =      -1.27646303634643E-03 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -7.642230509685E-01     2.3797E-05     2.8160E-04
+    2        -7.642268518255E-01     3.5611E-06     4.2140E-05    -3.8009E-06
+    3        -7.642270551160E-01     3.7738E-06     4.4657E-05    -2.0329E-07
+    4        -7.642273929478E-01     2.4849E-06     2.9404E-05    -3.3783E-07
+    5        -7.642275453379E-01     3.4104E-06     4.0356E-05    -1.5239E-07
+    6        -7.642278354364E-01     1.8660E-06     2.2081E-05    -2.9010E-07
+    7        -7.642278878094E-01     1.4960E-06     1.7703E-05    -5.2373E-08
+    8        -7.642279049200E-01     6.7277E-07     7.9611E-06    -1.7111E-08
+    9        -7.642279141616E-01     4.0888E-07     4.8384E-06    -9.2416E-09
+   10        -7.642279160827E-01     2.8184E-07     3.3351E-06    -1.9211E-09
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -7.64227916082664E-01  Eh
+     Estimated gap above Kc      =   1.7902E-02  Eh
+     RMS occupancy error         =   3.6700E-17
+     [H,K] commutator            =   3.3351E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  003 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  1.5839E-05 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -7.64652031108247E-01 Eh
+   Predicted gain in energy  =      -4.24115025583371E-04 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -7.646466601913E-01     1.5495E-05     1.8336E-04
+    2        -7.646483142874E-01     2.3443E-06     2.7740E-05    -1.6541E-06
+    3        -7.646483751595E-01     1.8972E-06     2.2450E-05    -6.0872E-08
+    4        -7.646483859056E-01     1.8493E-06     2.1884E-05    -1.0746E-08
+    5        -7.646484945409E-01     2.6623E-06     3.1504E-05    -1.0864E-07
+    6        -7.646485811897E-01     3.5134E-06     4.1575E-05    -8.6649E-08
+    7        -7.646486455581E-01     2.2842E-06     2.7030E-05    -6.4368E-08
+    8        -7.646486721934E-01     1.7856E-06     2.1129E-05    -2.6635E-08
+    9        -7.646486957034E-01     1.8813E-06     2.2262E-05    -2.3510E-08
+   10        -7.646487322905E-01     1.1939E-06     1.4127E-05    -3.6587E-08
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -7.64648732290490E-01  Eh
+     Estimated gap above Kc      =   1.7573E-02  Eh
+     RMS occupancy error         =   9.2232E-17
+     [H,K] commutator            =   1.4127E-05
+     Occupancy bounds            = [ -0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  004 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  9.8703E-06 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -7.64811029267674E-01 Eh
+   Predicted gain in energy  =      -1.62296977183729E-04 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -7.648082623428E-01     1.3592E-05     1.6084E-04
+    2        -7.648095946223E-01     2.2882E-06     2.7077E-05    -1.3323E-06
+    3        -7.648096405986E-01     1.3038E-06     1.5429E-05    -4.5976E-08
+    4        -7.648096456894E-01     1.2791E-06     1.5137E-05    -5.0908E-09
+    5        -7.648097220896E-01     2.5327E-06     2.9970E-05    -7.6400E-08
+    6        -7.648097791013E-01     3.4470E-06     4.0790E-05    -5.7012E-08
+    7        -7.648098294134E-01     2.3476E-06     2.7780E-05    -5.0312E-08
+    8        -7.648098476835E-01     1.4447E-06     1.7096E-05    -1.8270E-08
+    9        -7.648098562642E-01     1.2033E-06     1.4239E-05    -8.5807E-09
+   10        -7.648098775977E-01     1.1415E-06     1.3508E-05    -2.1333E-08
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -7.64809877597656E-01  Eh
+     Estimated gap above Kc      =   1.7229E-02  Eh
+     RMS occupancy error         =   7.6707E-17
+     [H,K] commutator            =   1.3508E-05
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  005 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  4.4795E-06 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -7.64824927648086E-01 Eh
+   Predicted gain in energy  =      -1.50500504297879E-05 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -7.648249151794E-01     3.7407E-06     4.4265E-05
+    2        -7.648250207370E-01     7.5101E-07     8.8869E-06    -1.0556E-07
+    3        -7.648250273150E-01     5.6134E-07     6.6425E-06    -6.5780E-09
+    4        -7.648250348604E-01     3.1690E-07     3.7500E-06    -7.5454E-09
+    5        -7.648250358446E-01     1.7563E-07     2.0783E-06    -9.8419E-10
+    6        -7.648250359362E-01     1.6952E-07     2.0060E-06    -9.1618E-11
+    7        -7.648250368815E-01     2.3373E-07     2.7658E-06    -9.4522E-10
+    8        -7.648250373665E-01     2.2675E-07     2.6833E-06    -4.8503E-10
+    9        -7.648250376074E-01     1.4679E-07     1.7370E-06    -2.4093E-10
+   10        -7.648250377515E-01     1.5790E-07     1.8685E-06    -1.4403E-10
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -7.64825037751461E-01  Eh
+     Estimated gap above Kc      =   1.7149E-02  Eh
+     RMS occupancy error         =   4.8682E-17
+     [H,K] commutator            =   1.8685E-06
+     Occupancy bounds            = [  0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  006 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs:   NOT CONVERGED
+  ========================================================================
+         NGWF RMS gradient =  2.5175E-06 >  2.0000E-06  | above tolerance
+  ========================================================================
+
+>>> Improving NGWFs using line search:
+  ========================================================================
+   Predicted total energy    =      -7.64828180979562E-01 Eh
+   Predicted gain in energy  =      -3.14322810068823E-06 Eh
+  ========================================================================
+
+Writing NGWFs to file "ribbon_nn.tightbox_ngwfs_cond"....  done
+
+>>> Optimising kernel for current NGWFs:
+   iter  |      energy (Eh)       | rms gradient |  commutator  |   dE (Eh)
+    1        -7.648281839344E-01     2.8458E-06     3.3675E-05
+    2        -7.648282406984E-01     4.6713E-07     5.5277E-06    -5.6764E-08
+    3        -7.648282424083E-01     1.7786E-07     2.1047E-06    -1.7099E-09
+    4        -7.648282425023E-01     1.7179E-07     2.0328E-06    -9.3977E-11
+    5        -7.648282436190E-01     2.7554E-07     3.2605E-06    -1.1167E-09
+    6        -7.648282442593E-01     3.1070E-07     3.6767E-06    -6.4031E-10
+    7        -7.648282447064E-01     2.2708E-07     2.6871E-06    -4.4704E-10
+    8        -7.648282449862E-01     2.2218E-07     2.6291E-06    -2.7980E-10
+    9        -7.648282453514E-01     2.5361E-07     3.0011E-06    -3.6529E-10
+   10        -7.648282459065E-01     1.3210E-07     1.5632E-06    -5.5503E-10
+Finished density kernel iterations (  10)
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+
+
+>>> Density kernel optimised for the current NGWF basis:
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     Total energy                =  -7.64828245906472E-01  Eh
+     Estimated gap above Kc      =   1.7222E-02  Eh
+     RMS occupancy error         =   4.0937E-17
+     [H,K] commutator            =   1.5632E-06
+     Occupancy bounds            = [ -0.000:  1.000]
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+################################################################################
+######################### COND NGWF CG iteration  007 ##########################
+################################################################################
+
+>>> Checking for convergence of NGWFs: 
+           ........................................................
+           |         *** NGWF optimisation converged ***          |
+           | RMS NGWF gradient =    0.00000171597780              |
+           | Criteria satisfied:                                  |
+           | -> RMS NGWF gradient lower than set threshold.       |
+           ========================================================
+
+                        <<<<< CALCULATION SUMMARY >>>>>                         
+|ITER|    RMS GRADIENT   |     TOTAL ENERGY    |   step   |     Epredicted              
+   0     0.00002941765407     -0.76173833064728   0.820425     -0.76296652970277        
+   1     0.00002071494068     -0.76296424201675   1.724030     -0.76424070505310        
+   2     0.00001583936059     -0.76422791608266   0.988772     -0.76465203110825        
+   3     0.00000987027801     -0.76464873229049   0.971572     -0.76481102926767        
+   4     0.00000447952471     -0.76480987759766   0.433571     -0.76482492764809        
+   5     0.00000251747995     -0.76482503775146   0.286702     -0.76482818097956        
+   6     0.00000171597780     -0.76482824590647  <-- CG                                 
++------------------------------------------------------------------------------+
+|                    Conduction NGWF optimisation complete                     |
++------------------------------------------------------------------------------+
+
++------------------------------------------------------------------------------+
+|                  Starting conduction properties calculation                  |
++------------------------------------------------------------------------------+
+
+======================== Writing density and potential =========================
+Writing "ribbon_nn_density.cube" ... done
+Writing "ribbon_nn_potential.cube" ... done
+Writing "ribbon_nn_electrostatic_potential.cube" ... done
+================================================================================
+
+    Mulliken Atomic Populations
+    ---------------------------
+Species  Ion    Total   Charge (e)
+==================================
+  C      1       4.021     -0.021
+  C      2       4.019     -0.019
+  H      3       0.727      0.273
+  C      4       4.240     -0.240
+  C      5       4.242     -0.242
+  H      6       0.725      0.275
+  C      7       4.019     -0.019
+  C      8       4.018     -0.018
+  H      9       0.726      0.274
+  C     10       4.240     -0.240
+  C     11       4.242     -0.242
+  H     12       0.724      0.276
+  C     13       4.017     -0.017
+  C     14       4.015     -0.015
+  H     15       0.710      0.290
+  C     16       4.242     -0.242
+  C     17       4.244     -0.244
+  H     18       0.708      0.292
+  C     19       3.872      0.128
+  C     20       3.872      0.128
+  N     21       5.411     -0.411
+  N     22       5.411     -0.411
+  C     23       3.872      0.128
+  C     24       3.872      0.128
+  H     25       0.709      0.291
+  C     26       4.243     -0.243
+  C     27       4.244     -0.244
+  H     28       0.708      0.292
+  C     29       4.016     -0.016
+  C     30       4.015     -0.015
+  H     31       0.725      0.275
+  C     32       4.241     -0.241
+  C     33       4.243     -0.243
+  H     34       0.724      0.276
+  C     35       4.019     -0.019
+  C     36       4.017     -0.017
+  H     37       0.727      0.273
+  C     38       4.240     -0.240
+  C     39       4.242     -0.242
+  H     40       0.725      0.275
+  C     41       4.020     -0.020
+  C     42       4.019     -0.019
+  H     43       0.727      0.273
+  C     44       4.240     -0.240
+  C     45       4.242     -0.242
+  H     46       0.725      0.275
+==================================
+
+        Bond         Population      Length (bohr)
+==================================================
+ C    39 -- H    40        0.86      2.06000
+ C    33 -- H    34        0.86      2.06000
+ C    11 -- H    12        0.86      2.06000
+ C     5 -- H     6        0.86      2.06000
+ C    27 -- H    28        0.83      2.06000
+ C    45 -- H    46        0.86      2.06000
+ C    17 -- H    18        0.83      2.06000
+ H     9 -- C    10        0.86      2.06000
+ H    25 -- C    26        0.83      2.06000
+ H     3 -- C     4        0.86      2.06000
+ H    43 -- C    44        0.86      2.06000
+ H    31 -- C    32        0.86      2.06000
+ H    37 -- C    38        0.86      2.06000
+ H    15 -- C    16        0.83      2.06000
+ C    19 -- C    20        0.96      2.68000
+ C    23 -- C    24        0.96      2.68000
+ C     7 -- C     8        0.98      2.68000
+ C     1 -- C     2        0.98      2.68000
+ C    41 -- C    42        0.98      2.68000
+ C    13 -- C    14        0.97      2.68000
+ C    29 -- C    30        0.97      2.68000
+ C    35 -- C    36        0.98      2.68000
+ C     1 -- C    44        1.07      2.68524
+ C    38 -- C    41        1.07      2.68524
+ C    23 -- C    26        1.05      2.68524
+ C    32 -- C    35        1.07      2.68524
+ C    13 -- C    16        1.06      2.68524
+ C    10 -- C    13        1.07      2.68524
+ C     4 -- C     7        1.07      2.68524
+ N    21 -- C    23        0.90      2.68524
+ C     7 -- C    10        1.07      2.68524
+ C    19 -- N    21        0.90      2.68524
+ C    16 -- C    19        1.05      2.68524
+ C     1 -- C     4        1.07      2.68524
+ C    41 -- C    44        1.07      2.68524
+ C    26 -- C    29        1.06      2.68524
+ C    35 -- C    38        1.07      2.68524
+ C    29 -- C    32        1.07      2.68524
+ C    24 -- C    27        1.05      2.69025
+ C     2 -- C    45        1.07      2.69025
+ C    39 -- C    42        1.07      2.69025
+ C    33 -- C    36        1.06      2.69025
+ C    17 -- C    20        1.05      2.69025
+ C    20 -- N    22        0.90      2.69025
+ C    14 -- C    17        1.06      2.69025
+ C    11 -- C    14        1.07      2.69025
+ N    22 -- C    24        0.90      2.69025
+ C     2 -- C     5        1.07      2.69025
+ C     5 -- C     8        1.07      2.69025
+ C     8 -- C    11        1.07      2.69025
+ C    42 -- C    45        1.07      2.69025
+ C    36 -- C    39        1.07      2.69025
+ C    30 -- C    33        1.07      2.69025
+ C    27 -- C    30        1.06      2.69025
+ C    23 -- H    25       -0.12      4.12006
+ C     1 -- H    43       -0.11      4.12006
+ H    37 -- C    41       -0.11      4.12006
+ H    31 -- C    35       -0.11      4.12006
+ H     9 -- C    13       -0.11      4.12006
+ H     3 -- C     7       -0.11      4.12006
+ C     1 -- H     3       -0.12      4.12006
+ H    15 -- C    19       -0.12      4.12006
+ C    13 -- H    15       -0.11      4.12006
+ C     7 -- H     9       -0.11      4.12006
+ H    25 -- C    29       -0.11      4.12006
+ C    41 -- H    43       -0.12      4.12006
+ C    35 -- H    37       -0.11      4.12006
+ C    29 -- H    31       -0.11      4.12006
+ C    24 -- H    28       -0.12      4.12832
+ C     2 -- H    46       -0.11      4.12832
+ H    40 -- C    42       -0.11      4.12832
+ H    34 -- C    36       -0.11      4.12832
+ C     8 -- H    12       -0.11      4.12832
+ C    14 -- H    18       -0.10      4.12832
+ C     2 -- H     6       -0.11      4.12832
+ H    12 -- C    14       -0.11      4.12832
+ H     6 -- C     8       -0.11      4.12832
+ H    18 -- C    20       -0.12      4.12832
+ C    42 -- H    46       -0.11      4.12832
+ C    36 -- H    40       -0.11      4.12832
+ C    30 -- H    34       -0.11      4.12832
+ H    28 -- C    30       -0.10      4.12832
+ C    24 -- C    26       -0.17      4.64493
+ C     2 -- C    44       -0.16      4.64493
+ C    38 -- C    42       -0.16      4.64493
+ C    32 -- C    36       -0.16      4.64493
+ N    21 -- C    24       -0.14      4.64493
+ C     8 -- C    10       -0.16      4.64493
+ C    16 -- C    20       -0.17      4.64493
+ C    14 -- C    16       -0.16      4.64493
+ C     2 -- C     4       -0.16      4.64493
+ C    10 -- C    14       -0.16      4.64493
+ C     4 -- C     8       -0.16      4.64493
+ C    20 -- N    21       -0.14      4.64493
+ C    42 -- C    44       -0.16      4.64493
+ C    36 -- C    38       -0.16      4.64493
+ C    30 -- C    32       -0.16      4.64493
+ C    26 -- C    30       -0.16      4.64493
+ C    23 -- C    27       -0.17      4.65358
+ C    39 -- C    41       -0.16      4.65358
+ C     1 -- C    45       -0.16      4.65358
+ C    33 -- C    35       -0.16      4.65358
+ N    22 -- C    23       -0.14      4.65358
+ C     7 -- C    11       -0.16      4.65358
+ C    19 -- N    22       -0.14      4.65358
+ C    17 -- C    19       -0.17      4.65358
+ C     1 -- C     5       -0.16      4.65358
+ C    13 -- C    17       -0.16      4.65358
+ C     5 -- C     7       -0.16      4.65358
+ C    11 -- C    13       -0.16      4.65358
+ C    41 -- C    45       -0.16      4.65358
+ C    35 -- C    39       -0.16      4.65358
+ C    29 -- C    33       -0.16      4.65358
+ C    27 -- C    29       -0.16      4.65358
+ C     4 -- C    44       -0.19      4.65400
+ N    22 -- C    27       -0.17      4.65400
+ N    21 -- C    26       -0.17      4.65400
+ H     3 -- H    43       -0.01      4.65400
+ H     6 -- H    46       -0.01      4.65400
+ C     5 -- C    45       -0.19      4.65400
+ C    24 -- C    30       -0.16      4.65400
+ H     9 -- H    15       -0.01      4.65400
+ C    23 -- C    29       -0.16      4.65400
+ C     8 -- C    14       -0.17      4.65400
+ C     2 -- C    42       -0.17      4.65400
+ C    20 -- C    24       -0.19      4.65400
+ H     3 -- H     9       -0.01      4.65400
+ C    19 -- C    23       -0.19      4.65400
+ H    40 -- H    46       -0.01      4.65400
+ C     7 -- C    13       -0.17      4.65400
+ C    39 -- C    45       -0.19      4.65400
+ C    17 -- N    22       -0.17      4.65400
+ H    37 -- H    43       -0.01      4.65400
+ H     6 -- H    12       -0.01      4.65400
+ C    36 -- C    42       -0.17      4.65400
+ C    16 -- N    21       -0.17      4.65400
+ C    35 -- C    41       -0.17      4.65400
+ H    34 -- H    40       -0.01      4.65400
+ C    14 -- C    20       -0.16      4.65400
+ C     2 -- C     8       -0.17      4.65400
+ C    33 -- C    39       -0.19      4.65400
+ C    32 -- C    38       -0.19      4.65400
+ C     5 -- C    11       -0.19      4.65400
+ H    31 -- H    37       -0.01      4.65400
+ C     1 -- C    41       -0.17      4.65400
+ C    30 -- C    36       -0.17      4.65400
+ C    29 -- C    35       -0.17      4.65400
+ H    12 -- H    18       -0.01      4.65400
+ C    38 -- C    44       -0.19      4.65400
+ C    11 -- C    17       -0.19      4.65400
+ C     4 -- C    10       -0.19      4.65400
+ C     1 -- C     7       -0.17      4.65400
+ C    10 -- C    16       -0.19      4.65400
+ C    13 -- C    19       -0.16      4.65400
+ H    28 -- H    34       -0.01      4.65400
+ C    27 -- C    33       -0.19      4.65400
+ C    26 -- C    32       -0.19      4.65400
+ H    25 -- H    31       -0.01      4.65400
+ N    22 -- H    28       -0.01      5.08953
+ C     4 -- H    43       -0.04      5.08953
+ N    21 -- H    25       -0.01      5.08953
+ H     3 -- C    44       -0.04      5.08953
+ H     6 -- C    45       -0.04      5.08953
+ C     5 -- H    46       -0.04      5.08953
+ H    40 -- C    45       -0.04      5.08953
+ C    39 -- H    46       -0.04      5.08953
+ H    18 -- N    22       -0.01      5.08953
+ H     6 -- C    11       -0.04      5.08953
+ H    34 -- C    39       -0.04      5.08953
+ C    33 -- H    40       -0.04      5.08953
+ C     5 -- H    12       -0.04      5.08953
+ H    12 -- C    17       -0.04      5.08953
+ C    11 -- H    18       -0.04      5.08953
+ C    10 -- H    15       -0.04      5.08953
+ H     9 -- C    16       -0.04      5.08953
+ H     3 -- C    10       -0.04      5.08953
+ C    38 -- H    43       -0.04      5.08953
+ H    37 -- C    44       -0.04      5.08953
+ H    15 -- N    21       -0.01      5.08953
+ C    32 -- H    37       -0.04      5.08953
+ H    31 -- C    38       -0.04      5.08953
+ C     4 -- H     9       -0.04      5.08953
+ H    28 -- C    33       -0.04      5.08953
+ C    27 -- H    34       -0.04      5.08953
+ C    26 -- H    31       -0.04      5.08953
+ H    25 -- C    32       -0.04      5.08953
+ C     4 -- C     5       -0.08      5.37000
+ N    21 -- N    22       -0.05      5.37000
+ C    44 -- C    45       -0.08      5.37000
+ C    38 -- C    39       -0.08      5.37000
+ C    16 -- C    17       -0.07      5.37000
+ C    32 -- C    33       -0.08      5.37000
+ C    26 -- C    27       -0.07      5.37000
+ C    10 -- C    11       -0.08      5.37000
+ C    24 -- C    29       -0.07      5.37049
+ C    23 -- C    30       -0.07      5.37049
+ C     8 -- C    13       -0.08      5.37049
+ C    20 -- C    23       -0.08      5.37049
+ C     7 -- C    14       -0.08      5.37049
+ C    19 -- C    24       -0.08      5.37049
+ C     2 -- C    41       -0.08      5.37049
+ C    36 -- C    41       -0.08      5.37049
+ C    35 -- C    42       -0.08      5.37049
+ C     1 -- C     8       -0.08      5.37049
+ C    14 -- C    19       -0.07      5.37049
+ C    13 -- C    20       -0.07      5.37049
+ C    30 -- C    35       -0.08      5.37049
+ C    29 -- C    36       -0.07      5.37049
+ C     2 -- C     7       -0.08      5.37049
+ C     1 -- C    42       -0.08      5.37049
+==================================================
+
+
+
+
+=========================== Valence diagonalisation ============================
+
+=================== Orbital energy and occupancy information ===================
+
+      Total number of orbitals:     142
+   Number of occupied orbitals:      72.000000000
+   Occupancy sum (eigenvalues):      72.000000000
+                 HOMO-LUMO gap:       0.022506754 Eh
+                 Mid-gap level:      -0.129889775 Eh
+
+                        Orbital | Energy (Eh) | Occupancy
+                            1    -0.825721505   1.0000000
+                        .......   ...........   .........
+                           63    -0.257674305   1.0000000
+                           64    -0.254155920   1.0000000
+                           65    -0.223906960   1.0000000
+                           66    -0.217108714   1.0000000
+                           67    -0.211249511   1.0000000
+                           68    -0.199986432   1.0000000
+                           69    -0.172244377   1.0000000
+                           70    -0.168496647   0.9999999
+                           71    -0.161320834   1.0000000
+                           72    -0.141143152   0.9999997
+                        .......   --- gap ---   .........
+                           73    -0.118636398   0.0000003
+                           74    -0.091878122   0.0000001
+                           75    -0.082994751   0.0000000
+                           76    -0.030183753   0.0000000
+                           77    -0.029817277   0.0000000
+                           78    -0.021725340   0.0000000
+                           79     0.002706909   0.0000000
+                           80     0.007285465   0.0000000
+                           81     0.012504379   0.0000000
+                           82     0.026911183   0.0000000
+                        .......   ...........   .........
+                          142     0.669811204   0.0000000
+
+================================================================================
+ 
+===================== Density of States (DOS) calculation ======================
+Writing "ribbon_nn_valence_DOS.txt" ...  done
+================================================================================
+ 
+Writing bands to file "ribbon_nn.val_bands" ... done
+ 
+Joint Valence + Conduction NGWF sparse matrix initialisation ... done
+Joint Valence + Conduction NGWF initialisation ...... done
+
+
+
+
+================= Joint valence and conduction diagonalisation =================
+
+=================== Orbital energy and occupancy information ===================
+
+      Total number of orbitals:     284
+   Number of occupied orbitals:      72.000000000
+   Occupancy sum (eigenvalues):      72.000000000
+ Num of occupied cond orbitals:       6
+            Cond Occupancy sum:       6.000000000
+                 HOMO-LUMO gap:       0.022469057 Eh
+                 Mid-gap level:      -0.129855301 Eh
+
+                        Orbital | Energy (Eh) | Occupancy | Cond Occupancy
+                            1    -0.825722076   0.9999986  -0.0000000
+                        .......   ...........   .........
+                           63    -0.257721103   0.9999993   0.0000004
+                           64    -0.254196157   0.9999890   0.0000000
+                           65    -0.223870437   0.9999816   0.0000000
+                           66    -0.217078515   0.9999802   0.0000000
+                           67    -0.211200590   0.9999962   0.0000000
+                           68    -0.200011260   0.9999663  -0.0000000
+                           69    -0.172286449   0.9998938   0.0000000
+                           70    -0.168579663   0.9999357   0.0000003
+                           71    -0.161400999   0.9999243   0.0000001
+                           72    -0.141089829   0.9999813   0.0000006
+                        .......   --- gap ---   .........
+                           73    -0.118620772   0.0000004   0.9998513
+                           74    -0.092169551   0.0000001   0.9998005
+                           75    -0.083360777   0.0000000   0.9999129
+                           76    -0.032376138   0.0000003   0.9995889
+                           77    -0.031350808   0.0000001   0.9999568
+                           78    -0.025004421   0.0000003   0.9991152
+                           79    -0.008595529   0.0000003   0.0000125
+                           80    -0.004308605   0.0000003   0.0000429
+                           81    -0.000539237   0.0000009   0.0000140
+                           82     0.025048906   0.0000005   0.0000001
+                        .......   ...........   .........
+                          284     2.131973103   0.0000004  -0.0000000
+
+================================================================================
+
+===================== Writing canonical molecular orbitals =====================
+| Orbital  Energy (eV)  Norm     |
+| HOMO-5   -5.74706048  1.000000 | Writing "ribbon_nn_joint_HOMO-5.cube" ... done
+| HOMO-4   -5.44258333  1.000000 | Writing "ribbon_nn_joint_HOMO-4.cube" ... done
+| HOMO-3   -4.68815284  1.000000 | Writing "ribbon_nn_joint_HOMO-3.cube" ... done
+| HOMO-2   -4.58728604  1.000000 | Writing "ribbon_nn_joint_HOMO-2.cube" ... done
+| HOMO-1   -4.39194466  1.000000 | Writing "ribbon_nn_joint_HOMO-1.cube" ... done
+| HOMO     -3.83924960  1.000000 | Writing "ribbon_nn_joint_HOMO.cube" ... done
+| LUMO     -3.22783546  1.000000 | Writing "ribbon_nn_joint_LUMO.cube" ... done
+| LUMO+1   -2.50806110  1.000000 | Writing "ribbon_nn_joint_LUMO+1.cube" ... done
+| LUMO+2   -2.26836217  1.000000 | Writing "ribbon_nn_joint_LUMO+2.cube" ... done
+| LUMO+3   -0.88099954  1.000000 | Writing "ribbon_nn_joint_LUMO+3.cube" ... done
+| LUMO+4   -0.85309889  1.000000 | Writing "ribbon_nn_joint_LUMO+4.cube" ... done
+| LUMO+5   -0.68040491  1.000000 | Writing "ribbon_nn_joint_LUMO+5.cube" ... done
+================================================================================
+ 
+===================== Density of States (DOS) calculation ======================
+Writing "ribbon_nn_joint_DOS.txt" ...  done
+================================================================================
+ 
+Writing bands to file "ribbon_nn.joint_bands" ... done
++------------------------------------------------------------------------------+
+|                  Conduction properties calculation complete                  |
++------------------------------------------------------------------------------+
+
+WARNING: cond_read_tightbox_ngwfs overridden to T because of task LR_TDDFT.
+
+
+Determining parallel strategy ...... done
+Basis initialisation ...... done
+Sparse matrix initialisation ... done
+
+Reading NGWFs from file "ribbon_nn.tightbox_ngwfs" ...  done
+
+Reading density kernel from file "ribbon_nn.dkn" ... done
+Conduction NGWF sparse matrix initialisation ...
+Reading NGWFs from file "ribbon_nn.tightbox_ngwfs_cond" ...  done
+...Done
+Generating conduction density kernel for     6 'occupied' orbitals
+Up spin density kernel initialisation ...... done
+
+Writing density kernel to file "ribbon_nn.dkn_cond" ... done
+ 
+Joint Valence + Conduction NGWF sparse matrix initialisation ...Joint Valence + Conduction NGWF initialisation ...... done
+
+
+################################################################################
+########################### LR-TDDFT CG optimisation ###########################
+################################################################################
+
+################################################################################
+######################### LR_TDDFT CG iteration    1 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.2142E-25 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     5.59878044530928        |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration    2 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.2142E-25 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0008437737
+      2    0.0017147410
+      3    0.0055190620
+      4    0.0058451048
+      5    0.0026472572
+      6    0.0070472665
+      7    0.0061783336
+      8    0.0045010308
+****** Calculated RMS gradient of g_vec. RMS grad =   0.8673E+00 ******
+Conjugate gradient coefficient=     1.2887336912
+***** Calculated RMS gradient of search direction. RMS grad =   0.9199E+00 *****
+****** Line-min: predicted omega=    1.81172349232076 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.2915E+01 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     1.95841819348044        |
+           |       Change in omega  =    -3.64036225182884        |
+           |       RMS gradient     =     0.86727632865018        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration    3 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.2369E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0047190255
+      2    0.0028301838
+      3    0.0088420036
+      4    0.0087143090
+      5    0.0019906483
+      6    0.0021609794
+      7    0.0031936899
+      8    0.0047188342
+****** Calculated RMS gradient of g_vec. RMS grad =   0.1007E+01 ******
+Conjugate gradient coefficient=     1.5021494941
+***** Calculated RMS gradient of search direction. RMS grad =   0.1259E+01 *****
+****** Line-min: predicted omega=    1.26042645823301 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.6478E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     1.30914698190416        |
+           |       Change in omega  =    -0.64927121157628        |
+           |       RMS gradient     =     1.00699880854267        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration    4 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.3826E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0057202505
+      2    0.0022757203
+      3    0.0055059583
+      4    0.0059217939
+      5    0.0013260706
+      6    0.0049207449
+      7    0.0045245199
+      8    0.0033783053
+****** Calculated RMS gradient of g_vec. RMS grad =   0.7321E+00 ******
+Conjugate gradient coefficient=     0.5224280765
+***** Calculated RMS gradient of search direction. RMS grad =   0.8821E+00 *****
+****** Line-min: predicted omega=    0.77341041983653 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.6804E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.75490196169034        |
+           |       Change in omega  =    -0.55424502021382        |
+           |       RMS gradient     =     0.73205986866885        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration    5 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4895E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0011472334
+      2    0.0017924293
+      3    0.0057248769
+      4    0.0048911921
+      5    0.0008737818
+      6    0.0038033979
+      7    0.0018969616
+      8    0.0024589736
+****** Calculated RMS gradient of g_vec. RMS grad =   0.5180E+00 ******
+Conjugate gradient coefficient=     0.3266773448
+***** Calculated RMS gradient of search direction. RMS grad =   0.5762E+00 *****
+****** Line-min: predicted omega=    0.62894654178962 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.4417E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.63206692060203        |
+           |       Change in omega  =    -0.12283504108831        |
+           |       RMS gradient     =     0.51797621286728        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+****** Checking for convergence of individual states *****
+****** Number of newly converged states:    0  *****
+
+################################################################################
+######################### LR_TDDFT CG iteration    6 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.5057E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0015844107
+      2    0.0011117687
+      3    0.0020785447
+      4    0.0022553308
+      5    0.0002971416
+      6    0.0010999965
+      7    0.0002638393
+      8    0.0005671342
+****** Calculated RMS gradient of g_vec. RMS grad =   0.3385E+00 ******
+Conjugate gradient coefficient=     0.3317022734
+***** Calculated RMS gradient of search direction. RMS grad =   0.3339E+00 *****
+****** Line-min: predicted omega=    0.58837370557893 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.4952E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.58975951274429        |
+           |       Change in omega  =    -0.04230740785774        |
+           |       RMS gradient     =     0.33852926091677        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration    7 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4704E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0014810970
+      2    0.0008830375
+      3    0.0016205883
+      4    0.0013651373
+      5    0.0001210347
+      6    0.0011273792
+      7    0.0009774724
+      8    0.0004472051
+****** Calculated RMS gradient of g_vec. RMS grad =   0.1840E+00 ******
+Conjugate gradient coefficient=     0.4913766433
+***** Calculated RMS gradient of search direction. RMS grad =   0.2086E+00 *****
+****** Line-min: predicted omega=    0.56876826534408 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.6818E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.56850939301726        |
+           |       Change in omega  =    -0.02125011972703        |
+           |       RMS gradient     =     0.18404011257538        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration    8 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4741E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0008962687
+      2    0.0004787390
+      3    0.0002676790
+      4    0.0002345837
+      5    0.0001714718
+      6    0.0007831958
+      7    0.0008008329
+      8    0.0001553092
+****** Calculated RMS gradient of g_vec. RMS grad =   0.1028E+00 ******
+Conjugate gradient coefficient=     0.3966246670
+***** Calculated RMS gradient of search direction. RMS grad =   0.1404E+00 *****
+****** Line-min: predicted omega=    0.56096357194404 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.6605E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.56065473891952        |
+           |       Change in omega  =    -0.00785465409774        |
+           |       RMS gradient     =     0.10279768939208        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration    9 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4448E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0002235777
+      2    0.0002574582
+      3    0.0002196450
+      4    0.0001795293
+      5    0.0001133275
+      6    0.0007765126
+      7    0.0007281489
+      8    0.0002728795
+****** Calculated RMS gradient of g_vec. RMS grad =   0.9080E-01 ******
+Conjugate gradient coefficient=     0.6679669404
+***** Calculated RMS gradient of search direction. RMS grad =   0.1305E+00 *****
+****** Line-min: predicted omega=    0.55496623031141 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.7454E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.55460391356184        |
+           |       Change in omega  =    -0.00605082535768        |
+           |       RMS gradient     =     0.09080072279173        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   10 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4374E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0003719421
+      2    0.0002085502
+      3    0.0004480750
+      4    0.0002895890
+      5    0.0001591245
+      6    0.0002061968
+      7    0.0001010551
+      8    0.0001606409
+****** Calculated RMS gradient of g_vec. RMS grad =   0.7533E-01 ******
+Conjugate gradient coefficient=     0.6577831384
+***** Calculated RMS gradient of search direction. RMS grad =   0.1142E+00 *****
+****** Line-min: predicted omega=    0.55103437302577 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.7159E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.55063607285265        |
+           |       Change in omega  =    -0.00396784070919        |
+           |       RMS gradient     =     0.07533203227423        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+****** Checking for convergence of individual states *****
+****** Number of newly converged states:    0  *****
+
+################################################################################
+######################### LR_TDDFT CG iteration   11 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4336E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0005398970
+      2    0.0003629053
+      3    0.0003570284
+      4    0.0003167625
+      5    0.0000624714
+      6    0.0003827442
+      7    0.0004160415
+      8    0.0001002075
+****** Calculated RMS gradient of g_vec. RMS grad =   0.6842E-01 ******
+Conjugate gradient coefficient=     0.7928012217
+***** Calculated RMS gradient of search direction. RMS grad =   0.1227E+00 *****
+****** Line-min: predicted omega=    0.54676543075813 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.9020E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.54584131148436        |
+           |       Change in omega  =    -0.00479476136829        |
+           |       RMS gradient     =     0.06841689260346        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   12 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4229E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0001909352
+      2    0.0002024376
+      3    0.0001468754
+      4    0.0003023403
+      5    0.0001741919
+      6    0.0002052113
+      7    0.0003707134
+      8    0.0002257361
+****** Calculated RMS gradient of g_vec. RMS grad =   0.6275E-01 ******
+Conjugate gradient coefficient=     0.7994066565
+***** Calculated RMS gradient of search direction. RMS grad =   0.1242E+00 *****
+****** Line-min: predicted omega=    0.54242744350985 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.7964E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.54166354769447        |
+           |       Change in omega  =    -0.00417776378989        |
+           |       RMS gradient     =     0.06274952015575        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   13 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4231E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0002869605
+      2    0.0001144295
+      3    0.0001039589
+      4    0.0001339232
+      5    0.0000856867
+      6    0.0004641477
+      7    0.0002589725
+      8    0.0002493706
+****** Calculated RMS gradient of g_vec. RMS grad =   0.6468E-01 ******
+Conjugate gradient coefficient=     0.9750786679
+***** Calculated RMS gradient of search direction. RMS grad =   0.1371E+00 *****
+****** Line-min: predicted omega=    0.53849631912059 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.7330E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53763273180460        |
+           |       Change in omega  =    -0.00403081588987        |
+           |       RMS gradient     =     0.06467780763299        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   14 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4229E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0002844368
+      2    0.0001981914
+      3    0.0001568687
+      4    0.0001456505
+      5    0.0002053666
+      6    0.0002203152
+      7    0.0001156234
+      8    0.0000973982
+****** Calculated RMS gradient of g_vec. RMS grad =   0.4789E-01 ******
+Conjugate gradient coefficient=     0.4536550643
+***** Calculated RMS gradient of search direction. RMS grad =   0.8677E-01 *****
+****** Line-min: predicted omega=    0.53558746810807 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.8664E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53513034560055        |
+           |       Change in omega  =    -0.00250238620405        |
+           |       RMS gradient     =     0.04789091918438        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   15 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.4296E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      1    0.0002190815
+      2    0.0002705039
+      3    0.0001087560
+      4    0.0002867851
+      5    0.0002347483
+      6    0.0002043018
+      7    0.0002277569
+      8    0.0001951516
+****** Calculated RMS gradient of g_vec. RMS grad =   0.5579E-01 ******
+Conjugate gradient coefficient=     1.1665365601
+***** Calculated RMS gradient of search direction. RMS grad =   0.1132E+00 *****
+****** Line-min: predicted omega=    0.53340175950639 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.6278E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53296625530147        |
+           |       Change in omega  =    -0.00216409029908        |
+           |       RMS gradient     =     0.05579083798262        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+****** Checking for convergence of individual states *****
+****** Number of newly converged states:    1  *****
+
+################################################################################
+######################### LR_TDDFT CG iteration   16 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.2539E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      2    0.0001066741
+      3    0.0001972115
+      4    0.0001391785
+      5    0.0000931229
+      6    0.0001202488
+      7    0.0001399664
+      8    0.0000735424
+****** Calculated RMS gradient of g_vec. RMS grad =   0.2507E-01 ******
+Conjugate gradient coefficient=     0.0006583625
+***** Calculated RMS gradient of search direction. RMS grad =   0.2843E-01 *****
+****** Line-min: predicted omega=    0.54073872164524 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.9531E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.54073903619590        |
+           |       Change in omega  =     0.00777278089443        |
+           |       RMS gradient     =     0.02507305458949        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   17 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.2520E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      2    0.0002170290
+      3    0.0005032195
+      4    0.0002221881
+      5    0.0000790913
+      6    0.0000512799
+      7    0.0002446907
+      8    0.0001044969
+****** Calculated RMS gradient of g_vec. RMS grad =   0.4090E-01 ******
+Conjugate gradient coefficient=     1.7785475061
+***** Calculated RMS gradient of search direction. RMS grad =   0.6561E-01 *****
+****** Line-min: predicted omega=    0.53972329688941 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.8728E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53973087496941        |
+           |       Change in omega  =    -0.00100816122649        |
+           |       RMS gradient     =     0.04090021604695        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   18 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.2493E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      2    0.0000952542
+      3    0.0002113720
+      4    0.0000474352
+      5    0.0000259435
+      6    0.0000402762
+      7    0.0001515739
+      8    0.0001128029
+****** Calculated RMS gradient of g_vec. RMS grad =   0.2262E-01 ******
+Conjugate gradient coefficient=     0.5819448666
+***** Calculated RMS gradient of search direction. RMS grad =   0.5158E-01 *****
+****** Line-min: predicted omega=    0.53903742212641 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.1020E+01 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53904537145286        |
+           |       Change in omega  =    -0.00068550351655        |
+           |       RMS gradient     =     0.02261632648423        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   19 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.2449E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      2    0.0000723404
+      3    0.0002062745
+      4    0.0001509025
+      5    0.0000816887
+      6    0.0000464118
+      7    0.0002249602
+      8    0.0001135312
+****** Calculated RMS gradient of g_vec. RMS grad =   0.2543E-01 ******
+Conjugate gradient coefficient=     0.9970514571
+***** Calculated RMS gradient of search direction. RMS grad =   0.5775E-01 *****
+****** Line-min: predicted omega=    0.53849625190308 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.8018E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53850152578436        |
+           |       Change in omega  =    -0.00054384566850        |
+           |       RMS gradient     =     0.02543021355304        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   20 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.2429E-24 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      2    0.0001320749
+      3    0.0002774495
+      4    0.0001448827
+      5    0.0000406323
+      6    0.0000490865
+      7    0.0002457063
+      8    0.0001163149
+****** Calculated RMS gradient of g_vec. RMS grad =   0.2600E-01 ******
+Conjugate gradient coefficient=     0.8883263147
+***** Calculated RMS gradient of search direction. RMS grad =   0.5795E-01 *****
+****** Line-min: predicted omega=    0.53809583495926 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.6557E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53809869789510        |
+           |       Change in omega  =    -0.00040282788927        |
+           |       RMS gradient     =     0.02599545836916        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+****** Checking for convergence of individual states *****
+****** Number of newly converged states:    3  *****
+
+################################################################################
+######################### LR_TDDFT CG iteration   21 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.9467E-25 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      5    0.0000700450
+      6    0.0000760878
+      7    0.0000699961
+      8    0.0000602002
+****** Calculated RMS gradient of g_vec. RMS grad =   0.1097E-01 ******
+Conjugate gradient coefficient=     0.0001353676
+***** Calculated RMS gradient of search direction. RMS grad =   0.1645E-01 *****
+****** Line-min: predicted omega=    0.53788094371589 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.1609E+01 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53788098078885        |
+           |       Change in omega  =    -0.00021771710625        |
+           |       RMS gradient     =     0.01096863489569        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   22 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.9357E-25 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      5    0.0000395721
+      6    0.0000653083
+      7    0.0002492621
+      8    0.0001151906
+****** Calculated RMS gradient of g_vec. RMS grad =   0.1591E-01 ******
+Conjugate gradient coefficient=     1.7394598052
+***** Calculated RMS gradient of search direction. RMS grad =   0.3989E-01 *****
+****** Line-min: predicted omega=    0.53771334199108 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.7161E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53771338935957        |
+           |       Change in omega  =    -0.00016759142928        |
+           |       RMS gradient     =     0.01590929162161        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   23 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.9204E-25 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      5    0.0000303243
+      6    0.0000488002
+      7    0.0001833184
+      8    0.0000776779
+****** Calculated RMS gradient of g_vec. RMS grad =   0.1064E-01 ******
+Conjugate gradient coefficient=     0.5687394191
+***** Calculated RMS gradient of search direction. RMS grad =   0.2826E-01 *****
+****** Line-min: predicted omega=    0.53760325985738 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.8223E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53760330332094        |
+           |       Change in omega  =    -0.00011008603863        |
+           |       RMS gradient     =     0.01064244864725        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   24 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.9113E-25 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      5    0.0000264800
+      6    0.0000138572
+      7    0.0000278573
+      8    0.0000232584
+****** Calculated RMS gradient of g_vec. RMS grad =   0.7905E-02 ******
+Conjugate gradient coefficient=     0.6360950840
+***** Calculated RMS gradient of search direction. RMS grad =   0.2283E-01 *****
+****** Line-min: predicted omega=    0.53749752980078 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.1225E+01 ******
+
+           ........................................................
+           |     *** TDDFT optimisation not converged ***         |
+           |       LR-TDDFT energy  =     0.53749758788132        |
+           |       Change in omega  =    -0.00010571543962        |
+           |       RMS gradient     =     0.00790475394219        |
+           | --> Total change in omega higher than threshold      |
+           ========================================================
+
+################################################################################
+######################### LR_TDDFT CG iteration   25 ###########################
+****** Initial penalty functional value of K^{1}: Q[K^{1}] =   0.8988E-25 ******
+******  Iteratively applying preconditioner on G^{1}: ******
+    |STATE|    Final residue  |
+      5    0.0000271757
+      6    0.0000423824
+      7    0.0001227447
+      8    0.0000623597
+****** Calculated RMS gradient of g_vec. RMS grad =   0.7850E-02 ******
+Conjugate gradient coefficient=     0.6990238279
+***** Calculated RMS gradient of search direction. RMS grad =   0.2103E-01 *****
+****** Line-min: predicted omega=    0.53745211213370 *****
+****** Performed line minimisation. Ideal step size Lambda =   0.7594E+00 ******
+
+           ........................................................
+           |     *** TDDFT optimisation converged ***             |
+           |       LR-TDDFT energy  =     0.53745212308610        |
+           |       Change in omega  =    -0.00004546479523        |
+           |       RMS gradient     =     0.00785034002861        |
+           | --> Total change in omega lower than threshold       |
+           ========================================================
+****** Checking for convergence of individual states *****
+****** Number of newly converged states:    2  *****
+
+             |ITER|    Total Energy   |     Penalty value      |     step       
+               1    5.5987804453      0.2142232066E-25         0.0000000000
+               2    1.9584181935      0.2369000830E-24         2.9146079476
+               3    1.3091469819      0.3826489884E-24         0.6478064204
+               4    0.7549019617      0.4894715723E-24         0.6804341310
+               5    0.6320669206      0.5057159433E-24         0.4416776951
+               6    0.5897595127      0.4704109717E-24         0.4952068254
+               7    0.5685093930      0.4741302950E-24         0.6818172432
+               8    0.5606547389      0.4447936500E-24         0.6604894873
+               9    0.5546039136      0.4374291590E-24         0.7453689331
+              10    0.5506360729      0.4335695668E-24         0.7159393639
+              11    0.5458413115      0.4228680801E-24         0.9020065110
+              12    0.5416635477      0.4231202475E-24         0.7964252284
+              13    0.5376327318      0.4229108775E-24         0.7330157276
+              14    0.5351303456      0.4295730464E-24         0.8664476626
+              15    0.5329662553      0.4290472170E-24         0.6278132529
+              16    0.5407390362      0.2520010169E-24         0.9530679711
+              17    0.5397308750      0.2493301507E-24         0.8727890278
+              18    0.5390453715      0.2449267081E-24         1.0201482270
+              19    0.5385015258      0.2429038128E-24         0.8017526759
+              20    0.5380986979      0.2395125598E-24         0.6557457037
+              21    0.5378809808      0.9357056610E-25         1.6086072054
+              22    0.5377133894      0.9203587231E-25         0.7161228026
+              23    0.5376033033      0.9112978279E-25         0.8222558809
+              24    0.5374975879      0.8987558238E-25         1.2254573213
+              25    0.5374521231      0.8940624996E-25         0.7593672814
+
+               |Excitation|    d_x (in D)   |     d_y (in D)  |    d_z (in D)   
+                       1    0.19998691E+01   -0.20492998E-03   -0.20195882E+00
+                       2    0.19661962E-01    0.70516861E-03    0.43388802E+00
+                       3   -0.43285710E-01    0.10417284E-02   -0.19864520E+01
+                       4    0.13943172E-01   -0.37834479E-02    0.47403088E-01
+                       5    0.39243254E-01   -0.16685336E-02    0.71097678E-01
+                       6    0.28218858E-01   -0.17607605E-01    0.30231457E-01
+                       7    0.54560682E-01   -0.24756384E+00   -0.21934001E-01
+                       8   -0.67579803E-02    0.47359403E-03    0.34788581E-01
+
+   |Excitation|    Energy (in Ha)   |     Oscillator Str.  | Lifetime (in ns)   
+           1        0.04200182          0.35023E-01          0.50373E+03
+           2        0.05039064          0.19619E-02          0.62477E+04
+           3        0.05077655          0.41371E-01          0.29178E+03
+           4        0.05538937          0.28073E-04          0.36136E+06
+           5        0.07377280          0.10045E-03          0.56929E+05
+           6        0.08101288          0.33778E-04          0.14039E+06
+           7        0.08628163          0.11529E-02          0.36262E+04
+           8        0.08942658          0.23184E-04          0.16787E+06
+Writing "ribbon_nn_TDDFT_response_dens_1.cube" ... done
+Writing "ribbon_nn_TDDFT_response_dens_2.cube" ... done
+Writing "ribbon_nn_TDDFT_response_dens_3.cube" ... done
+Writing "ribbon_nn_TDDFT_response_dens_4.cube" ... done
+Writing "ribbon_nn_TDDFT_response_dens_5.cube" ... done
+Writing "ribbon_nn_TDDFT_response_dens_6.cube" ... done
+Writing "ribbon_nn_TDDFT_response_dens_7.cube" ... done
+Writing "ribbon_nn_TDDFT_response_dens_8.cube" ... done
+Writing "ribbon_nn_TDDFT_hole_dens_1.cube" ... done
+Writing "ribbon_nn_TDDFT_elec_dens_1.cube" ... done
+Writing "ribbon_nn_TDDFT_hole_dens_2.cube" ... done
+Writing "ribbon_nn_TDDFT_elec_dens_2.cube" ... done
+Writing "ribbon_nn_TDDFT_hole_dens_3.cube" ... done
+Writing "ribbon_nn_TDDFT_elec_dens_3.cube" ... done
+Writing "ribbon_nn_TDDFT_hole_dens_4.cube" ... done
+Writing "ribbon_nn_TDDFT_elec_dens_4.cube" ... done
+Writing "ribbon_nn_TDDFT_hole_dens_5.cube" ... done
+Writing "ribbon_nn_TDDFT_elec_dens_5.cube" ... done
+Writing "ribbon_nn_TDDFT_hole_dens_6.cube" ... done
+Writing "ribbon_nn_TDDFT_elec_dens_6.cube" ... done
+Writing "ribbon_nn_TDDFT_hole_dens_7.cube" ... done
+Writing "ribbon_nn_TDDFT_elec_dens_7.cube" ... done
+Writing "ribbon_nn_TDDFT_hole_dens_8.cube" ... done
+Writing "ribbon_nn_TDDFT_elec_dens_8.cube" ... done
+
+------------------------------ TIMING INFORMATION ------------------------------
+AVERAGE TIME:    1229.181s on      8 proc(s)                                    
+TOTAL TIME:      1229.181s on      8 proc(s)                                    
+================= AVERAGE TIMINGS FROM ALL PROCS (CUMULATIVE) ==================
+|| TAG                                    #calls    cpu time   %total  Gflops ||
+|| sparse_blacstospam3_real_fast_imbal  :     8        0.00s   0.000%  ------ ||
+|| onetep.F90 final imbalance           :     1        0.00s   0.000%  ------ ||
+|| sparse_spam3toblacs_real_fast_imbal  :    10        0.00s   0.000%  ------ ||
+|| restart_kernel_read                  :     2        0.00s   0.000%  ------ ||
+|| onetep.F90 main loop imbalance       :     3        0.00s   0.000%  ------ ||
+|| sparse_spam3toblacs_real_fast_B2     :    80        0.00s   0.000%  ------ ||
+|| sparse_spam3toblacs_real_fast_B1     :    80        0.00s   0.000%  ------ ||
+|| sparse_set_to_garbage                :   342        0.01s   0.001%  ------ ||
+|| sparse_blacstospam3_real_fast        :     8        0.01s   0.001%  ------ ||
+|| sparse_spam3toblacs_real_fast        :    10        0.01s   0.001%  ------ ||
+|| ewald_calculate_energy               :     1        0.02s   0.002%  ------ ||
+|| dense_eigensolve                     :     3        0.03s   0.002%  ------ ||
+|| pseudopotentials_local_on_grid       :     3        0.03s   0.003%  ------ ||
+|| pseudopotentials_nonlocal_mat        :    50        0.04s   0.003%  ------ ||
+|| restart_kernel_write                 :    28        0.06s   0.005%  ------ ||
+|| pseudo_make_structure_factor         :     3        0.06s   0.005%  ------ ||
+|| basis_extract_function_from_box      :   869        0.10s   0.009%  ------ ||
+|| sparse_init                          :     7        0.11s   0.009%  ------ ||
+|| ngwf_gradient_coeffs                 :    23        0.13s   0.010%  ------ ||
+|| restart_ngwfs_tightbox_input         :     3        0.16s   0.013%  ------ ||
+|| palser_mano_kernel_optimise          :     4        0.18s   0.014%  ------ ||
+|| sparse_embed_hotelling_invert_embed  :    50        0.25s   0.020%  ------ ||
+|| density_init_guess_real              :     1        0.25s   0.020%  ------ ||
+|| energy_and_force_init_cell           :     1        0.35s   0.028%  ------ ||
+|| kernel_purify                        :   523        0.41s   0.033%  ------ ||
+|| kernel_fix                           :   167        0.45s   0.037%  ------ ||
+|| lnv_gradient_norm                    :   167        0.55s   0.045%  ------ ||
+|| projectors_init_fftbox_recip         :    96        0.82s   0.067%  ------ ||
+|| hamiltonian_energy_components        :     1        0.90s   0.073%  ------ ||
+|| restart_ngwfs_tightbox_output        :    21        1.08s   0.088%  ------ ||
+|| ngwfs_initialise_from_radial         :     2        1.24s   0.101%  ------ ||
+|| eigenstates_calculate                :     3        2.27s   0.184%  ------ ||
+|| sparse_trace                         : 27006        2.38s   0.194%  ------ ||
+|| projectors_func_ovlp_box_spam3       :    50        2.57s   0.209%  ------ ||
+|| fourier_apply_box_pair               :  1284        2.58s   0.210%  53.574 ||
+|| hartree_on_grid_single               :   477        2.78s   0.226%  ------ ||
+|| xc_energy_potential                  :   114        4.74s   0.386%  ------ ||
+|| optics_pos_mat_els                   :     1        4.94s   0.402%  ------ ||
+|| function_ops_brappd_ketppd_spam3     :    78        5.26s   0.428%  ------ ||
+|| basis_copy_function_to_box           : 19134        7.18s   0.584%  ------ ||
+|| projectors_gradient_batch            :    46        7.49s   0.609%  ------ ||
+|| cell_grid_extract_box_real           :  8604        8.61s   0.701%  ------ ||
+|| fourier_apply_cell_backward          :  3824        9.83s   0.800%  24.857 ||
+|| integrals_kinetic_spam3              :    50       10.10s   0.821%  ------ ||
+|| fourier_apply_cell_forward           :  3821       10.49s   0.853%  23.284 ||
+|| lr_tddft_utils_precond               :   167       10.82s   0.880%  ------ ||
+|| properties_calculate                 :     3       11.24s   0.914%  ------ ||
+|| sparse_product                       : 34163       11.94s   0.972%  ------ ||
+|| density_fftbox_deposit_to_cell       :  9198       24.02s   1.954%  ------ ||
+|| cell_grid_deposit_box_real           :  9852       24.17s   1.967%  ------ ||
+|| xc_fxc_finite_diff                   :   722       30.69s   2.497%  ------ ||
+|| ngwf_gradient_build_batch            :    46       42.34s   3.444%  ------ ||
+|| ngwf_gradient_batch                  :    46       85.23s   6.934%  ------ ||
+|| ngwf_gradient_lnv                    :    23       86.76s   7.058%  ------ ||
+|| hamiltonian_lhxc_calculate           :   112       98.14s   7.984%  ------ ||
+|| lnv_denskernel_optimise_cg           :    24      132.18s  10.753%  ------ ||
+|| basis_dot_function_with_box          : 2.011M     181.90s  14.798%  ------ ||
+|| integrals_locpot_mat_els_batch       :   902      193.12s  15.711%  ------ ||
+|| density_batch_row_sums               :  1014      207.63s  16.891%  ------ ||
+|| basis_add_function_to_box            : 2.348M     213.43s  17.364%  ------ ||
+|| ngwf_cg_optimise                     :     3      267.90s  21.795%  ------ ||
+|| potential_apply_to_ngwf_batch        :   902      284.59s  23.153%  ------ ||
+|| fourier_apply_box                    : 38154      292.10s  23.764%  70.085 ||
+|| density_fftbox_interpolate_multiply  :  9198      299.35s  24.354%  ------ ||
+|| density_batch_interp_deposit         :  1014      329.79s  26.830%  ------ ||
+|| linear_response_calc_SCF             :   361      437.04s  35.555%  ------ ||
+|| integrals_locpot_dbl_grid            :   450      477.97s  38.886%  ------ ||
+|| density_on_dbl_grid                  :   503      545.71s  44.396%  ------ ||
+|| linear_response_operator             :  3701      863.64s  70.262%  ------ ||
+|| lr_tddft_cg                          :     1      873.79s  71.087%  ------ ||
+|| lr_tddft_calc_excitations            :     1      929.26s  75.600%  ------ ||
+|| energy_and_forces                    :     3     1228.49s  99.944%  ------ ||
+|| total_time                           :     1     1229.18s 100.000%  ------ ||
+================================================================================
+Overhead of generating timer report: 
+- 0 ms averaging over threads,
+- 1 ms ensuring consistency across MPI ranks,
+- 0 ms printing in order.
+
+Job completed: 21-08-2023 11:00 (+0100)
+
