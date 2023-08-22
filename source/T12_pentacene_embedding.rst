@@ -100,9 +100,6 @@ hydrogenation energy can then be obtained as:
 
    \Delta E_{\textrm{hyd}} = E_{\textrm{Hydrogenated Pentacene}} - ( E_{\textrm{Pentacene}} + E_{\textrm{H2}} ) .
 
-..
-   You should obtain a value around ???????????.
-   
 Make sure you save the ``.tightbox_ngwfs`` file from the ``H2.dat``
 calculation for use later!
 
@@ -147,8 +144,6 @@ from the PBE-optimised NGWFs: bring back the PBE-optimised
 
 Run these three calculations and compute the hydrogenation energy at
 the B3LYP level.
-..
-   You should obtain a value around ??????.
 
 EMFT calculations
 -----------------
@@ -256,8 +251,6 @@ modifications/additions:
 
 You can now use these three results to compute the hydrogenation
 energy with an active region of this size.
-..
-   You should get a result of around ???????
 
 Larger active regions
 ~~~~~~~~~~~~~~~~~~~~~
@@ -276,13 +269,9 @@ region. Re-calculate the hydrogenation energy.
 
 If you plot the hydrogenation energy vs. the size of the active
 region, you should see the hydrogenation energy approach the full
-B3LYP result.
-.. 
-   ,getting within ????? with only around half of the
-   molecule included in the active region.
-This demonstrates the ability of EMFT to obtain high level results
-at a reduced cost, even when the boundary between regions cuts through
-covalent bonds.
+B3LYP result. This demonstrates the ability of EMFT to obtain high
+level results at a reduced cost, even when the boundary between
+regions cuts through covalent bonds.
 
 This also demonstrates the importance of selecting the appropriate
 active region. In systems made up of weakly bonded parts
@@ -330,8 +319,6 @@ use B3LYP as our high-level theory. The input file is
 ``Pentacene_isolated.dat`` -- as this tutorial assumes you are already
 familiar with running TDDFT calculations with ONETEP, we will not go
 into any detail, and this calculation can just be run as it is.
-.. 
-   You should find the lowest energy excitation to be ?????.
 
 TD-EMFT calculation
 -------------------
@@ -352,10 +339,7 @@ identical, i.e., the contents of the ``species_tddft_kernel`` block
 should be the same as the first line of the ``species_ngwf_regions``
 block. For more details, see the LR-TDDFT documentation.
 
-Run this calculation -- this may take some time.
-..
-   You should find that the lowest energy excitation is ????.
-If you compare this to the
+Run this calculation -- this may take some time. If you compare this to the
 results in Prentice [Prentice2022]_, you can see that the result is
 very close to the experimental value of 2.09 eV.
 
