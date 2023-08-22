@@ -70,9 +70,9 @@ used for your ONETEP calculations
 Pseudopotentials
 ================
 
-ONETEP accepts PAW datasets and NCP pseudpotentials with formats 
-USP and recpot. Pseudopotentials are passed directly to the Onetep calculator
-as a dictionnary definition. If no pseudopotentials are passed ASE will
+ONETEP accepts PAW datasets in the abinit format, and NCP pseudpotentials with formats 
+USP and recpot. Support has recently been added for the upf format, for both PAW and NCPP potentials. Pseudopotentials are passed directly to the Onetep calculator
+as a dictionary definition. If no pseudopotentials are passed ASE will
 try to guess the files based on the element used and the pseudo_path variable. ::
 
     # Explicitly providing each path
@@ -82,8 +82,7 @@ try to guess the files based on the element used and the pseudo_path variable. :
     # ASE will try to guess them
     calc = Onetep(pseudo_path = '/path/to/pseudos')
 
-For ASE to correctly guess the pseudopotentials use a pseudo_path that contains only one kind
-of pseudopotential per element.
+For ASE to correctly guess the pseudopotentials, it is best to use a pseudo_path that contains only one pseudopotential file for each element.
 
 .. highlight:: python
 
@@ -91,14 +90,13 @@ ONETEP Calculator
 =================
 
 Simple calculations can be setup calling the Onetep calculator without any parameters,
-in this case ONETEP default parameters will be used. For more complex cases using the
-keywords parameters is necessary. The 'keywords' parameters is a dictionnary in which
-each key is a string that represent a ONETEP keywords.
+in this case ONETEP's default parameters will be used. For more complex cases using the
+keywords parameters is necessary. The 'keywords' parameters is a dictionary, in which each of the keys is a string that should be a ONETEP keyword, and the corresponding value is what you want to set that keyword to in the input.
 
 Examples
 ========
 
-Here is an example of setting up a calculation on a water molecule: ::
+Here is an example python script which sets up a calculation on a water molecule: ::
 
     from ase.build import molecule
     from ase.calculators.onetep import Onetep
@@ -115,7 +113,7 @@ Here is an example of setting up a calculation on a water molecule: ::
 
 .. highlight:: python
 
-Another more complex example on Pt13: ::
+Here is a more complex example, this time setting up a Pt13 cluster and running a geometry optimisation on 64 cores: ::
 
     from os import environ
 
@@ -159,7 +157,7 @@ Another more complex example on Pt13: ::
 
 .. highlight:: python
 
-Here is an example of setting up an EELS and LDOS calculations on an N-substituted graphene sheet,
+Here is an example of setting up an EELS and LDOS calculation on an N-substituted graphene sheet,
 demonstrating several more advanced functionalities (eg tags, species groups, and overrides to
 pseudopotentials and atomic solver strings): ::
 
