@@ -1,0 +1,66 @@
+task              : SinglePoint COND
+paw               : True # Needed for EELS
+xc_functional     : PBE
+do_properties     : True # Ask for calculation of optical properties
+cond_energy_gap   : 0.004
+cond_energy_range : 0.4
+cond_calc_eels    : True
+#V Uncomment for human readable matrix elements
+#cond_spec_print_mat_els : True 
+cutoff_energy     : 750 eV
+output_detail     : Verbose
+
+%block lattice_cart
+    40.000000   0.0000000   0.0000000
+    0.0000000   40.000000   0.0000000
+    0.0000000   0.0000000   40.000000
+%endblock lattice_cart
+
+%block species
+Si       Si 14 9 12.0
+H        H  1  1 8.0
+# Here we define a second species for the atom whose 
+# core -> conduction transitions we want to probe
+Si_eels  Si 14 9 12.0
+%endblock species
+
+%block species_cond
+Si       Si 14 9 12.0
+H        H  1  1 8.0
+Si_eels  Si 14 9 12.0
+%endblock species_cond
+
+%block species_pot
+Si       Si.PBE-paw.abinit
+H        H.PBE-paw.abinit
+Si_eels  Si.PBE-paw.abinit
+%endblock species_pot
+
+%block species_atomic_set
+Si      SOLVE
+H       SOLVE
+Si_eels SOLVE
+%endblock species_atomic_set
+
+#only species with core wavefunction data
+#supplied will be used to compute EEL 
+#matrix elements.
+#NB: ALL species MUST have an entry here
+#use 'NONE' if you don't want to compute
+#core loss matrix elements for a species.
+
+%block species_core_wf
+Si      NONE
+H       NONE
+Si_eels si-corewf.abinit 
+%endblock species_core_wf
+
+%block positions_abs
+Si_eels     21.231469   19.962216   20.048416
+H           22.316684   21.381117   21.086741
+H           22.305600   18.474510   19.097577
+Si          18.768395   20.037541   19.951432
+H           17.694385   21.525477   20.902418
+H           17.683467   18.617139   18.913416
+%endblock positions_abs
+
