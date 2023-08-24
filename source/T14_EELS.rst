@@ -77,9 +77,11 @@ Files for this tutorial
 =======================
 
  - :download:`Si2H4_EELS_Example.dat <_static/tutorial_14/Si2H4_EELS_Example.dat>`
- - :download:`Si.PBE-paw.abinit <_static/tutorial_14/Si.PBE-paw.abinit>`
  - :download:`H.PBE-paw.abinit <_static/tutorial_14/H.PBE-paw.abinit>`
+ - :download:`Si.PBE-paw.abinit <_static/tutorial_14/Si.PBE-paw.abinit>`
+ - :download:`Si.PBE-paw.corewf.abinit <_static/tutorial_14/Si.PBE-paw.corewf.abinit>`
  - :download:`Si_corehole.PBE-paw.abinit <_static/tutorial_14/Si_corehole.PBE-paw.abinit>`
+ - :download:`Si_corehole.PBE-paw.corewf.abinit <_static/tutorial_14/Si_corehole.PBE-paw.corewf.abinit>`
 
 
 References
