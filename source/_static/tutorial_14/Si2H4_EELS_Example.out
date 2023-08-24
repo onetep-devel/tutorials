@@ -1,0 +1,676 @@
+ +---------------------------------------------------------------+
+ |                                                               |
+ |        ####### #     # ####### ####### ####### ######         |
+ |        #     # ##    # #          #    #       #     #        |
+ |        #     # # #   # #          #    #       #     #        |
+ |        #     # #  #  # #####      #    #####   ######         |
+ |        #     # #   # # #          #    #       #              |
+ |        #     # #    ## #          #    #       #              |
+ |        ####### #     # #######    #    ####### #              |
+ |                                                               |
+ |        Linear-Scaling Ab Initio Total Energy Program          |
+ |                                                               |
+ |          Release for academic collaborators of ODG            |
+ |                                             Version 6.1.45    |
+ | Remote: git@github.com:onetep-devel/onetep.git                |
+ | Local branch: master                                          |
+ | Commit ID: 986a139bbfe7433f5ab326ce67c00921e416a9b9           |
+ | Date: Mon Jul 3 13:46:16 2023 +0200                           |
+ | Working tree clean                                            |
+ |                                                               |
+ +---------------------------------------------------------------+
+ |                                                               |
+ |  Authors:                                                     |
+ |  Jacek Dziedzic, Peter D. Haynes, Nicholas D. M. Hine,        |
+ |  Arash A. Mostofi, Mike C. Payne and Chris-Kriton Skylaris    |
+ |                                                               |
+ |  Contributors:                                                |
+ |  J. Aarons, L. Andrinopoulos, P. W. Avraam, R. A. Bell,       |
+ |  A. Bhandari, G. A. Bramley, R. J. Charlton, S. J. Clark,     |
+ |  R. J. Clements, G. C. Constantinescu, F. Corsetti,           |
+ |  N. Corsini, O. Dieguez, S. M. M. Dubois, K. K. B. Duff,      |
+ |  J. M. Escartin, M. Escobar Azor, A. Greco,                   |
+ |  H. Helal, Q. O. Hill, L. P. Lee, J.-H. Li,                   |
+ |  E. B. Linscott, G. Moynihan, D. D. O`Regan,                  |
+ |  O. K. Okan, M. J. S. Phipps, C. J. Pickard,                  |
+ |  J. C. A. Prentice, M. I. J. Probert, L. E. Ratcliff,         |
+ |  M. Robinson, A. Ruiz Serrano, M. dos Santos Dias,            |
+ |  J. S. Spencer, E. W. Tait, G. Teobaldi, D. Turban,           |
+ |  V. Vitale, K. A. Wilkinson, C. Weber, J. C. Womack,          |
+ |  N. Yeung and T. J. Zuehlsdorff                               |
+ |                                                               |
+ |                                   Copyright (c) 2004-2023     |
+ |                                                               |
+ |  Please cite:                                                 |
+ |  "The ONETEP linear-scaling density functional theory program"|
+ |   J. Chem. Phys. 152(17) 174111 (2020)                        |
+ |                                                               |
+ |          in all publications arising from your use of ONETEP. |
+ |                                                               |
+ +---------------------------------------------------------------+
+ |                                                               |
+ |   ONETEP is based on developments described in the following  |
+ |   publications:                                               |
+ |                                                               |
+ |  "Nonorthogonal generalized Wannier function pseudopotential  |
+ |   plane-wave method".                                         |
+ |   C.-K. Skylaris, A. A. Mostofi, P. D. Haynes, O. Dieguez,    |
+ |   M. C. Payne.                                                |
+ |   Phys. Rev. B 66 035119 (2002).                              |
+ |                                                               |
+ |  "Preconditioned iterative minimization for linear-scaling    |
+ |   electronic structure calculations".                         |
+ |   A. A. Mostofi, P. D. Haynes, C.-K. Skylaris, M. C. Payne.   |
+ |   J. Chem. Phys. 119(17), pp.8842-8848 (2003).                |
+ |                                                               |
+ |  "Total-energy calculations on a real space grid with         |
+ |   localized functions and a plane-wave basis".                |
+ |   A. A. Mostofi, C.-K. Skylaris, P. D. Haynes, M. C. Payne.   |
+ |   Comput. Phys. Commun. 147, pp.788-802 (2002).               |
+ |                                                               |
+ |  "Accurate kinetic energy evaluation in electronic structure  |
+ |   calculations with localized functions on real space grids"  |
+ |   C.-K. Skylaris, A. A. Mostofi, P. D. Haynes, C. J. Pickard, |
+ |   M. C. Payne.                                                |
+ |   Comput. Phys. Commun. 140, pp.315-322 (2001).               |
+ |                                                               |
+ |  "Accurate ionic forces and geometry optimization in linear-  |
+ |   scaling density-functional theory with local orbitals"      |
+ |   N. D. M. Hine, M. Robinson, P. D. Haynes, C.-K. Skylaris,   |
+ |   M. C. Payne, and A. A. Mostofi.                             |
+ |   Phys. Rev. B 83 195102 (2011).                              |
+ |                                                               |
+ +---------------------------------------------------------------+
+
+Job started: 24-08-2023 15:35 (+0100)
+
+Reading parameters from file "Si2H4_EELS_Example.dat" ...... done
+
+If your calculation crashes here, before "Checking processes and threads..."
+is displayed, then your stack size is insufficient.
+If so, use "ulimit -s unlimited" at runtime.
+You can disable this check with "check_stack_size F".
+
+Checking processes and threads...
+   Running with 4 MPI processes.
+   There are 4 MPI processes running on the same node as the root process.
+   Each MPI process is using: 
+               1 threads for simulation cell FFTs.
+               1 threads for parallel FFT box operations.
+               2 threads for loops over batched FFT box operations.
+               2 threads in other parallel regions.
+   MPI Interface: S2 (use mpi) (-DMPI, no -DUSE_MPI_F08, no -DUSE_INCLUDE_MPIF).
+   MPI_ASYNC_PROTECTS_NONBLOCKING:  No. MPI_SUBARRAYS_SUPPORTED:  No.
+... done
+
+Basic input checks...... done
+
+Reading geometry and species blocks from file "Si2H4_EELS_Example.dat" ...... done
+
+
+--------------------------------------------------------------------------------
+---------------------------------- INPUT FILE ----------------------------------
+--------------------------------------------------------------------------------
+
+task              : SinglePoint COND                                            
+paw               : True                                                        
+xc_functional     : PBE                                                         
+do_properties     : True                                                        
+cond_energy_gap   : 0.02 eV                                                     
+cond_energy_range : 10 eV                                                       
+cond_calc_eels    : True                                                        
+cutoff_energy     : 750 eV                                                      
+output_detail     : BRIEF                                                       
+%block lattice_cart                                                             
+40.000000   0.0000000   0.0000000                                               
+0.0000000   40.000000   0.0000000                                               
+0.0000000   0.0000000   40.000000                                               
+%endblock lattice_cart                                                          
+%block species                                                                  
+Si       Si 14 9 9.0                                                            
+H        H  1  1 9.0                                                            
+Si_eels  Si 14 9 9.0                                                            
+%endblock species                                                               
+%block species_cond                                                             
+Si       Si 14 9 9.0                                                            
+H        H  1  1 9.0                                                            
+Si_eels  Si 14 9 9.0                                                            
+%endblock species_cond                                                          
+%block species_pot                                                              
+Si       Si.PBE-paw.abinit                                                      
+H        H.PBE-paw.abinit                                                       
+Si_eels  Si.PBE-paw.abinit                                                      
+%endblock species_pot                                                           
+%block species_atomic_set                                                       
+Si      SOLVE                                                                   
+H       SOLVE                                                                   
+Si_eels SOLVE                                                                   
+%endblock species_atomic_set                                                    
+%block species_core_wf                                                          
+Si      NONE                                                                    
+H       NONE                                                                    
+Si_eels Si.PBE-paw.corewf.abinit                                                
+%endblock species_core_wf                                                       
+%block positions_abs                                                            
+     Hash =  -000000614566223950408443
+%endblock positions_abs                                                         
+
+--------------------------------------------------------------------------------
+-------------------------------- END INPUT FILE --------------------------------
+--------------------------------------------------------------------------------
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Full system >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<< PAW Dataset information >>>>>>>>>>>>>>>>>>>>>>>>>>>
+File: Si.PBE-paw.abinit; rc = 1.91 bohr; shape type =  3; rshape = 1.60 bohr;
+  Atomic number: 14;  ionic charge:  4.000000
+    Partial Wave 1: l = 0
+    Partial Wave 2: l = 0
+    Partial Wave 3: l = 1
+    Partial Wave 4: l = 1
+  Core charge supplied for Nonlinear Core Corrections
+File: H.PBE-paw.abinit; rc = 0.90 bohr; shape type =  2; rshape = 0.80 bohr;
+  Atomic number:  1;  ionic charge:  1.000000
+    Partial Wave 1: l = 0
+    Partial Wave 2: l = 0
+    Partial Wave 3: l = 1
+File: Si.PBE-paw.abinit; rc = 1.91 bohr; shape type =  3; rshape = 1.60 bohr;
+  Atomic number: 14;  ionic charge:  4.000000
+    Partial Wave 1: l = 0
+    Partial Wave 2: l = 0
+    Partial Wave 3: l = 1
+    Partial Wave 4: l = 1
+  Core charge supplied for Nonlinear Core Corrections
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+-------------------------- Atom counting information ---------------------------
+Symbol    Natoms  Nvalngwfs Ncondngwfs  Nprojs
+  Si         1         9         9         8
+  H          4         4         4        20
+  Si         1         9         9         8
+.......   ......    ......    ......    ......
+Totals:      6        22        22        36
+--------------------------------------------------------------------------------
+
+=============================== PSINC grid sizes ===============================
+                      Simulation cell:   77 x  77 x  77
+                              FFT-box:   77 x  77 x  77
+                                  PPD:    7 x   7 x   1
+================================================================================
+
+Atom SCF Calculation for Si : Z (AE atom) =  14 : Z (PS atom) =   4
+Config String:
+Orbitals (num,occ):  3     2.00 2.00 0.00
+Orbitals   (num,l):  3        0    1    2
+Atom SCF converged after  26 iterations to a total energy of     -3.78120039
+
+Atom SCF Calculation for H  : Z (AE atom) =   1 : Z (PS atom) =   1
+Config String:
+Orbitals (num,occ):  1     1.00
+Orbitals   (num,l):  1        0
+Atom SCF converged after  18 iterations to a total energy of     -0.45860029
+
+Atom SCF Calculation for Si : Z (AE atom) =  14 : Z (PS atom) =   4
+Config String:
+Orbitals (num,occ):  3     2.00 2.00 0.00
+Orbitals   (num,l):  3        0    1    2
+Atom SCF converged after  26 iterations to a total energy of     -3.78120039
+
+Atom SCF Calculation for Si : Z (AE atom) =  14 : Z (PS atom) =   4
+Config String:
+Orbitals (num,occ):  3     2.00 2.00 0.00
+Orbitals   (num,l):  3        0    1    2
+Atom SCF converged after  26 iterations to a total energy of     -3.78120039
+
+Atom SCF Calculation for H  : Z (AE atom) =   1 : Z (PS atom) =   1
+Config String:
+Orbitals (num,occ):  1     1.00
+Orbitals   (num,l):  1        0
+Atom SCF converged after  18 iterations to a total energy of     -0.45860029
+
+Atom SCF Calculation for Si : Z (AE atom) =  14 : Z (PS atom) =   4
+Config String:
+Orbitals (num,occ):  3     2.00 2.00 0.00
+Orbitals   (num,l):  3        0    1    2
+Atom SCF converged after  26 iterations to a total energy of     -3.78120039
+Calculating Ewald energy ...               14.524619 Hartree
+
+============================= Charge Augmentation ==============================
+                           Aug box size:   21 x  21 x  21
+================================================================================
+
+================================= Core Density =================================
+               Core den box size:   49 x  49 x  49
+================================================================================
+Up spin density kernel initialisation ...... done
+
+################################################################################
+###################### NGWF self-consistent optimisation #######################
+################################################################################
+|ITER|    RMS GRADIENT   |     TOTAL ENERGY    |   step   |     Epredicted      
+   0     0.00109987724711     -8.61849784343467   1.122922     -8.94398909135300        
+   1     0.00053111873978     -8.94072720287065   0.870215     -8.99865606903171        
+   2     0.00025591283349     -9.00125088473935   1.019040     -9.01793808151446        
+   3     0.00012766159092     -9.01819915542568   0.939076     -9.02192960617861        
+   4     0.00006425656287     -9.02199101734099   0.834708     -9.02281680944824        
+   5     0.00003613906749     -9.02282254845347   1.014792     -9.02314247611940        
+   6     0.00002191786172     -9.02315459392842   0.831148     -9.02325408420868        
+   7     0.00001267016705     -9.02326167822067   0.569683     -9.02328534872770        
+   8     0.00000561047820     -9.02328882577073   0.367543     -9.02329159787207        
+   9     0.00000300294037     -9.02329228038457   0.173060     -9.02329265431481        
+
+================================================================================
+           ---------------- ENERGY COMPONENTS (Eh) ----------------
+           | Kinetic                    :        6.93669779959356 |
+           | Core Hartree               :      -48.54185921741521 |
+           | CoreHart (non-coul chg cor):        0.00000000000000
+           | Hartree                    :       20.01581386146832 |
+           | Exchange-correlation       :       -6.75665248541575 |
+           | Ewald                      :       14.52461869209874 |
+           | Dij0                       :        3.27405139890467 |
+           | Dijhartree                 :        0.09230970138829 |
+           | Exc [AE core]              :      -43.07895913212131 |
+           | Exc DC [AE core]           :       -5.30098093736679 |
+           | Exc [PS core]              :       -5.76209229040351 |
+           | Exc DC [PS core]           :       -4.71353577722402 |
+           | Exc [Core]                 :      -38.74859428461610 |
+           | Total [Sphere]             :        4.79808854319127 |
+           | Total                      :       -9.02329280647906 |
+           --------------------------------------------------------
+           Integrated compensation chrg.:       -0.14657897582189
+           Integrated density           :       11.99999996902007
+================================================================================
+
+  10     0.00000110379413     -9.02329280647908  <-- CG                                 
+
+======================== Writing density and potential =========================
+Writing "Si2H4_EELS_Example_ps_density.cube" ... done
+Writing "Si2H4_EELS_Example_ae_density.cube" ... done
+Writing "Si2H4_EELS_Example_potential.cube" ... done
+Writing "Si2H4_EELS_Example_electrostatic_potential.cube" ... done
+================================================================================
+
+    Mulliken Atomic Populations
+    ---------------------------
+Species  Ion    Total   Charge (e)
+==================================
+  Si     1       3.185      0.815
+  H      2       1.408     -0.408
+  H      3       1.407     -0.407
+  Si     4       3.186      0.814
+  H      5       1.407     -0.407
+  H      6       1.407     -0.407
+==================================
+
+        Bond         Population      Length (bohr)
+==================================================
+ Si    1 -- H     2        1.55      2.06618
+ Si    1 -- H     3        1.55      2.06667
+ Si    4 -- H     5        1.55      2.06684
+ Si    4 -- H     6        1.55      2.06690
+ Si    1 -- Si    4       -3.10      2.46613
+ H     2 -- H     3       -0.22      3.52211
+ H     5 -- H     6       -0.22      3.52345
+ H     3 -- Si    4       -1.06      3.96030
+ Si    1 -- H     5       -1.06      3.96031
+ H     2 -- Si    4       -1.06      3.96036
+ Si    1 -- H     6       -1.06      3.96053
+ H     3 -- H     6       -0.15      4.62800
+ H     2 -- H     5       -0.15      4.62822
+==================================================
+
+
+=================== Orbital energy and occupancy information ===================
+
+      Total number of orbitals:      22
+   Number of occupied orbitals:       6.000000000
+   Occupancy sum (eigenvalues):       6.000000000
+                 HOMO-LUMO gap:       0.209234485 Eh
+                 Mid-gap level:      -0.128741822 Eh
+
+                        Orbital | Energy (Eh) | Occupancy
+                            1    -0.601381342   1.0000000
+                            2    -0.468527321   1.0000000
+                            3    -0.416517367   1.0000000
+                            4    -0.325385158   1.0000000
+                            5    -0.254041633   1.0000000
+                            6    -0.233359064   1.0000000
+                        .......   --- gap ---   .........
+                            7    -0.024124579   0.0000000
+                            8    -0.006298512   0.0000000
+                            9     0.017339762   0.0000000
+                           10     0.049926685   0.0000000
+                           11     0.076257755   0.0000000
+                           12     0.105982227   0.0000000
+                           13     0.141907523   0.0000000
+                           14     0.165897575   0.0000000
+                           15     0.193654828   0.0000000
+                           16     0.194701194   0.0000000
+                        .......   ...........   .........
+                           22     0.623936667   0.0000000
+
+================================================================================
+
+===================== Writing canonical molecular orbitals =====================
+| Orbital  Energy (eV)  Norm     |
+| HOMO-5  -16.36441901  1.000000 | Writing "Si2H4_EELS_Example_HOMO-5.cube" ... done
+| HOMO-4  -12.74927712  1.000000 | Writing "Si2H4_EELS_Example_HOMO-4.cube" ... done
+| HOMO-3  -11.33401428  1.000000 | Writing "Si2H4_EELS_Example_HOMO-3.cube" ... done
+| HOMO-2   -8.85418068  1.000000 | Writing "Si2H4_EELS_Example_HOMO-2.cube" ... done
+| HOMO-1   -6.91282459  1.000000 | Writing "Si2H4_EELS_Example_HOMO-1.cube" ... done
+| HOMO     -6.35002325  1.000000 | Writing "Si2H4_EELS_Example_HOMO.cube" ... done
+| LUMO     -0.65646319  1.000000 | Writing "Si2H4_EELS_Example_LUMO.cube" ... done
+| LUMO+1   -0.17139124  1.000000 | Writing "Si2H4_EELS_Example_LUMO+1.cube" ... done
+| LUMO+2    0.47183894  1.000000 | Writing "Si2H4_EELS_Example_LUMO+2.cube" ... done
+| LUMO+3    1.35857423  1.000000 | Writing "Si2H4_EELS_Example_LUMO+3.cube" ... done
+| LUMO+4    2.07507910  1.000000 | Writing "Si2H4_EELS_Example_LUMO+4.cube" ... done
+| LUMO+5    2.88392315  1.000000 | Writing "Si2H4_EELS_Example_LUMO+5.cube" ... done
+================================================================================
+ 
+===================== Density of States (DOS) calculation ======================
+Writing "Si2H4_EELS_Example_DOS.txt" ...  done
+================================================================================
+ 
+Writing bands to file "Si2H4_EELS_Example.val_bands" ... done
+
+WARNING: read_denskern overridden to T because of task COND.
+
+
+WARNING: read_tightbox_ngwfs overridden to T because of task COND.
+
+
+============================= Charge Augmentation ==============================
+                           Aug box size:   21 x  21 x  21
+================================================================================
+
+Reading NGWFs from file "Si2H4_EELS_Example.tightbox_ngwfs" ...  done
+
+================================= Core Density =================================
+               Core den box size:   49 x  49 x  49
+================================================================================
+
+Reading density kernel from file "Si2H4_EELS_Example.dkn" ... done
++------------------------------------------------------------------------------+
+|                   Starting conduction NGWF optimisation                      |
++------------------------------------------------------------------------------+
+Generating conduction density kernel for     6 'occupied' orbitals
+Up spin density kernel initialisation ...... done
+
+################################################################################
+###################### NGWF self-consistent optimisation #######################
+################################################################################
+|ITER|    RMS GRADIENT   |     TOTAL ENERGY    |   step   |     Epredicted      
+   0     0.00079277382074      0.74572523987424   1.313464      0.54792903409908        
+   1     0.00059765720244      0.53497128293987   1.308660      0.41720345453285        
+   2     0.00043385395823      0.41010119136653   1.141146      0.35592968275891        
+   3     0.00030286706467      0.35305176400095   1.314448      0.32218523375384        
+   4     0.00029544604261      0.31846674520837   1.390690      0.28938046938644        
+   5     0.00025182705955      0.28820182781033   1.687896      0.26150284687077        
+   6     0.00023977267318      0.25602598152977   1.661732      0.22852158612271        
+   7     0.00020307850604      0.21781341318860   1.395416      0.19820546348597        
+   8     0.00017655024881      0.19017067184795   1.162037      0.18149190586687        
+   9     0.00016144288264      0.18082164432414   1.372854      0.17155298708372        
+  10     0.00012680426181      0.16810862343636   0.810319      0.16373868856171        
+  11     0.00008628440717      0.16220947729569   0.560897      0.16072579393092        
+  12     0.00005846269755      0.16015500583689   0.657051      0.15961691161978        
+  13     0.00004469483584      0.15943086357520   0.307779      0.15923157057677        
+  14     0.00003824828323      0.15913249764564   0.167547      0.15903377353536        
+  15     0.00003071168929      0.15897960912158   0.105109      0.15893376122842        
+  16     0.00002329724950      0.15890748457528   0.185801      0.15888332108134        
+  17     0.00001537608209      0.15886892081267   0.065670      0.15886297293184        
+  18     0.00000996537578      0.15885930388039   0.028081      0.15885797515527        
+  19     0.00000620492821      0.15885713700966   0.012185      0.15885688345399        
+  20     0.00000359734698      0.15885672142705   0.004806      0.15885670652573        
+  21     0.00000263338411      0.15885669691407   0.001797      0.15885669200295        
+  22     0.00000187011043      0.15885668883269  <-- CG                                 
++------------------------------------------------------------------------------+
+|                    Conduction NGWF optimisation complete                     |
++------------------------------------------------------------------------------+
+
++------------------------------------------------------------------------------+
+|                  Starting conduction properties calculation                  |
++------------------------------------------------------------------------------+
+
+======================== Writing density and potential =========================
+Writing "Si2H4_EELS_Example_ps_density.cube" ... done
+Writing "Si2H4_EELS_Example_ae_density.cube" ... done
+Writing "Si2H4_EELS_Example_potential.cube" ... done
+Writing "Si2H4_EELS_Example_electrostatic_potential.cube" ... done
+================================================================================
+
+    Mulliken Atomic Populations
+    ---------------------------
+Species  Ion    Total   Charge (e)
+==================================
+  Si     1       3.185      0.815
+  H      2       1.408     -0.408
+  H      3       1.407     -0.407
+  Si     4       3.186      0.814
+  H      5       1.407     -0.407
+  H      6       1.407     -0.407
+==================================
+
+        Bond         Population      Length (bohr)
+==================================================
+ Si    1 -- H     2        1.55      2.06618
+ Si    1 -- H     3        1.55      2.06667
+ Si    4 -- H     5        1.55      2.06684
+ Si    4 -- H     6        1.55      2.06690
+ Si    1 -- Si    4       -3.10      2.46613
+ H     2 -- H     3       -0.22      3.52211
+ H     5 -- H     6       -0.22      3.52345
+ H     3 -- Si    4       -1.06      3.96030
+ Si    1 -- H     5       -1.06      3.96031
+ H     2 -- Si    4       -1.06      3.96036
+ Si    1 -- H     6       -1.06      3.96053
+ H     3 -- H     6       -0.15      4.62800
+ H     2 -- H     5       -0.15      4.62822
+==================================================
+
+
+
+
+=========================== Valence diagonalisation ============================
+
+=================== Orbital energy and occupancy information ===================
+
+      Total number of orbitals:      22
+   Number of occupied orbitals:       6.000000000
+   Occupancy sum (eigenvalues):       6.000000000
+                 HOMO-LUMO gap:       0.209234485 Eh
+                 Mid-gap level:      -0.128741822 Eh
+
+                        Orbital | Energy (Eh) | Occupancy
+                            1    -0.601381342   1.0000000
+                            2    -0.468527321   1.0000000
+                            3    -0.416517368   1.0000000
+                            4    -0.325385158   1.0000000
+                            5    -0.254041633   1.0000000
+                            6    -0.233359064   1.0000000
+                        .......   --- gap ---   .........
+                            7    -0.024124579   0.0000000
+                            8    -0.006298512   0.0000000
+                            9     0.017339762   0.0000000
+                           10     0.049926685   0.0000000
+                           11     0.076257755   0.0000000
+                           12     0.105982228   0.0000000
+                           13     0.141907523   0.0000000
+                           14     0.165897575   0.0000000
+                           15     0.193654828   0.0000000
+                           16     0.194701194   0.0000000
+                        .......   ...........   .........
+                           22     0.623936667   0.0000000
+
+================================================================================
+
+===== Calculation of matrix elements between core orbitals and eigenstates =====
+Writing "Si2H4_EELS_Example_val_grad.elnes_bin" ...done
+================================================================================
+ 
+===================== Density of States (DOS) calculation ======================
+Writing "Si2H4_EELS_Example_valence_DOS.txt" ...  done
+================================================================================
+ 
+Writing bands to file "Si2H4_EELS_Example.val_bands" ... done
+
+Joint Valence + Conduction NGWF initialisation ...... done
+
+
+
+
+================= Joint valence and conduction diagonalisation =================
+
+=================== Orbital energy and occupancy information ===================
+
+      Total number of orbitals:      44
+   Number of occupied orbitals:       6.000000000
+   Occupancy sum (eigenvalues):       6.000000000
+ Num of occupied cond orbitals:       6
+            Cond Occupancy sum:       6.000000000
+                 HOMO-LUMO gap:       0.207774889 Eh
+                 Mid-gap level:      -0.129536285 Eh
+
+                        Orbital | Energy (Eh) | Occupancy | Cond Occupancy
+                            1    -0.601387441   0.9999939   0.0000005
+                            2    -0.468646838   0.9998739   0.0004111
+                            3    -0.416525874   0.9999864   0.0000005
+                            4    -0.325386733   0.9999992   0.0000000
+                            5    -0.254049656   0.9999847   0.0000000
+                            6    -0.233423730   0.9998855   0.0000859
+                        .......   --- gap ---   .........
+                            7    -0.025648840   0.0000000   0.9999028
+                            8    -0.013967036   0.0000008   0.9904193
+                            9     0.002595835   0.0000416   0.9989968
+                           10     0.020225375   0.0000164   0.9990373
+                           11     0.042961608   0.0000000   0.9995874
+                           12     0.045595541   0.0000207   0.9939530
+                           13     0.090252546   0.0000016   0.0000001
+                           14     0.093952407   0.0000107   0.0012122
+                           15     0.112474307   0.0000325   0.0001468
+                           16     0.136360412   0.0000043   0.0000036
+                        .......   ...........   .........
+                           44     2.480298132   0.0000004   0.0003098
+
+================================================================================
+
+===================== Writing canonical molecular orbitals =====================
+| Orbital  Energy (eV)  Norm     |
+| HOMO-5  -16.36458496  1.000000 | Writing "Si2H4_EELS_Example_joint_HOMO-5.cube" ... done
+| HOMO-4  -12.75252936  1.000000 | Writing "Si2H4_EELS_Example_joint_HOMO-4.cube" ... done
+| HOMO-3  -11.33424575  1.000000 | Writing "Si2H4_EELS_Example_joint_HOMO-3.cube" ... done
+| HOMO-2   -8.85422354  1.000000 | Writing "Si2H4_EELS_Example_joint_HOMO-2.cube" ... done
+| HOMO-1   -6.91304290  1.000000 | Writing "Si2H4_EELS_Example_joint_HOMO-1.cube" ... done
+| HOMO     -6.35178288  1.000000 | Writing "Si2H4_EELS_Example_joint_HOMO.cube" ... done
+| LUMO     -0.69794046  1.000000 | Writing "Si2H4_EELS_Example_joint_LUMO.cube" ... done
+| LUMO+1   -0.38006240  1.000000 | Writing "Si2H4_EELS_Example_joint_LUMO+1.cube" ... done
+| LUMO+2    0.07063627  1.000000 | Writing "Si2H4_EELS_Example_joint_LUMO+2.cube" ... done
+| LUMO+3    0.55036045  1.000000 | Writing "Si2H4_EELS_Example_joint_LUMO+3.cube" ... done
+| LUMO+4    1.16904484  1.000000 | Writing "Si2H4_EELS_Example_joint_LUMO+4.cube" ... done
+| LUMO+5    1.24071780  1.000000 | Writing "Si2H4_EELS_Example_joint_LUMO+5.cube" ... done
+================================================================================
+
+===== Calculation of matrix elements between core orbitals and eigenstates =====
+Writing "Si2H4_EELS_Example_joint_grad.elnes_bin" ...done
+================================================================================
+ 
+===================== Density of States (DOS) calculation ======================
+Writing "Si2H4_EELS_Example_joint_DOS.txt" ...  done
+================================================================================
+ 
+Writing bands to file "Si2H4_EELS_Example.joint_bands" ... done
++------------------------------------------------------------------------------+
+|                  Conduction properties calculation complete                  |
++------------------------------------------------------------------------------+
+
+------------------------------ TIMING INFORMATION ------------------------------
+AVERAGE TIME:     543.198s on      4 proc(s)                                    
+TOTAL TIME:       543.198s on      4 proc(s)                                    
+================= AVERAGE TIMINGS FROM ALL PROCS (CUMULATIVE) ==================
+|| TAG                                    #calls    cpu time   %total  Gflops ||
+|| sparse_spam3toblacs_real_fast_imbal  :    10        0.00s   0.000%  ------ ||
+|| sparse_spam3toblacs_real_fast_B2     :    40        0.00s   0.000%  ------ ||
+|| sparse_blacstospam3_real_fast_imbal  :    24        0.00s   0.000%  ------ ||
+|| sparse_spam3toblacs_real_fast_B1     :    40        0.00s   0.000%  ------ ||
+|| sparse_spam3toblacs_complex_slow     :    18        0.00s   0.000%  ------ ||
+|| ewald_calculate_energy               :     1        0.00s   0.000%  ------ ||
+|| eels_core_paw_corr                   :     2        0.00s   0.000%  ------ ||
+|| sparse_spam3toblacs_real_fast        :    10        0.00s   0.000%  ------ ||
+|| paw_dij_hartree                      :   195        0.00s   0.000%  ------ ||
+|| sparse_blacstospam3_real_fast        :    24        0.00s   0.000%  ------ ||
+|| onetep.F90 final imbalance           :     1        0.00s   0.000%  ------ ||
+|| sparse_set_to_garbage                :   536        0.00s   0.000%  ------ ||
+|| dense_eigensolve                     :     3        0.00s   0.000%  ------ ||
+|| onetep.F90 main loop imbalance       :     2        0.00s   0.001%  ------ ||
+|| restart_kernel_read                  :     1        0.00s   0.001%  ------ ||
+|| paw_sphere_density_on_grid           :     2        0.01s   0.001%  ------ ||
+|| sparse_init                          :     4        0.01s   0.001%  ------ ||
+|| palser_mano_kernel_optimise          :     2        0.02s   0.003%  ------ ||
+|| basis_extract_function_from_box      :   379        0.03s   0.005%  ------ ||
+|| sparse_embed_hotelling_invert_embed  :    69        0.04s   0.008%  ------ ||
+|| pseudo_make_structure_factor         :     2        0.05s   0.010%  ------ ||
+|| paw_tcore_hartree_on_grid            :     2        0.08s   0.014%  ------ ||
+|| paw_tcore_density                    :     2        0.12s   0.022%  ------ ||
+|| restart_ngwfs_tightbox_input         :     1        0.17s   0.031%  ------ ||
+|| lnv_gradient_norm                    :   276        0.18s   0.033%  ------ ||
+|| ngwfs_initialise_from_radial         :     2        0.18s   0.034%  ------ ||
+|| kernel_purify                        :   863        0.20s   0.037%  ------ ||
+|| density_init_guess_real              :     2        0.20s   0.037%  ------ ||
+|| kernel_fix                           :   276        0.23s   0.043%  ------ ||
+|| ngwf_gradient_coeffs                 :    34        0.25s   0.047%  ------ ||
+|| sparse_trace                         :  8496        0.27s   0.049%  ------ ||
+|| function_ops_brappd_ketppd_spam3     :   117        0.59s   0.109%  ------ ||
+|| restart_kernel_write                 :    36        0.61s   0.112%  ------ ||
+|| sparse_product                       : 13369        0.63s   0.116%  ------ ||
+|| paw_species_calc_proj_prec_mat       :     2        0.81s   0.149%  ------ ||
+|| aug_nonlocal_mat_spam3               :   161        1.00s   0.184%  ------ ||
+|| density_batch_row_sums               :   116        1.13s   0.208%  ------ ||
+|| paw_dij_xc                           :   195        1.15s   0.211%  ------ ||
+|| hamiltonian_energy_components        :     1        1.18s   0.218%  ------ ||
+|| basis_copy_function_to_box           :  1985        1.19s   0.219%  ------ ||
+|| basis_dot_function_with_box          : 32092        1.28s   0.235%  ------ ||
+|| basis_add_function_to_box            : 36058        2.02s   0.372%  ------ ||
+|| augmentation_screen_dij_spam3        :   113        2.08s   0.383%  ------ ||
+|| paw_dataset_init                     :     3        2.14s   0.394%  ------ ||
+|| density_fftbox_deposit_to_cell       :  1044        2.74s   0.504%  ------ ||
+|| cell_grid_extract_box_real           :  1632        2.81s   0.518%  ------ ||
+|| projectors_func_pos_ovlp_box_spam3   :     6        3.48s   0.640%  ------ ||
+|| energy_and_force_init_cell           :     1        3.48s   0.641%  ------ ||
+|| fourier_apply_box_pair               :   583        3.72s   0.685%  26.919 ||
+|| cell_grid_deposit_box_real           :  1612        4.69s   0.863%  ------ ||
+|| hartree_on_grid_single               :   115        4.83s   0.889%  ------ ||
+|| integrals_kinetic_spam3              :    69        6.57s   1.209%  ------ ||
+|| aug_density_on_grid_spam3            :   116        7.16s   1.319%  ------ ||
+|| fourier_apply_cell_backward          :   569       11.86s   2.183%   9.635 ||
+|| eigenstates_calculate                :     3       12.50s   2.302%  ------ ||
+|| fourier_apply_cell_forward           :   567       12.69s   2.337%   8.968 ||
+|| projectors_init_fftbox_recip         :   151       18.99s   3.496%  ------ ||
+|| integrals_locpot_mat_els_batch       :   107       19.49s   3.588%  ------ ||
+|| projectors_func_ovlp_box_spam3       :    75       19.75s   3.636%  ------ ||
+|| xc_energy_potential                  :   113       24.43s   4.497%  ------ ||
+|| projectors_grad_precond_batch        :    34       35.26s   6.491%  ------ ||
+|| projectors_gradient_batch            :    34       37.44s   6.892%  ------ ||
+|| properties_calculate                 :     3       37.46s   6.896%  ------ ||
+|| density_fftbox_interpolate_multiply  :  1044       44.76s   8.240%  ------ ||
+|| restart_ngwfs_tightbox_output        :    32       64.64s  11.900%  ------ ||
+|| density_batch_interp_deposit         :   116       66.27s  12.199%  ------ ||
+|| density_on_dbl_grid                  :   116       71.05s  13.079%  ------ ||
+|| potential_apply_to_ngwf_batch        :   107       71.25s  13.117%  ------ ||
+|| fourier_apply_box                    :  5988       81.78s  15.055%  39.651 ||
+|| integrals_locpot_dbl_grid            :   106       90.80s  16.716%  ------ ||
+|| hamiltonian_lhxc_calculate           :   111      127.60s  23.491%  ------ ||
+|| ngwf_gradient_build_batch            :    34      137.68s  25.346%  ------ ||
+|| ngwf_gradient_batch                  :    34      152.21s  28.021%  ------ ||
+|| ngwf_gradient_lnv                    :    34      154.76s  28.491%  ------ ||
+|| lnv_denskernel_optimise_cg           :    34      163.56s  30.110%  ------ ||
+|| ngwf_cg_optimise                     :     2      491.18s  90.424%  ------ ||
+|| energy_and_forces                    :     2      539.44s  99.309%  ------ ||
+|| total_time                           :     1      543.20s 100.000%  ------ ||
+================================================================================
+Overhead of generating timer report: 
+- 0 ms averaging over threads,
+- 0 ms ensuring consistency across MPI ranks,
+- 0 ms printing in order.
+
+Job completed: 24-08-2023 15:44 (+0100)
+

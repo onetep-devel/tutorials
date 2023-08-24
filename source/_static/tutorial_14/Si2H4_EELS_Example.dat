@@ -2,13 +2,13 @@ task              : SinglePoint COND
 paw               : True # Needed for EELS
 xc_functional     : PBE
 do_properties     : True # Ask for calculation of optical properties
-cond_energy_gap   : 0.004
-cond_energy_range : 0.4
+cond_energy_gap   : 0.02 eV
+cond_energy_range : 10 eV
 cond_calc_eels    : True
 #V Uncomment for human readable matrix elements
 #cond_spec_print_mat_els : True 
 cutoff_energy     : 750 eV
-output_detail     : Verbose
+output_detail     : BRIEF
 
 %block lattice_cart
     40.000000   0.0000000   0.0000000
@@ -17,17 +17,17 @@ output_detail     : Verbose
 %endblock lattice_cart
 
 %block species
-Si       Si 14 9 12.0
-H        H  1  1 8.0
+Si       Si 14 9 9.0
+H        H  1  1 9.0
 # Here we define a second species for the atom whose 
 # core -> conduction transitions we want to probe
-Si_eels  Si 14 9 12.0
+Si_eels  Si 14 9 9.0
 %endblock species
 
 %block species_cond
-Si       Si 14 9 12.0
-H        H  1  1 8.0
-Si_eels  Si 14 9 12.0
+Si       Si 14 9 9.0
+H        H  1  1 9.0
+Si_eels  Si 14 9 9.0
 %endblock species_cond
 
 %block species_pot
@@ -52,7 +52,7 @@ Si_eels SOLVE
 %block species_core_wf
 Si      NONE
 H       NONE
-Si_eels si-corewf.abinit 
+Si_eels Si.PBE-paw.corewf.abinit 
 %endblock species_core_wf
 
 %block positions_abs
