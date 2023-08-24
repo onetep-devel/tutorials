@@ -21,6 +21,7 @@ Welcome to the ONETEP Tutorials!
    T11_potentiostatic.rst
    T12_pentacene_embedding.rst
    T13_ONETEP_ASE.rst
+   T14_EELS.rst
    
 PDF version of all tutorials
 ============================
