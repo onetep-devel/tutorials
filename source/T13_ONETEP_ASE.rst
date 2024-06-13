@@ -10,7 +10,9 @@ Tutorial 13: ASE ONETEP interface
 
 This tutorial will guide you through the use of the ASE interface to ONETEP. The Atomic Simulation Environment (ASE) is a set of tools and Python modules for setting up, manipulating, running, visualizing and analyzing atomistic simulations. The ASE interface to ONETEP allows you to set up and run ONETEP calculations from Python scripts.
 
+This tutorial will mainly focus on running ONETEP calculations with ASE, if you are not familiar with ASE as a whole, feel free to consult the mini-tutorial here:
 
+- :download:`learn_ase_in_y_minutes.py <_static/tutorial_13/learn_ase_in_y_minutes.py>`
 
 ASE Configuration File
 ======================
