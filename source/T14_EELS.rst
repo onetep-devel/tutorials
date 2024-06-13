@@ -17,8 +17,8 @@ combines high spatial resolution with fair energy resolution, and is thus
 sensitive to local electronic structure in a material. The theory behind
 EELS calculations in ONETEP is explained in the 
 `documentation page on EELS <https://docs.onetep.org/eels_in_onetep.html>`,
-as well as in a paper giving an overview of the capabilities [1], and in the
-thesis of one of the authors (Edward Tait) [2]. 
+as well as in a paper giving an overview of the capabilities [1]_, and in the
+thesis of one of the authors (Edward Tait) [2]_. 
 
 EELS calculations in ONETEP proceed by running first a singlepoint calculation
 (with or without a core hole, as required) and then running a properties
@@ -33,7 +33,7 @@ We will demonstrate the procedure for running an EELS calculation
 on a toy system: silene (the silicon equivalent of ethene). An example input
 file is provided in the Files section below, as are the PAW potentials for
 Silicon and Hydrogen and the associated core wavefunction data for Silicon. 
-The tutorial files use the JTH pseudopotentials[5], with the addition
+The tutorial files use the JTH pseudopotentials, with the addition
 of core orbitals, and we also regenerated the PAW potential and Core
 orbitals with a core hole, for the later part of this tutorial.
 
