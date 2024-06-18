@@ -19,16 +19,13 @@ ASE Configuration File
 
 To run ONETEP with ASE, you need to have a configuration file that specifies the path to the ONETEP binary and the location of the pseudopotentials. There is no default configuration file, so you need to create one.
 
-ASE looks for a configuration file named :code:`config.ini` in the default location :code:`$HOME/.config/ase/`. You can change the location of the configuration file by setting the environment variable :code:`ASE_CONFIG_PATH` to the desired path.
-
-The configuration file should follow the pattern (do not put quotes around the values):
+ASE looks for a configuration file named :code:`config.ini` in the default location :code:`$HOME/.config/ase/`. The configuration file should follow the pattern (do not put quotes around the values):
 
 .. code-block:: ini
 
     [onetep]
-    command = mpirun -np 10 -v/path/to/onetep/binary
+    command = mpirun -np 10 -v /path/to/onetep/binary
     pseudo_path = /path/to/pseudos
-
 
 Replace :code:`/path/to/onetep/binary` with the actual path to your ONETEP binary. If you want to use a different location for the configuration file, you can set the :code:`ASE_CONFIG_PATH` environment variable. For example:
 
@@ -71,7 +68,7 @@ ONETEP Calculator
 
 Simple calculations can be setup calling the Onetep calculator without any parameters,
 in this case ONETEP's default parameters will be used. For more complex cases using the
-:code:`keywords` parameters is necessary. The :code:`'keywords'` parameters is a dictionary, in which each of the keys is a string that should be a ONETEP keyword, and the corresponding value is what you want to set that keyword to in the input.
+:code:`keywords` parameters is necessary. The :code:`keywords` parameters is a dictionary, in which each of the keys is a string that should be a ONETEP keyword, and the corresponding value is what you want to set that keyword to in the input.
 
 .. code-block:: python
 
@@ -91,7 +88,7 @@ in this case ONETEP's default parameters will be used. For more complex cases us
 
     calc = Onetep(keywords=keywords)
 
-Alternatively you can read an already existing input_file with the function :code:`read_onetep_keywords`
+Alternatively you can read an already existing input file with the function :code:`read_onetep_keywords`
 
 .. code-block:: python
 
@@ -256,7 +253,7 @@ Quickly restart with solvation effect using the soft sphere solvation model:
 Important note
 ==============
 
-If you are not keen about using ASE to run ONETEP calculations, it is always possible to use ASE to write ONETEP input files and run them manually. This should be done by using the general ASE IO modules :code:`ase.io.write` and :code:`ase.io.read` to write and read ONETEP input files. In every examples above, all you need to do is to replace the :code:`get_potential_energy()` call by a :code:`write` call to write the input file, such as :code:`write('input_file.dat', atoms, format='onetep-in', keywords=keywords)`. You can then run the ONETEP binary manually as you always do.
+If you are not keen about using ASE to run ONETEP calculations, it is always possible to use ASE to write ONETEP input files and run them manually. This should be done by using the general ASE IO modules :code:`ase.io.write` and :code:`ase.io.read` to write and read ONETEP input files. In every example above, all you need to do is to replace the :code:`get_potential_energy()` call by a :code:`write` call to write the input file, such as :code:`write('input_file.dat', atoms, format='onetep-in', keywords=keywords)`. You can then run the ONETEP binary manually as you always do.
 
 How to use ASE on HPCs
 ======================
@@ -313,17 +310,17 @@ There are two ways to submit job using ASE on HPC, you can directly sbatch the p
     water.calc = calc
     water.get_potential_energy()
 
-Make sure that the ONETEP command being used contain :code:`srun` for example: :code:`command = srun /path/to/onetep/binary`. Otherwise the job will not dispatch correctly on the compute nodes. This is no different from launching a normal job, with the expection that ASE takes care of the input file and the command to be launched.
+Make sure that the ONETEP command being used contains :code:`srun` for example: :code:`command = srun /path/to/onetep/binary`. Otherwise the job will not dispatch correctly on the compute nodes. This is no different from launching a normal job, with the expection that ASE takes care of the input file and the command to be launched.
 
 Archer2
 -------
 
-Archer2 is a Cray system, and the conda module is **not** available. You should install it by having a look at the instruction at the end of this document. **One of the Archer2's particularity to keep in mind is that compute nodes only have access to the scratch space and not to the home directory.** You should make sure that every files which will be used during the calculation is accessible from the scratch space, most likely this will be: the input files, the pseudopotentials, the executable and conda. This also means that if you are using the ase config file, you should make sure to change its location with the :code:`ASE_CONFIG_PATH` environment variable to the scratch space. Once this is done you should have a working environment to run ASE on Archer2.
+Archer2 is a Cray system, and the conda module is **not** available. You should install it by having a look at the instruction at the end of this document. **One of the Archer2's particularity to keep in mind is that compute nodes only have access to the scratch space and not to the home directory.** You should make sure that every file which will be used during the calculation is accessible from the scratch space, most likely this will be: the input files, the pseudopotentials, the executable and conda. This also means that if you are using the ase config file, you should make sure to change its location with the :code:`ASE_CONFIG_PATH` environment variable to the scratch space. Once this is done you should have a working environment to run ASE on Archer2.
 
 Iridis5
 -------
 
-Iridis5 is an Intel based HPC, with conda available as a module. You can alternavely install your own Conda if you want following the instruction at the end of this document if you want it. There is no particularity to keep in mind when running ASE on Iridis5, you can use the conda module to create an environment with the required packages. You can then submit a job with the python script directly or with a bash script as shown above. Make sure to use :code:`srun` in the command to dispatch the job on the compute nodes.
+Iridis5 is an Intel based HPC, with conda available as a module. You can alternavely install your own Conda, following the instruction at the end of this document if you want it. There is no particularity to keep in mind when running ASE on Iridis5, you can use the conda module to create an environment with the required packages. You can then submit a job with the python script directly or with a bash script as shown above. Make sure to use :code:`srun` in the command to dispatch the job on the compute nodes.
 
 Young
 -----
@@ -361,7 +358,7 @@ If you really care about the performance you should probably compile them yourse
 
     atoms.get_potential_energy()
 
-For DFTD3 the code is pretty much the same, just replace :code:`DFTD4` by :code:`DFTD3`. The DFTD3 version requires to have :code:`method` and :code:`damping` parameters set at all time. With both version you can pass an additional parameter :code:`params_tweaks` where you can manually override the internal D3 parameters, see the documentation for more information.
+For DFTD3 the code is pretty much the same, just replace :code:`DFTD4` by :code:`DFTD3`. The DFTD3 version requires to have :code:`method` and :code:`damping` parameters set at all times. With both versions you can pass an additional parameter :code:`params_tweaks` where you can manually override the internal D3 parameters, see the documentation for more information.
 
 Alloy Catalysis Automated Toolkit (ACAT)
 ----------------------------------------
@@ -372,8 +369,8 @@ ACAT (https://gitlab.com/asm-dtu/acat) is a python package that can be used to a
 
   pip install acat
 
-The package allow many operations on both surfaces and nanoclusters, the two main classes are the
-:code:`ClusterAdsorptionSites` and the :code:`SlabAdsorptionSites`. Which are used to detect all possible binding sites of your systems. Here is a complete example to create onetep input files for an alloyed nanocluster:
+The package allows many operations on both surfaces and nanoclusters, the two main classes are the
+:code:`ClusterAdsorptionSites` and the :code:`SlabAdsorptionSites`. Which are used to detect all possible binding sites of your systems. Here is a complete example to create ONETEP input files for an alloyed nanocluster:
 
 .. code-block:: python
 
@@ -488,7 +485,7 @@ Phonopy can be used to calculate the phonon band structure of a material. Usuall
 
     print(phonon.get_frequencies_with_eigenvectors((0, 0, 0))[0]*33.356)
 
-With the annoying fact that the :code:`Atoms`` object have to be manually transfered to :code:`PhonopyAtoms` back and forth. The phonon frequencies are in THz, to convert them to cm-1 you have to multiply by 33.356. The `ifc.yaml` file can be used for further processing. See the phonopy documentation for more information.
+With the annoying fact that the :code:`Atoms`` object has to be manually transfered to :code:`PhonopyAtoms` back and forth. The phonon frequencies are in THz, to convert them to cm-1 you have to multiply by 33.356. The `ifc.yaml` file can be used for further processing. See the phonopy documentation for more information.
 
 Many more
 ---------
@@ -507,7 +504,7 @@ Conda for the Impatient
 Why Conda?
 ----------
 - **Do not pollute your system-wide python, you might regret it**: Conda creates isolated environments, keeping your system Python clean and preventing conflicts between different projects.
-- **Stop compiling your tools use binaries by Conda**: Conda can manage packages for various languages, including R, C++, and Fortran, making it a versatile tool for scientific computing.
+- **Stop compiling your tools, use binaries by Conda**: Conda can manage packages for various languages, including R, C++, and Fortran, making it a versatile tool for scientific computing.
 - **Complement Conda with pip**: While Conda handles most python package installations, you might occasionally need pip for packages not available in Conda repositories.
 - **Conda is self-contained**: Install it everywere, no need for root access. Even HPC systems encourage the use of Conda. Conda will not break your system, and you can remove it easily.
 
@@ -537,7 +534,7 @@ To install Conda on Windows, follow these steps:
 1. Visit the official Anaconda website (https://www.anaconda.com) and download the Anaconda Navigator.
 2. Run the installer and follow the installation prompts. Make sure to select the option to add Conda to your system's PATH environment variable.
 3. Once the installation is complete, open the Anaconda Navigator application to manage packages and environments. You can create environments, install packages, and launch Jupyter notebooks directly from the Navigator interface.
-4. If you want to install python's package that are only available through pip you can launch a terminal from the navigator inside the environment you want to install the package and run `pip install package_name`
+4. If you want to install python packages that are only available through pip you can launch a terminal from the navigator inside the environment you want to install the package and run `pip install package_name`
 
 Creating and Managing Environments
 ----------------------------------
