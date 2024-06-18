@@ -28,7 +28,7 @@ wrong. However, if the physics/chemistry of interest in the system is
 known or expected to be localised to a particular subregion -- we call
 this the `active region' -- with the rest of the system acting as an
 environment influencing the active region, quantum embedding provides
-a way to achieve hybrid accuracy with a significantly reduced cost.
+a way to achieve hybrid accuracy with a significantly reduced cost.`
 
 This is achieved by treating the active region alone with the higher
 level of theory, with the rest of the system (the environment) treated
@@ -289,16 +289,13 @@ Further investigations
 
 To further investigate the use of EMFT in ONETEP, you could look at
 the effects of:
- - changing the active region further -- perhaps including more C
-   atoms, excluding H atoms, etc.,
- - using block orthogonalisation,
- - using other functionals for either the high or low level of theory
-   -- semi-local functionals can be used for the higher level,
-   although this is of course not expected to produce a significant
-   advantage,
 
-and many other possibilities. 
- 
+* changing the active region further
+  -- perhaps including more C atoms, excluding H atoms, etc.,
+* using block orthogonalisation,
+* using other functionals for either the high or low level of theory -- semi-local functionals can be used for the higher level although this is of course not expected to produce a significant advantage
+
+... and many other possibilities.  
 
 TD-EMFT: excitations of pentacene-doped p-terphenyl
 ===================================================
