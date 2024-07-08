@@ -7,14 +7,14 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'ONETEP Tutorials'
-copyright = '2023, ONETEP Collective'
+copyright = '2024, ONETEP Collective'
 author = 'ONETEP Collective'
 release = '0.0.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx_rtd_dark_mode"]
+extensions = ["sphinx_rtd_dark_mode","sphinx_favicon"]
 default_dark_mode = False
 
 templates_path = ['_templates']
@@ -35,3 +35,8 @@ numfig = True
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+
+# --- Favicon ---
+favicons = [
+    "favicon.ico",
+]
