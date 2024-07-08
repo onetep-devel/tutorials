@@ -106,8 +106,8 @@ species, separated by spaces:
 
 The number of NGWFs required can usually be judged from the symmetry of
 the atomic orbitals involved: In this case four for silicon and one for
-hydrogen will be adequate (can you think why? Answer: s + three p-orbitals for
-each carbon atom and one s-orbtial for each Hydrogen atom).
+hydrogen will be adequate (can you think why? Answer: one s- and three 
+p-orbitals for each carbon atom and one s-orbtial for each hydrogen atom).
 
 For this molecule, 6.0 Bohr should be a reasonable starting point for
 the NGWF radii.
