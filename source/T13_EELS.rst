@@ -1,5 +1,5 @@
 ========================================================
-Tutorial 14: Electron Energy Loss Spectroscopy in ONETEP
+Tutorial 13: Electron Energy Loss Spectroscopy in ONETEP
 ========================================================
 
 :Author: Edward Tait and Nicholas Hine
