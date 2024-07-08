@@ -1,5 +1,6 @@
+=======================================
 Tutorial 7: Spectral Function Unfolding
-==============================
+=======================================
 
 :Author: Nicholas Hine
 :Date: July 2024
