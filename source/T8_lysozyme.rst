@@ -83,7 +83,7 @@ coloring.
 .. _Figure fig:T8_1:
 .. figure:: _static/tutorial_8/T8_T4-Catechol.jpeg
    :alt: Catechol bound in the buried binding site of the T4 lysozyme L99A/M102Q double mutant. Visualization in VMD.
-   :name: fig:T4
+   :name: fig:T8_1
    :width: 70.0%
    :target: _static/tutorial_8/T8_T4-Catechol.jpeg
    :align: center
