@@ -37,15 +37,16 @@ In this part we will perform a calculation on the CH\ :sub:`3` radical:
 As this molecule contains an odd number of electrons we need to perform a spin-polarised (unrestricted) 
 calculation. In ONETEP this is achieved by optimising a different density kernel for the "up" and the "down" spin:
 
-.. _Figure fig:up_down_spin:
-.. figure:: _static/tutorial_5/T5_up_down_spin.png
-   :alt: The density matrix for an unrestricted (spin-polarised) calculation.
-   :name: fig:T5_up_down_spin
-   :width: 75.0%
-   :align: center
-   :target: _static/tutorial_5/T5_up_down_spin.png
+.. .. _Figure fig:up_down_spin:
+.. .. figure:: _static/tutorial_5/T5_up_down_spin.png
+..    :alt: The density matrix for an unrestricted (spin-polarised) calculation.
+..    :name: fig:T5_up_down_spin
+..    :width: 30.0%
+..    :align: center
+..    :target: _static/tutorial_5/T5_up_down_spin.png
 
-| 
+.. math::
+   \rho\left(\mathbf{r}, \mathbf{r}^{\prime}\right)=\sum_{\alpha \beta} \phi_\alpha(\mathbf{r}) K^{\alpha \beta(\uparrow)} \phi_\beta^*\left(\mathbf{r}^{\prime}\right)+\sum_{\alpha \beta} \phi_\alpha(\mathbf{r}) K^{\alpha \beta(\downarrow)} \phi_\beta^*\left(\mathbf{r}^{\prime}\right)
 
 The ONETEP input is in the file :download:`methyl.dat <_static/tutorial_5/methyl.dat>`
 and the coordinates (in angstroem) are in the file :download:`methyl.pdb <_static/tutorial_5/methyl.pdb>`. 
@@ -95,11 +96,10 @@ where dragging with the mouse translates the molecule, instead of rotating it. T
 .. figure:: _static/tutorial_5/T5_CH3_vmd.png
    :alt: The CH3 radical visualized in VMD with a ball-and-stick representation.
    :name: fig:T5_CH3_vmd.png
-   :width: 50.0%
+   :width: 30.0%
    :align: center
    :target: _static/tutorial_5/T5_CH3_vmd.png
 
-| 
 
 So far we've only looked at the nuclei in the system. Let's try some electronic properties, 
 starting from the spin density which we have already loaded, but not visualized yet. 
@@ -128,11 +128,10 @@ Do not worry if you cannot get the transparency right -- it's -- only possible w
 .. figure:: _static/tutorial_5/T5_CH3_vmd2.png
    :alt: The spin density of the CH3 radical visualized in VMD.
    :name: fig:T5_CH3_vmd2.png
-   :width: 50.0%
+   :width: 40.0%
    :align: center
    :target: _static/tutorial_5/T5_CH3_vmd2.png
 
-| 
 
 What we have obtained is the textbook picture of the spin density of a methyl radical. 
 It has positive as well as negative regions which is a consequence of the fact that 
@@ -154,11 +153,10 @@ here, but generated during the calculation).
 .. figure:: _static/tutorial_5/T5_CH3_table.png
    :alt: Fill this table with the data found in the calculation output.
    :name: fig:T5_CH3_table.png
-   :width: 90.0%
+   :width: 70.0%
    :align: center
    :target: _static/tutorial_5/T5_CH3_table.png
 
-| 
 
 Finally, let's try visualizing the local potential (sum of the ionic, Hartree (Coulomb) and XC potentials), 
 which is written out to :download:`methyl_potential.cube <_static/tutorial_5/methyl_potential.cube>`. 
@@ -173,7 +171,7 @@ composite CPK + isodensity + contour plot similar to the one shown here.
 .. figure:: _static/tutorial_5/T5_CH3_vmd3.png
    :alt: The local potential of the CH3 radical visualized in VMD.
    :name: fig:T5_CH3_vmd3.png
-   :width: 50.0%
+   :width: 40.0%
    :align: center
    :target: _static/tutorial_5/T5_CH3_vmd3.png
 
@@ -225,7 +223,6 @@ third function (NGWF or NNHO) of atom 2 (one of the carbons). Try to obtain simi
    :align: center
    :target: _static/tutorial_5/T5_CH2SiH6_vmd.png
 
-|
 
 You can observe that initially the function is a p-atomic orbital (as it is initialised by ONETEP). 
 After the calculation the NGWF is rather distorted but still contains quite a lot of p character. 
@@ -238,15 +235,29 @@ You will see how much the NGWFs differ from the NNHOs. Of course all the other q
 (energies, Kohn-Sham orbitals, orbital energies, etc.) are independent of whether you use NGWFs or NNHOs. 
 Check this by completing the table below.
 
-.. _Figure fig:C2SiH6_table:
-.. figure:: _static/tutorial_5/T5_C2SiH6_table.png
-   :alt: Fill this table with the data found in the calculation output.
-   :name: fig:T5_C2SiH6_table.png
-   :width: 90.0%
-   :align: center
-   :target: _static/tutorial_5/T5_C2SiH6_table.png
+.. .. _Figure fig:C2SiH6_table:
+.. .. figure:: _static/tutorial_5/T5_C2SiH6_table.png
+..    :alt: Fill this table with the data found in the calculation output.
+..    :name: fig:T5_C2SiH6_table.png
+..    :width: 90.0%
+..    :align: center
+..    :target: _static/tutorial_5/T5_C2SiH6_table.png
 
-| 
+
+.. _list-table C2SiH6:
+.. list-table:: Calculated binding free energy of catechol to the protein.
+   :header-rows: 1
+   :align: center
+
+   * - Quantity
+     - Value
+   * - Total energy of the system
+     - 
+   * - Energy of HOMO
+     - 
+   * - Energy of LUMO for spin 2(down)
+     - 
+
 
 Finally, examine the atomic population in the output files (we have asked for it using the keyword 
 ``POPN_CALCULATE TRUE`` in the input) and confirm that the charges on each atom are consistent 
@@ -266,11 +277,10 @@ inside a single repeat-unit of a (10,8) carbon nanotube.
 .. figure:: _static/tutorial_5/T5_C70_in_10-8.png
    :alt: The local potential, and the HOMO and LUMO orbitals of the system under study. Visualization in VMD.
    :name: fig:T5_C70_in_10-8
-   :width: 50.0%
+   :width: 40.0%
    :align: center
    :target: _static/tutorial_5/T5_C70_in_10-8.png
 
-|
 
 The (10,8) is a chiral nanotube with 
 488 atoms in each repeat-unit, so the peapod input consists of 558 atoms, with no symmetry, 
@@ -306,11 +316,10 @@ is located inside it.
 .. figure:: _static/tutorial_5/T5_C70_in_10-8_vmd.png
    :alt: The local potential of the system under study. Visualization in VMD.
    :name: fig:T5_C70_in_10-8_vmd
-   :width: 50.0%
+   :width: 40.0%
    :align: center
    :target: _static/tutorial_5/T5_C70_in_10-8_vmd.png
 
-|
 
 Red regions correspond to large and positive values of the potential 
 (standard electrostatic conventions) and reveal the location of nuclei, whose distance from 
