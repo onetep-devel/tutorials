@@ -72,7 +72,7 @@ studies [Mobley2017]_. Although this protein is not
 directly pharmaceutically relevant, it is a useful model system due to
 it its relatively small size (2500 atoms), structural rigidity and
 well-defined, buried binding site, which can accommodate a wide variety
-of ligands. :numref:`Figure fig:T4` shows the ligand catechol inside the
+of ligands. :numref:`Figure fig:T8_1` shows the ligand catechol inside the
 buried binding site of the T4 lysozyme L99A/M102Q mutant. PDB files of
 the complex, host and ligand are provided as part of this tutorial for
 you to visualize the system. The picture shown uses the ``NewCartoon``
@@ -80,12 +80,13 @@ representation for the protein with coloring based on secondary
 structure and ``CPK`` (ball-and-stick) for the ligand with element based
 coloring.
 
-.. _Figure fig:T4:
+.. _Figure fig:T8_1:
 .. figure:: _static/tutorial_8/T8_T4-Catechol.jpeg
    :alt: Catechol bound in the buried binding site of the T4 lysozyme L99A/M102Q double mutant. Visualization in VMD.
    :name: fig:T4
-   :width: 95.0%
+   :width: 70.0%
    :target: _static/tutorial_8/T8_T4-Catechol.jpeg
+   :align: center
 
    Catechol bound in the buried binding site of the T4 lysozyme
    L99A/M102Q double mutant. Visualization in VMD.
@@ -218,17 +219,43 @@ catechol, to the protein.
   | :math:`\Delta{}G_{\textrm{solv}}` & -2615.0 & -2613.3 & -9.7 & 8.0
   | :math:`G` & -7374799.3 & -7330822.5 & -43949.7 & -27.1
 
-.. _Figure T8_energies:
-.. figure:: _static/tutorial_8/T8_energy_table.png
-   :alt: Calculating the binding free energy of catechol to the protein.
-   :width: 95.0%
-   :target: _static/tutorial_8/T8_energy_table.png
+.. _list-table T8_energies:
+.. list-table:: Calculated binding free energy of catechol to the protein.
+   :header-rows: 1
+   :align: center
 
-   Calculating the binding free energy of catechol to the protein.
+   * - Kcal/mol 
+     - Complex
+     - Host
+     - Ligand
+     - Complex-Host-Ligand
+   * - E
+     - -7372184.3
+     - -7328209.2
+     - -43940.1
+     - -35.0
+   * - :math:`\Delta{}G_{\mathrm{solv}}`
+     - -2615.0
+     - -2613.3
+     - -9.7
+     - 8.0
+   * - G
+     - -7374799.3
+     - -7330822.5
+     - -43949.7
+     - -27.1
 
-As outlined in equations :eq:`net` and :eq:`energy_terms` we need to calculate the total free
-energy of the complex, host and ligand before subtracting the total
-energy of the host and ligand from that of the complex. As stated
+.. .. _Figure T8_energies:
+.. .. figure:: _static/tutorial_8/T8_energy_table.png
+..    :alt: Calculating the binding free energy of catechol to the protein.
+..    :width: 95.0%
+..    :target: _static/tutorial_8/T8_energy_table.png
+..
+..    Calculating the binding free energy of catechol to the protein.
+
+As outlined in equations :eq:`net` and :eq:`energy_terms` we need to calculate
+the total free energy of the complex, host and ligand before subtracting the
+total energy of the host and ligand from that of the complex. As stated
 before, we will be ignoring any entropy contributions in this tutorial.
 The total energy is then the sum of the total gas phase energy and the
 solvation free energy. These energies are summarized in an easy to read
@@ -236,7 +263,8 @@ section at the very end of the output files, just before the timing
 information. To find it, search the output file for
 ``Total energy in solvent``. This section breaks down the different
 energy contributions and states the total energies in vacuum (gas phase)
-and in solvent as well as the solvation free energy. :numref:`Figure T8_energies` summarizes the energy values obtained.
+and in solvent as well as the solvation free energy. 
+:numref:`list-table T8_energies` summarizes the energy values obtained.
 To estimate the binding free energy we simply apply equation
 :eq:`net` to yield:
 
@@ -304,12 +332,15 @@ studied through a *properties calculation*. In the interest of saving
 computational time, and for clarity of presentation, we will use the
 ligand system as an example.
 
-| Add the following keywords to the ``.header`` file of the ligand
-  calculation:
-| ``do_properties T``
-| ``dx_format T``
-| ``cube_format F``
-| and run it again.
+Add the following keywords to the ``.header`` file of the ligand calculation:
+
+::
+
+    do_properties T
+    dx_format T
+    cube_format F
+
+and run it again.
 
 The first of these keywords instructs ONETEP to perform a *properties
 calculation* towards the end of the run. This will calculate, among
@@ -325,22 +356,22 @@ formats. In this example we switch off ``.cube`` output and turn on
 Once your calculation finishes, you will see that quite a number of
 ``.dx`` files have been produced:
 
--  ...\ ``_HOMO.dx`` – density of the canonical HOMO orbital.
+-  ``_HOMO.dx`` – density of the canonical HOMO orbital.
 
--  ...\ ``_LUMO.dx`` – density of the canonical LUMO orbital.
+-  ``_LUMO.dx`` – density of the canonical LUMO orbital.
 
--  ...\ ``_HOMO-``\ :math:`n`\ ``.dx`` – density of the :math:`n`-th
+-  ``_HOMO-``\ :math:`n`\ ``.dx`` – density of the :math:`n`-th
    canonical orbital below HOMO.
 
--  ...\ ``_LUMO+``\ :math:`n`\ ``.dx`` – density of the :math:`n`-th
+-  ``_LUMO+``\ :math:`n`\ ``.dx`` – density of the :math:`n`-th
    canonical orbital above LUMO.
 
--  ...\ ``density.dx`` – the electronic density of the entire system.
+-  ``density.dx`` – the electronic density of the entire system.
 
--  ...\ ``potential.dx`` – the total potential (ionic + Hartree + XC) in
+-  ``potential.dx`` – the total potential (ionic + Hartree + XC) in
    the system.
 
--  ...\ ``electrostatic_potential.dx`` – the electrostatic potential
+-  ``electrostatic_potential.dx`` – the electrostatic potential
    (ionic + Hartree) in the system.
 
 These files correspond to the calculation in solvent. There will be a
@@ -396,21 +427,24 @@ satisfied, you can render the final image by going to ``File/Render``.
 In the top drop-down menu choose ``Tachyon`` and click on
 ``Start Rendering``. After a short while you will get a ``.tga`` (“TARGA
 format”) file in the directory you are working in. It will look more or
-less like the graphics in Fig. `2 <#fig:denspot>`__. Most graphics
+less like the graphics in :numref:`Figure fig:denspot`. Most graphics
 manipulation programs and graphics viewers read ``.tga`` files. If you
 have ``ImageMagick`` installed, you can use it to convert the image to a
-more common format, like ``.png``:
+more common format. For example to get a  ``.png`` file, you can:
+
 
 ::
 
-   convert vmdscene.dat.tga vmdscene.dat.png
+    convert vmdscene.dat.tga vmdscene.dat.png
+
 
 .. _Figure fig:denspot:
 .. figure:: _static/tutorial_8/T8_vmdscene.dat.png
    :alt: Visualization of the ligand in VMD. A ball-and-stick model of the molecule is shown, together with an isosurface of the electronic density, coloured by the electrostatic potential.
    :name: fig:denspot
-   :width: 60.0%
+   :width: 50.0%
    :target: _static/tutorial_8/T8_vmdscene.dat.png
+   :align: center
 
    Visualization of the ligand in VMD. A ball-and-stick model of the
    molecule is shown, together with an isosurface of the electronic
@@ -460,13 +494,17 @@ population is stable with respect to basis set size. More details, and
 references to papers on the method, can be found in the documentation
 for this functionality -- chapter "Population Analysis" in the main ONETEP documentation.
 
-| To perform Natural Population Analysis *in lieu* of Mulliken
-  population analysis, add the following keyword to your previous ligand
-  calculation:
-| ``write_nbo T``
-| and run it again. Keep the three keywords you added last time.
-| Once your calculation completes you will find the results of NPA in
-  your output file. They will look like this:
+To perform Natural Population Analysis *in lieu* of Mulliken
+population analysis, add the following keyword to your previous ligand
+calculation:
+
+::
+
+    ``write_nbo T``
+
+and run it again. Keep the three keywords you added last time.
+Once your calculation completes you will find the results of NPA in your output
+file. They will look like this:
 
 ::
 
@@ -497,7 +535,9 @@ to papers on the method, can be found in the documentation at
 To perform DDEC analysis *in lieu* of Mulliken population analysis,
 add the following keyword to your previous ligand calculation:
 
-``ddec_calculate T``
+::
+
+    ddec_calculate T
 
 You will also need to add a ``block ddec_rcomp`` that will specify
 where the reference ion densities can be found. You will need *two*
@@ -546,7 +586,7 @@ Comparison of Mulliken, NPA and DDEC charges
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The three approaches for calculating partial charges are compared in
-Table `[tab:charges] <#tab:charges>`__. Mulliken charges are, in
+.:numref:`list-table T8_charges`.  Mulliken charges are, in
 general, the most pronounced out of the three, while DDEC partial
 charges are overall smaller in absolute value. The predictions of NPA
 are rather close to Mulliken analysis, while DDEC differs more from the
@@ -569,13 +609,94 @@ first two.
   | 13 & O & -0.711 & -0.685 & -0.510
   | 14 & H & 0.557 & 0.549 & 0.444
 
-.. _Figure T8_charges:
-.. figure:: _static/tutorial_8/T8_charge_table.png
-   :alt: Comparison of three approaches for calculating partial charges for the ligand.
-   :width: 95.0%
-   :target: _static/tutorial_8/T8_charge_table.png
+.. _list-table T8_charges:
+.. list-table:: Comparison of three approaches for calculating partial charges for the ligand.
+   :header-rows: 1
+   :align: center
 
-   Comparison of three approaches for calculating partial charges for the ligand.
+   * - Atom number 
+     - Species
+     - Mulliken Charge
+     - NPA Charge
+     - DDEC Charge
+   * - 1  
+     - O 
+     - -0.750 
+     - -0.731 
+     - -0.553
+   * - 2  
+     - H 
+     - 0.552 
+     - 0.551 
+     - 0.422
+   * - 3  
+     - C 
+     - 0.183 
+     - 0.215 
+     - 0.169
+   * - 4  
+     - C 
+     - -0.319 
+     - -0.301 
+     - -0.229
+   * - 5  
+     - H 
+     - 0.311 
+     - 0.251 
+     - 0.160
+   * - 6  
+     - C 
+     - -0.320 
+     - -0.261 
+     - -0.158
+   * - 7  
+     - H 
+     - 0.295 
+     - 0.237 
+     - 0.130
+   * - 8  
+     - C 
+     - -0.313 
+     - -0.252 
+     - -0.124
+   * - 9  
+     - H 
+     - 0.298 
+     - 0.241 
+     - 0.131
+   * - 10 
+     - C 
+     - -0.309 
+     - -0.300 
+     - -0.243
+   * - 11 
+     - H 
+     - 0.296 
+     - 0.240 
+     - 0.146
+   * - 12 
+     - C 
+     - 0.230 
+     - 0.246 
+     - 0.216
+   * - 13 
+     - O 
+     - -0.711 
+     - -0.685 
+     - -0.510
+   * - 14 
+     - H 
+     - 0.557 
+     - 0.549 
+     - 0.444
+
+.. .. _Figure T8_charges:
+.. .. figure:: _static/tutorial_8/T8_charge_table.png
+..    :alt: Comparison of three approaches for calculating partial charges for the ligand.
+..    :width: 95.0%
+..    :target: _static/tutorial_8/T8_charge_table.png
+..
+..    Comparison of three approaches for calculating partial charges for the ligand.
 
 But... tables are boring. How can we visualize the charges using VMD?
 This is not as straightforward as we would like. The structure (atomic
@@ -622,7 +743,7 @@ with the information in the ``.xyz`` file will be used to construct a
 and go to ``Graphics/Representation``. For ``Drawing Method`` choose
 ``CPK`` and for ``Coloring Method`` choose ``Charge``. You will get a
 nice ball-and-stick model of your ligand, with the atoms coloured
-accorind to charge. In Fig. `3 <#fig:charges>`__ we show a comparison of
+accorind to charge. In :numref:`Figure fig:charges` we show a comparison of
 the plots for the three ways of partitioning charge that we described
 earlier.
 
@@ -630,8 +751,9 @@ earlier.
 .. figure:: _static/tutorial_8/T8_vmdscene.pov.png
    :alt: Comparison of atomic charges on the ligand: Mulliken (left), NPA (middle) and DDEC (right). Warm colours correspond to negative charges. Visualization in VMD.
    :name: fig:charges
-   :width: 80.0%
+   :width: 70.0%
    :target: _static/tutorial_8/T8_vmdscene.pov.png
+   :align: center
 
    Comparison of atomic charges on the ligand: Mulliken (left), NPA
    (middle) and DDEC (right). Warm colours correspond to negative
@@ -644,24 +766,25 @@ Files for this tutorial:
  - :download:`out2charge <_static/tutorial_8/out2charge>`
  - :download:`T8_files.zip <_static/tutorial_8/T8_files.zip>`
 
-References:
+References
+----------
 
-.. [Bowler2012] D. R. Bowler, and T. Miyazaki, *O(N) methods in electronic structure calculations*, Reports on Progress in Physics, 75 (2012).
+.. [Bowler2012] D.R.Bowler, and T.Miyazaki, O(N) methods in electronic structure calculations, Reports on Progress in Physics, 75 (2012).
 
-.. [Dziedzic2011] J. Dziedzic, H. H. Helal, C.-K. Skylaris, A. A. Mostofi, and M. C. Payne, M. C., *Minimal parameter implicit solvent model for ab initio electronic-structure calculations*, EPL, 95 (2011).
+.. [Dziedzic2011] J.Dziedzic, H.H.Helal, C.K.Skylaris, A.A.Mostofi, and M.C.Payne, M.C., *Minimal parameter implicit solvent model for ab initio electronic-structure calculations*, EPL, 95 (2011).
 
-.. [Fox2014] S. J. Fox, J. Dziedzic, T. Fox, C. S. Tautermann, and C.-K. Skylaris, *Density functional theory calculations on entire proteins for free energies of binding: Application to a model polar binding ste*, Proteins: Structure, Function and Bioinformatics, 82 (2014).
+.. [Fox2014] S.J.Fox, J.Dziedzic, T.Fox, C.S.Tautermann, and C.-K.Skylaris, *Density functional theory calculations on entire proteins for free energies of binding: Application to a model polar binding ste*, Proteins: Structure, Function and Bioinformatics, 82 (2014).
 
-.. [Gundelach2021] L. Gundelach, T. Fox, C. S. Tautermann, and C.-K. Skylaris, *Protein–ligand free energies of binding from full-protein DFT calculations: convergence and choice of exchange–correlation functional*, Physical Chemistry Chemical Physics, 23 (2021).
+.. [Gundelach2021] L.Gundelach, T.Fox, C. S.Tautermann, and C.-K.Skylaris, *Protein–ligand free energies of binding from full-protein DFT calculations: convergence and choice of exchange–correlation functional*, Physical Chemistry Chemical Physics, 23 (2021).
 
-.. [Manz2012] T. A. Manz, and D. S. Sholl, *Improved Atoms-in-Molecule Charge Partitioning Functional for Simultaneously Reproducing the Electrostatic Potential and Chemical States in Periodic and Nonperiodic Materials*, Journal of Chemical Theory and Computation, 8 (2012).
+.. [Manz2012] T.A.Manz, and D.S.Sholl, *Improved Atoms-in-Molecule Charge Partitioning Functional for Simultaneously Reproducing the Electrostatic Potential and Chemical States in Periodic and Nonperiodic Materials*, Journal of Chemical Theory and Computation, 8 (2012).
 
-.. [Mobley2017] D. L. Mobley, and M. K. Gilson, Michael K., *Predicting Binding Free Energies: Frontiers and Benchmarks*, Annual Review of Biophysics, 46 (2017).
+.. [Mobley2017] D.L.Mobley, and M.K.Gilson, Michael K., *Predicting Binding Free Energies: Frontiers and Benchmarks*, Annual Review of Biophysics, 46 (2017).
 
-.. [Prentice2020_T8] J. C. A Prentice, J. Aarons, J. C. Womack, A. E. A. Allen, L. Andrinopoulos, L. Anton, R. A. Bell, A. Bhandari, G. A. Bramley, R. J. Charlton, R. J. Clements, D. J. Cole, G. Constantinescu, F. Corsetti, S. M. M. Dubois, K. K. B. Duff, J. M. Escartin, A. Greco, Q. Hill, L. P. Lee, E. Linscott, D. D. O'Regan, M. J. S. Phipps, L. E. Ratcliff, A. Ruiz Serrano, E. W. Tait, G. Teobaldi, V. Vitale, N. Yeung, T. J. Zuehlsdorff, J. Dziedzic, P. D. Haynes, N. D. M. Hine, A. A. Mostofi, M. C. Payne, and C.-K. Skylaris, *The ONETEP linear-scaling density functional theory program*, Journal of Chemical Physics, 152 (2020).
+.. [Prentice2020_T8] J.C.A.Prentice, J.Aarons, J.C Womack, A.E.A.Allen, L.Andrinopoulos, L.Anton, R.A.Bell, A.Bhandari, G.A.Bramley, R.J.Charlton, R.J.Clements, D.J.Cole, G.Constantinescu, F.Corsetti, S.M.M.Dubois, K.K.B.Duff, J.M.Escartin, A.Greco, Q.Hill, L.P.Lee, E.Linscott, D.D.O'Regan, M.J.S.Phipps, L.E.Ratcliff, A.Ruiz Serrano, E.W.Tait, G.Teobaldi, V.Vitale, N.Yeung, T.J.Zuehlsdorff, J.Dziedzic, P.D.Haynes, N.D.M.Hine, A.A.Mostofi, M.C.Payne, and C.-K.Skylaris, *The ONETEP linear-scaling density functional theory program*, Journal of Chemical Physics, 152 (2020).
 
-.. [Wilkinson2014] K. A. Wilkinson, N. D. M. Hine, and C.-K. Skylaris, *Hybrid MPI-OpenMP parallelism in the ONETEP linear-scaling electronic structure code: Application to the delamination of cellulose nanofibrils*, Journal of Chemical Theory and Computation, 10 (2014).
+.. [Wilkinson2014] K.A.Wilkinson, N.D.M.Hine, and C.-K.Skylaris, *Hybrid MPI-OpenMP parallelism in the ONETEP linear-scaling electronic structure code: Application to the delamination of cellulose nanofibrils*, Journal of Chemical Theory and Computation, 10 (2014).
 
-.. [Womack2018] J. C. Womack, L. Anton, J. Dziedzic, P. J. Hasnip, M. I. J. Probert, and C.-K. Skylaris, *DL-MG: A Parallel Multigrid Poisson and Poisson-Boltzmann Solver for Electronic Structure Calculations in Vacuum and Solution*, Journal of Chemical Theory and Computation, 14 (2018).
+.. [Womack2018] J.C.Womack, L.Anton, J.Dziedzic, P.J.Hasnip, M.I.J.Probert, and C.-K.Skylaris, *DL-MG: A Parallel Multigrid Poisson and Poisson-Boltzmann Solver for Electronic Structure Calculations in Vacuum and Solution*, Journal of Chemical Theory and Computation, 14 (2018).
 
-.. [Genheden2010] S. Genhenden, J. Kongsted, P. Soderhjelm, and U. Ryde, *Nonpolar solvation free energies of protein-ligand complexes*, Journal of Chemical Theory and Computation, 11 (2010).
+.. [Genheden2010] S.Genhenden, J.Kongsted, P.Soderhjelm, and U.Ryde, *Nonpolar solvation free energies of protein-ligand complexes*, Journal of Chemical Theory and Computation, 11 (2010).
