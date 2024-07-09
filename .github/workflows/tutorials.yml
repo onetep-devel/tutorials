@@ -26,6 +26,7 @@ jobs:
     - name: sphinx
       run: |
         pip install sphinx-rtd-dark-mode
+        pip install sphinx-favicon
         make latexpdf
         cp build/latex/oneteptutorials.pdf  source/_static/
         make html
@@ -43,6 +44,7 @@ jobs:
     - name: sphinx
       run: |
         pip install sphinx-rtd-dark-mode
+        pip install sphinx-favicon
         make latexpdf
         cp build/latex/oneteptutorials.pdf  source/_static/
         make html
