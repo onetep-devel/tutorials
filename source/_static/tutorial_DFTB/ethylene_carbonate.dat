@@ -1,3 +1,7 @@
+! Geometry Optimization
+task geometryoptimization
+output_detail verbose
+geom_max_iter 2000
 
 ! DFTB keywords
 dftb T
@@ -10,8 +14,6 @@ dftb_bc o o o
 dispersion 4
 xc_functional pbe
 vdw_bc  o o o
-
-output_detail verbose
 
 %block lattice_cart
 20.0 0.0 0.0

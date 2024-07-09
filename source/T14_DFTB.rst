@@ -39,8 +39,7 @@ electrostatic interactions and short range basis correction.
 We have implemented the GFN0 method within ONETEP. 
 Here we include D2 dispersion correction [Grimme2006]_ instead of D4 [Caldeweyher2019]_.
 The standard ensemble-DFT subroutines are used for diagonalization and
-calculation of electronic energies and forces. The parameter files
-are available in [utils-devel]_. 
+calculation of electronic energies and forces. 
 
 Keywords
 ========
@@ -71,11 +70,14 @@ Here are some basic keywords to perform a DFTB calculation.
 Input files
 ===========
 
-Input files for DFTB calculations of ethylene carbonate molecule (OBC) and
-graphene sheet (PBC) are available for download below along with parameter files:
-
+In this tutorial, we will use DFTB to calculate the relaxed geometry of ethylene carbonate molecule (OBC),
+lithium tetra ethylene carbonate cluster (OBC), and perform molecular dynamics on a lithium graphite system (PBC).
+Please download the files below and run them using ONETEP. 
 - :download:`ethylene_carbonate.dat <_static/tutorial_DFTB/ethylene_carbonate.dat>`
-- :download:`graphene.dat <_static/tutorial_DFTB/graphene.dat>`
+- :download:`liec4.dat <_static/tutorial_DFTB/liec4.dat>`
+- :download:`li-graphite.dat <_static/tutorial_DFTB/li-graphite.dat>`
+
+The DFTB-GFN0 parameter files are available with [utils-devel]_ repository and also below: 
 - :download:`param_gfn0-xtb.txt <_static/tutorial_DFTB/param_gfn0-xtb.txt>`
 - :download:`param_gfn_common.txt <_static/tutorial_DFTB/param_gfn_common.txt>`
 
