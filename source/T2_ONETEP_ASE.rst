@@ -1,6 +1,6 @@
-===================================
-Tutorial 13: ASE ONETEP interface
-===================================
+================================
+Tutorial 2: ASE ONETEP interface
+================================
 
 :Author:  Tom Demeyere
 :Date:    August 2023, updated June 2024

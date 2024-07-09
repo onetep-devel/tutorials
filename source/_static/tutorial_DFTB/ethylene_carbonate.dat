@@ -1,0 +1,41 @@
+! Geometry Optimization
+task geometryoptimization
+output_detail verbose
+geom_max_iter 2000
+
+! DFTB keywords
+dftb T
+dftb_method GFN0
+dftb_method_param_file param_gfn0-xtb.txt
+dftb_common_param_file param_gfn_common.txt
+dftb_bc o o o
+
+! Dispersion keywords
+dispersion 4
+xc_functional pbe
+vdw_bc  o o o
+
+%block lattice_cart
+20.0 0.0 0.0
+0.0 20.0 0.0
+0.0 0.0 20.0
+%endblock lattice_cart
+
+%block species
+c c 6 4 8.0
+h h 1 1 8.0
+o o 8 4 8.0
+%endblock species
+
+%block positions_abs
+o 8.6623 10.6051 10.5835
+c 9.8593 10.6051 10.5835
+o 10.6360 9.4787 10.5835
+c 12.0285 9.8301 10.5835
+h 12.4968 9.4034 9.6859
+h 12.4968 9.4034 11.4811
+c 12.0287 11.3798 10.5835
+h 12.4971 11.8065 9.6860
+h 12.4971 11.8065 11.4811
+o 10.6362 11.7316 10.5835
+%endblock positions_abs
