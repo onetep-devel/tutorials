@@ -23,7 +23,7 @@ Cell relaxation of bulk crystalline silica
 This calculation will relax the lattice of a silica (SiO\ :sub:`2`) 
 simulation cell, which is depicted below:
 
-.. _Figure fig:T4:
+.. _Figure fig:T10_1:
 .. figure:: _static/tutorial_10/T10_silica.png
    :alt: The simulation cell of silica. 
    :name: fig:T10_1
