@@ -73,11 +73,13 @@ Input files
 In this tutorial, we will use DFTB to calculate the relaxed geometry of ethylene carbonate molecule (OBC),
 lithium tetra ethylene carbonate cluster (OBC), and perform molecular dynamics on a lithium graphite system (PBC).
 Please download the files below and run them using ONETEP. 
+
 - :download:`ethylene_carbonate.dat <_static/tutorial_DFTB/ethylene_carbonate.dat>`
 - :download:`liec4.dat <_static/tutorial_DFTB/liec4.dat>`
 - :download:`li-graphite.dat <_static/tutorial_DFTB/li-graphite.dat>`
 
 The DFTB-GFN0 parameter files are available with [utils-devel]_ repository and also below: 
+
 - :download:`param_gfn0-xtb.txt <_static/tutorial_DFTB/param_gfn0-xtb.txt>`
 - :download:`param_gfn_common.txt <_static/tutorial_DFTB/param_gfn_common.txt>`
 
