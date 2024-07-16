@@ -1,7 +1,7 @@
 
-=======================================================================================================
+=================================================================================================================
 Tutorial 9: DFT+\ :math:`U` on strongly correlated magnetic materials: A case study on antiferromagnetic Hematite
-=======================================================================================================
+=================================================================================================================
 
 :Author: Davide Sarpa
 :Date:   July/Aug 2023 (revised June 2024)
@@ -66,7 +66,7 @@ Forcing the system into a specific state may not be easy, but there are methods 
 
 
 DFT+\ :math:`U`
------
+---------------
 The problem of DFT to describe correlated systems can be attributed to the tendency of xc functionals to over-delocalize valence electrons and to over-stabilize metallic ground states,
 this prevents materials like Hematite to be described by DFT. LDA and GGA both predict hematite to be a metallic system and they also underestimate local magnetic moments.
 The reason behind this delocalization is rooted to the inability of the approximated xc to completely cancel out the electronic self-interaction contained in the Hartree term.
