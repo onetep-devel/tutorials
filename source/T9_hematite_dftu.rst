@@ -12,40 +12,40 @@ Tutorial 9: DFT+\ :math:`U` on strongly correlated magnetic materials: A case st
 Introduction
 ============
 
-The goal of the tutorial is to provide a working example on how it is possible to model strongly correlated magnetic materials applying DFT+\ :math:`U` methods [Anisimov1991]_ [Anisimov1997]_ [Dudarev1998]_. We will be working
+The goal of the tutorial is to provide a working example on how it is possible to model strongly correlated magnetic materials applying the DFT+\ :math:`U` method [Anisimov1991]_ [Anisimov1997]_ [Dudarev1998]_. We will be working
 with hematite as an example of such materials.
 
 Hematite
 --------
 
-Hematite is a blood-red iron oxide with formula :math:`\alpha-\text{Fe}_2\text{O}_3` with 
-a melting point of :math:`1350` °C.
+Hematite is a blood-red iron oxide with formula :math:`\alpha`-:math:`\text{Fe}_2\text{O}_3` with 
+a melting point of :math:`1350°\text{C}`.
 It belongs to the hexagonal crystal family, 
-in particular, it is a Ditrigonal scalenohedral with a 
+in particular, it is a ditrigonal scalenohedral with a 
 :math:`R\bar{3}C` space group (167), sharing the same structure as corundum. 
 The lattice parameters :math:`a,b,c` are :math:`a=b=5.0356` Å and :math:`c=13.7489` Å with 6 formula units per cell 
 with a band gap of :math:`1.9-2.2` eV. 
 Its structure is an hpc anion stacking of :math:`\text{O}^{2-}` along the [001] direction 
 with :math:`\text{Fe}^{3+}` occupying :math:`2/3` of the interstitial octahedrical positions [Cornell2003]_.
-Below the Néel temperature (:math:`T_N = 963 K`), :math:`Fe_2O_3` 
+Below the Néel temperature (:math:`T_N = 963 K`), :math:`\text{Fe}_2\text{O}_3` 
 is antiferromagnetic with weak ferromagnetism. 
 The high-spin :math:`d^5` :math:`\text{Fe}^{3+}` cations within one bilayer in the (0001) planes are ferromagnetically coupled to each other 
-while antiferromagnetically coupled to the adjacent Fe bilayers [Parkinson2016]_. The magnetic moment is determined to be :math:`4.6` :math:`\mu_{B}`  per atom.
-The top of the valence band is dominated by oxygen p states,while the bottom of the conduction band is dominated by Fe d minority spin states.
+while antiferromagnetically coupled to the adjacent Fe bilayers [Parkinson2016]_. The magnetic moment is determined to be :math:`4.6` :math:`\mu_{\text{B}}`  per atom.
+The top of the valence band is dominated by oxygen :math:`p` states,while the bottom of the conduction band is dominated by Fe :math:`d` minority spin states.
 Hematite is generally considered to be a charge transfer insulator rather than a Mott-Hubbard insulator [Naveas2023]_ [Huang2016]_ [Si2020]_.
 
 Magnetism
 ---------
 
 The weak ferromagnetism is due to spin-canting which is a relativistic effect. 
-Luckily for us it is possible to obtain Hematite in an antiferromagnetic state with magnetic moments close to 
-the experimental values by properly setting up the simulation without the need to include relativistic effects explicitly.
+Luckily for us it is possible to obtain hematite in an antiferromagnetic state with magnetic moments close to 
+the experimental values by properly setting up the calculation without the need to include relativistic effects explicitly.
 
-If we consider the primitive hematite cell along the Z axis there are 3 possible different antiferromagnetic states
+If we consider the primitive hematite cell along the Z axis, there are 3 possible different antiferromagnetic states
 
-* +-+- (up-down-up-down)
-* ++-\- (up-up-down-down)
-* +-\-+ (up-down-down-up)
+* +-+- (up-down-up-down),
+* ++-\- (up-up-down-down),
+* +-\-+ (up-down-down-up).
 
 Out of all these states the last one (+-\-+) is the ground state, we would like to be able to force our system to end up
 in the ground state.
@@ -58,7 +58,7 @@ in the ground state.
 .. |pic2| image:: _static/tutorial_9/hema_hexa.png
    :width: 32%
    
-Fig.1: Primitive rhombohedral cell (left), Conventional hexagonal cell (right). Fe atoms with spin up and down are in green and pink, respectively. O atoms are in orange
+Fig.1: Primitive rhombohedral cell (left), conventional hexagonal cell (right). Fe atoms with spin up and down are in green and pink, respectively. O atoms are in orange.
 
 
 Magnetic systems are challenging to model due to the existence of very many different local minima which, in most cases, are very close in energy.
@@ -68,57 +68,54 @@ Forcing the system into a specific state may not be easy, but there are methods 
 DFT+\ :math:`U`
 ---------------
 The problem of DFT to describe correlated systems can be attributed to the tendency of xc functionals to over-delocalize valence electrons and to over-stabilize metallic ground states,
-this prevents materials like Hematite to be described by DFT. LDA and GGA both predict hematite to be a metallic system and they also underestimate local magnetic moments.
-The reason behind this delocalization is rooted to the inability of the approximated xc to completely cancel out the electronic self-interaction contained in the Hartree term.
-The main advantage of the DFT+\ :math:`U` method is that it is within the realm of DFT, thus does not require significant effort to be implemented in the existing DFT codes and its computational cost is only slightly higher than that of normal DFT computations.
+this prevents materials like hematite from being described by DFT. LDA and GGA both predict hematite to be a metallic system, they also underestimate local magnetic moments.
+The reason behind this delocalisation is rooted in the inability of the approximated xc to completely cancel out the electronic self-interaction contained in the Hartree term.
+The main advantage of the DFT+\ :math:`U` method is that it is within the realm of DFT, thus it does not require significant effort to be implemented in existing DFT codes and its computational cost is only slightly higher than that of normal DFT computations.
 
-DFT+U treats the d and f orbitals as localised while keep the rest at the delocalised LDA/GGA level. In order to do that it projects the bands into localised orbitals and compute a new potential.
-The DFT+U method can be used to penalise the non-integer occupancy of these orbitals, tending to fill states with occupancy greater than 0.5 and empty states with occupancy less than 0.5.
+The DFT++\ :math:`U` method selectively localizes specific orbital sets, typically :math:`d` and :math:`f` orbitals, while maintaining the delocalized nature of other orbitals at the LDA/GGA level. 
+This is achieved by projecting the electronic bands onto a localized basis and calculating a modified potential.
+The DFT+\ :math:`U` method can be used to penalise the non-integer occupancy of these orbitals, tending to fill states with occupancy greater than 0.5 and to empty states with occupancy less than 0.5.
 
 .. math::
 
-   \hat{V}^{(\sigma)}_{DFT+U} = \sum_{I}  U^{(I)}\lvert \varphi_m^{(I)} \rangle (\frac{1}{2} \delta_{m m'} - n^{(I) (\sigma)}_{m m'})  \langle\varphi_{m'}^{(I)} \rvert
+   \hat{V}^{(\sigma)}_{DFT+U} = \sum_{I}  U^{(I)}\lvert \varphi_m^{(I)} \rangle (\frac{1}{2} \delta_{m m'} - n^{(I) (\sigma)}_{m m'})  \langle\varphi_{m'}^{(I)} \rvert.
 
-The :math:`U` and :math:`J` values are screened Coloumb and Exchange terms which are system and implementation dependent. In general, you are not able to plug and play
-an :math:`U` or :math:`J` value from the literature. What is usually done it's empirically testing different values (run multiple calculations with different combination of :math:`U` and :math:`J`) or
+The :math:`U` and :math:`J` values are screened Coloumb and exchange terms, which are system and implementation-dependent. In general, you are not able to plug and play
+a :math:`U` or :math:`J` value from the literature. What is usually done is empirically testing different values (run multiple calculations with different combination of :math:`U` and :math:`J`), or
 most software (including ONETEP) have a linear response theory implementation to calculate the parameters from first principles [O-Regan2010]_ [O-Regan2012]_ [Cococcioni2005]_. 
 
 
 Setting up the calculations
 ===========================
 
-Now we start with the actual tutorial, we will setup a bulk hematite simulation where we 
-apply a DFT+U correction on the d orbitals of the iron atom. We also have to label atoms based on their spin
-which allow us to assign different parameters for spin down and spin up Fe atoms. This will help us
-achieve the AFM state we are looking for. We will see what we should look out in an output and what are 
-the interesting properties for this material.
-
+We will configure a bulk hematite calculation implementing a DFT+\ :math:`U` correction specifically for the Fe :math:`3d` orbitals. We apply distinct labels to Fe atoms, 
+enabling us to assign different parameters to spin-up and spin-down Fe atoms. This labeling strategy facilitates the achievement of the desired antiferromagnetic (AFM) state in hematite.
 You will see that the cell and atoms we are using are neither from a primitive or a conventional cell, It is a  4x4x1 supercell generated from the conventional cell.
-Such a big cell is necessary to accomodate NGWFs with 11 bohr radius.
+Such a big cell is necessary to accomodate NGWFs with a radius of 11 Bohr.
 
 Tutorial files
 --------------
 
 ONETEP requires different files to work properly.
 
-1. A .dat file which contains all the information about your sytem (positions and cell) and the simulations parameters 
-2. Pseudopotentials files, we will be using on the fly generated by CASTEP, but you could use your favourites.
+1. A `.dat` file which contains all the information about your sytem and the simulations parameters;
+2. pseudopotentials files, we will be using on the fly generated by CASTEP, but you could use your favourites.
 
 
 All the files needed for the simulation can be downloaded from
 
-- :download:`Fe_NCP19_PBE_OTF.usp <_static/tutorial_9/Fe_NCP19_PBE_OTF.usp>` 
-- :download:`O_NCP19_PBE_OTF.usp <_static/tutorial_9/O_NCP19_PBE_OTF.usp>`
-- :download:`hematite.out <_static/tutorial_9/hematite.out>`
-- :download:`hematite.dat <_static/tutorial_9/hematite.dat>`
+- :download:`Fe_NCP19_PBE_OTF.usp <_static/tutorial_9/Fe_NCP19_PBE_OTF.usp>`, 
+- :download:`O_NCP19_PBE_OTF.usp <_static/tutorial_9/O_NCP19_PBE_OTF.usp>`,
+- :download:`hematite.out <_static/tutorial_9/hematite.out>`,
+- :download:`hematite.dat <_static/tutorial_9/hematite.dat>`.
 
 
 **Input File**
 
-The first two blocks are the cell and atoms positions.
-You might see that iron atoms are labelled Fe1 or Fe2 depending if they will be treated as spin up atoms or spin down atoms.
+The first two blocks are the cell and atomic positions.
+You might see that iron atoms are labelled Fe1 or Fe2, depending on whether they will be treated as spin up atoms or spin down atoms.
 
-The third block is 
+The third block is: 
 
 .. code-block:: none
 
@@ -128,9 +125,11 @@ The third block is
         O O 8 4 11.000000
       %ENDBLOCK SPECIES
 
-This block tells us which atom type we should assing to Fe1, Fe2, and O, their atomic number and how many NGWFS we should use for each atom type as well as their radius.
-For strongly correlated systems NGWFs radius of 11.00 bohr or more is suggested.
-The next block is 
+The block defines the elements and enables the user to specify labels (such as Fe1, Fe2, and O), atomic numbers, 
+and the number of NGWFs  to be used for each atom type inside the calculation. 
+Additionally, it allows the user to set the radius for these NGWFs.
+For strongly correlated systems NGWFs radius of 11.0 Bohr or more is suggested.
+The next block is: 
 
 .. code-block:: none
 
@@ -140,11 +139,11 @@ The next block is
      O  "SOLVE INIT SPIN=0 CHARGE=-1"
    %ENDBLOCK SPECIES_ATOMIC_SET
 
-This block setup the initial electronic configurations for the atoms. Fe1 and Fe2 atoms will a spin of + or - 5. 
-The atomic solver generates the first guess for the density kernel for the first scf iteration, it does it by calculating the atomic density.
+This block sets up the initial electronic configurations for the atoms. Fe1 and Fe2 atoms will have a spin of +5 or -5, respectively. 
+The atomic solver generates the first guess for the density kernel for the first SCF iteration.
 
 
-The next block is the Hubbard block where we setup the DFT+U parameters
+The next block is the Hubbard block where we set up the DFT+\ :math:`U` parameters:
 
 .. code-block:: none
 
@@ -153,37 +152,44 @@ The next block is the Hubbard block where we setup the DFT+U parameters
      Fe2 2 6.0 0.0 -10.0 0.00 0.0
    %endblock hubbard
 
-In this block we setup on the d (l=2) orbitals a U value of 6 the rest are the default parameters.
+We assign a :math:`U` value of 6 to the :math:`d` orbitals (:math:`l=2`) in this block. For all other columns, we use default parameters.
 
-The rest of the blocks are to tell ONETEP for which atom types it has to compute the ldos and dos. Related to this functionality we also have to paratemers called dos_smear and pdos_max_l. The First
-relates to the gaussian smearing applied to the dos and the max l quantum number to compute the pdos for. 
+The remaining blocks instruct ONETEP which atom types to use for calculating the local density of states (LDOS) and density of states (DOS). 
+Two relevant parameters are also important:
 
-The rest of the parameters are self-explanatory with some exception such as maxit_palser_mano and maxit_hotelling which are related to the diagonalisation library.
-If you require more explanation you can refer to the ONETEP keyword database.
+1. dos_smear: Controls the Gaussian smearing applied to the DOS;
+2. pdos_max_l: Specifies the maximum angular momentum quantum number (:math:`l`) for computing the projected DOS.
+
+Most other parameters are self-explanatory, with a few exceptions:
+
+- maxit_palser_mano,
+- maxit_hotelling.
+
+These are associated with the diagonalization library and calculation of the inverse of the overlap matrix.
+For more detailed explanations of any parameters, consult the ONETEP keyword database.
 
 **Pseudopotentials**
 
-It is important to know is that the number of NGWFs depends on your Pseudopotentials.
-If you use your own be sure to modify them.
-A quick note on the value of the kinetic energy cutoff. The very high value is due to the Fe pseudopotential which include 3s and 3p semi-core states.
+The number of NGWFs is determined by your choice of pseudopotentials. If you're using different pseudopotentials from the one provided here, make sure to adjust the number of NGWFs accordingly.
+Regarding the kinetic energy cutoff: The unusually high value is necessary due to the Fe pseudopotential. This particular pseudopotential includes :math:`3s` and :math:`3p` semi-core states, which require a higher cutoff for accurate representation.
 
 Evaluating the outputs
 ======================
-ONETEP will generate many files based on we configured the calculations, but for this
-tutorial we will be focusing on few ones.
+ONETEP will generate many files based on how we configured the calculations, but for this
+tutorial we will be focusing on only a few.
 
-* .out: the main output file
-* DOS.txt: Density of states file 
-* LDOS.txt: Local density of states file 
-* PDOS.txt: Partial density of states file 
-* spindensity.cube: Cube file necessary to visualise the spin density
+* `.out`: the main output file,
+* `DOS.txt`: density of states file,
+* `LDOS.txt`: local density of states file, 
+* `PDOS.txt`: projected density of states file, 
+* `spindensity.cube`: cube file necessary to visualise the spin density.
 
 
 What to look for in the main output file
 ----------------------------------------
 
-First thing is to check is the whether the atoms are in the configuration you wanted to (in our case a :math:`\text{Fe}^{3+}` with spin UP or DOWN).
-This can be seen by looking for this block for each atom (shown here the down Fe atom)
+The first thing is to check is the whether the atoms are in the configuration we wanted (in our case a :math:`\text{Fe}^{3+}` with spin up or down).
+This can be seen by looking at this block for each atom (shown here the down Fe atom)
 
 .. code-block:: none
 
@@ -192,10 +198,12 @@ This can be seen by looking for this block for each atom (shown here the down Fe
    Orbitals (num,spin,occ):  5  2     1.00 3.00 5.00 0.00 0.00
    Orbitals   (num,spin,l):  5  2        0    1    2    0    1
 
-As you can see it was properly set as we have the occupancies as we wanted them to be 
+The first number refers to the total number of orbitals (:math:`3s`, :math:`3p`, :math:`3d`, :math:`4s`, :math:`4p` as defined previosly), the spin channel either 1 or 2 and the orbital occupancies.
+In this case we have 1 spin up and 1 spin down electron in the :math:`3s` orbital, 3 up and 3 down electrons in the :math:`3p` orbitals and 5 spin down electrons in the :math:`3d` orbitals
+the :math:`4s` and :math:`4p` are empty.
 
-The second step is, as explained in the DFT+U part, the occupancies for the majority spin (either UP or DOWN for different Fe atoms)
-has to be :math:`> 0.5` while :math:`< 0.5` for the minority spin. This is very important to allow DFT+U to do its job and it can be checked in the following table by looking at the diagonal elements.
+The second step is, as explained in the DFT+\ :math:`U` part, the occupancies for the majority spin channel (either up or down for different Fe atoms)
+has to be :math:`> 0.5` while :math:`< 0.5` for the minority spin channel. This is very important to allow DFT+\ :math:`U` to do its job and it can be checked in the following table by looking at the diagonal elements.
 
 .. code-block:: none
 
@@ -224,11 +232,11 @@ has to be :math:`> 0.5` while :math:`< 0.5` for the minority spin. This is very 
    ################################################################################
 
 
-Another important thing to check are the bands occupancies. Hematite is a semiconductor
+Another important thing to check are the bands' occupancies. Hematite is a semiconductor
 with a 2 eV band gap, we would then expect to have fully occupied bands and unoccupied virtual bands.
 If we were to treat it as a metal we could expect fractional occupancies occurring, but that would be physically wrong for our system.
 
-If you look at the band occupancies for both spin up and down, you can see that we indeed obtain fully occupied bands and unoccupied bands. 
+If you look at the band occupancies for both spin up and down channel, you can see that we indeed obtain fully occupied bands and unoccupied bands. 
 This reassure us that the structure we obtained is chemically and physically sensible.
 
 
@@ -253,7 +261,7 @@ This reassure us that the structure we obtained is chemically and physically sen
                              ------                             ------
        3648 |     1.1980169016    0.0000000000 |     1.1980204435    0.0000000000 |
 
-And as last we should also check that we obtain a band gap and its value is close to experiment.
+Lastly we should also check that we obtain a band gap and its value is close to experiment.
 This can be seen from the output by looking for these lines. 
 
 Why do we get two band gaps? Because we are studying a magnetic system, we get a band gap for each spin channel and for an AFM material
@@ -275,7 +283,7 @@ Next step is to plot the density of states. It will tell us the distribution of 
    :width: 49%
 
 We indeed obtain a gap between the states but it does not tell us much more. To obtain more information we will be plotting the local density of states (LDOS)
-and the partial density of states (PDOS).
+and the projected density of states (PDOS).
 
 |ldos| |pdos|
 
@@ -285,38 +293,38 @@ and the partial density of states (PDOS).
 .. |pdos| image:: _static/tutorial_9/pdos.png
    :width: 49%
 
-From the local density of states we can immediately notice that the lowest lying bands in the plot are mostly made of Fe majority spin channel states but,
-this is very important, the top of the valence band is made mostly by O p states. The bottom of the conduction band is made of Fe minority spin states.
-This allow us to classify hematite as a charge transfer insulator between the oxygen and the iron atoms. What if we would like to know which atomic orbitals
-contribute the most in this charge transfering? We need to plot the PDOS.
+From the local density of states we can immediately notice that the lowest lying bands in the plot are mostly comprised of Fe majority spin channel states but,
+this is very important, the top of the valence band is mostly composed of O :math:`p` states. The bottom of the conduction band is composed of Fe minority spin states.
+This allow us to classify hematite as a charge transfer insulator between the O and the Fe atoms. What if we would like to know which atomic orbitals
+contribute the most to this charge transfer, we need to plot the PDOS.
 
-It will project the bands into the atomic components, in this way, as you can see in the graph the top of the valence band
-is dominated by O 2p states while the bottom of the conduction band by Fe minority spin 3d states. 
+This will project the bands into the atomic components, in this way, as you can see in the plot the top of the valence band
+is dominated by O :math:`2p` states while the bottom of the conduction band is dominated by Fe minority spin :math:`3d` states. 
 
 Mulliken population analysis
 ----------------------------
 
-The Mulliken population analysis is a very good tool to understand if our system is behaving correctly.
-In an AFM material the total spin should be 0 and the local spin should be the same for the same atoms. In this case we have two different types
-The spin up and down Fe atoms. The absolute value of the local spin should be the same with just different signs.
+Mulliken population analysis is a very good tool to understand if our system is behaving correctly.
+In an AFM material the total spin should be 0 and the atomic spin should be the same for the same atoms. In this case we have two different types,
+the spin up and down Fe atoms. The absolute value of the atomic spin should be the same only with different sign.
 
-The material is also charge neutral and we would expect that the similar atoms should carry similar charges.
+The material is also charge neutral and we would expect that similar atoms should carry similar charges.
 
 
 +------------+-----------+----------+------------+------------+
 |   Species  |    Ion    |   Total  | Charge (e) | Spin (hbar)|
 +============+===========+==========+============+============+
-| 0          | 1         | 6.923    |  -0.923    | 0.00       |
+| O          | 1         | 6.923    |  -0.923    | 0.00       |
 +------------+-----------+----------+------------+------------+
-| 0          | 2         | 6.923    |  -0.923    | -0.00      |
+| O          | 2         | 6.923    |  -0.923    | -0.00      |
 +------------+-----------+----------+------------+------------+
-| 0          | 3         | 6.922    |  -0.922    | -0.00      |
+| O          | 3         | 6.922    |  -0.922    | -0.00      |
 +------------+-----------+----------+------------+------------+
-| 0          | 4         | 6.922    |  -0.922    | -0.00      |
+| O          | 4         | 6.922    |  -0.922    | -0.00      |
 +------------+-----------+----------+------------+------------+
-| 0          | 5         | 6.922    |  -0.922    | 0.00       |
+| O          | 5         | 6.922    |  -0.922    | 0.00       |
 +------------+-----------+----------+------------+------------+
-| 0          | 6         | 6.922    |  -0.922    | 0.00       |
+| O          | 6         | 6.922    |  -0.922    | 0.00       |
 +------------+-----------+----------+------------+------------+
 | Fe         | 7         | 14.617   |  1.383     | 2.21       |
 +------------+-----------+----------+------------+------------+
@@ -327,45 +335,41 @@ The material is also charge neutral and we would expect that the similar atoms s
 | Fe         | 10        | 14.617   |  1.383     | -2.21      |
 +------------+-----------+----------+------------+------------+
 
-As you can see from this snapshot we do indeed obtain the same charge and same spin for all similar atoms as 
+As you can see from this snapshot, we do indeed obtain the same charge and same spin for all similar atoms as 
 we would expect. 
 
 
 
-Spin Density
+Spin density
 ------------
-Now it is time to visualise the spin density which is the total electron density of electrons of one spin minus 
+Now it is time to visualise the spin density, which is the total electron density of electrons of one spin minus 
 the total electron density of the electrons of the other spin. 
-We would like to visualise it to know if we obtained the afm state we wanted, the up-down-down-up configuration.
+We would like to visualise it to know if we obtained the AFM state we wanted, the up-down-down-up configuration.
 
-You can directly open and visualise The .cube generated at the end of the calculations with VESTA, VMD or lots of other softwares.
+You can directly open and visualise the `.cube` file generated at the end of the calculation with VESTA, VMD or other softwares.
 
 .. figure:: _static/tutorial_9/hematite_spindensity.png
    :align: center
    :scale: 30%
 
-   Fig.2: Hematite spin density, blu spheres refers to atom with up spin and yellow to down spin
+   Hematite spin density, blu spheres refers to atom with up spin and yellow to down spin
 
-You can see from the picture that we did get the AFM states with +--+ configuration as we wanted.
+You can see from the picture that we did get the AFM states with +-\-+ configuration as we wanted.
 
 
 What to do next
 ---------------
 The tutorial is now complete, but you could still move forward. What can you do next?
-ONETEP outputs many more information than the one showed you here.
-You can plot
+ONETEP outputs more information than what we covered so far.
+You can plot:
 
-* The electrostatic potential
-* The orbitals
-* The electron density
+* the electrostatic potential,
+* the orbitals,
+* the electronic density.
 
 
 You can then relax the structure and recompute the properties to see what changed and how.
-We have chosen to use U=6, but you could try different U values and see how it affects the system.
-
-
-References
-----------
+We have chosen to use :math:`U=6`, but you could try different :math:`U` values and see how that affects the system.
 
 .. [Cornell2003]  R.M.Cornell et al, in The Iron Oxides, John Wiley & Sons, Ltd, 2003, pp. 9-38.
 .. [Parkinson2016]  G.S.Parkinson, Surface Science Reports, vol. 71, no. 1, pp. 272–365, 1 Mar. 1, 2016. 
