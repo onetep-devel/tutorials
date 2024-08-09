@@ -2,7 +2,7 @@
 Tutorial 6: Time-Dependent DFT
 ==============================
 
-:Author: Tim Zuehlsdorf
+:Author: Tim Zuehlsdorff
 :Date: January 2016 (revised August 2023)
 
 .. role:: raw-latex(raw)
