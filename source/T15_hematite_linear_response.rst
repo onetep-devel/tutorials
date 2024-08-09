@@ -13,11 +13,9 @@ Introduction
 ============
 
 The goal of the tutorial is to provide a working example on how it is possible to compute the :math:`U` and :math:`J` parameters from first principles.
-We will work on Hematite :code:`+-\-+` antiferromagnetic configuration as you should already be familiar with it, if not refer to tutorial 9.
+We will work on Hematite :code:`+-\-+` antiferromagnetic configuration as you should already be familiar with it, if not, refer to tutorial 9.
 
-The reason behind computing the parameters via first principles is because they directly correct the spurious self-interaction error and hence the physics of the system, while choosing and empirical :math:`U` and :math:`J` might
-give a better description of a specific property of the material, it does not guarantee that the self-interaction is fully corrected. 
-
+The reason behind computing the parameters via first principles is because they directly correct the spurious localised self-interaction error (:math:`U`) and static correlation error (:math:`J`) and hence the physics of the system. While choosing and empirical :math:`U` and :math:`J` might give a better description of a specific property of the material, it does not guarantee that these errors are consistently corrected.
 .. _Figure fig:T15_1:
 .. figure:: _static/tutorial_9/hema_structure.png
    :alt: Primitive rhombohedral cell (left), conventional hexagonal cell (right). Fe atoms with spin up and down are in green and pink, respectively. O atoms are in orange.
@@ -31,7 +29,6 @@ give a better description of a specific property of the material, it does not gu
 Theoretical background
 -----------------------
 
-The basic idea is to compare the response of the system to a perturbation in the DFT and in the DFT+\ :math:`U` frameworks.
 We start by defining the response function :math:`\chi`, which describes how the occupation of localised orbitals changes with respect to a shift in the potential acting on these orbitals:
 The linear response method determines the Hubbard :math:`U` parameter by comparing the response of the system to a perturbation in standard DFT and DFT+\ :math:`U` frameworks.
 
@@ -55,7 +52,7 @@ These are related by:
    
    U = \chi^{-1} - \chi_0^{-1}
 
-which allow us to compute :math:`U`. 
+which allows us to compute :math:`U`. 
 
 The perturbation is applied by shifting the potential of the localised orbitals:
 
@@ -64,17 +61,14 @@ The perturbation is applied by shifting the potential of the localised orbitals:
    V_{\text{ext}}^{p} = V_{\text{ext}} + \alpha \sum_{m,m'}\lvert\varphi_{m'}^{(I)}\rangle\langle\varphi_m^{(I)}\rvert
 
 
-We then iterate until self-consistency is achieved. 
-
 This is the conventional linear response and its done in a supercell as the perturbation should not interact with its periodic images.
-Another approach to compute :math:`U` and :math:`J` is known as minimum tracking method [Linscott2018]_.
+Another approach to compute :math:`U` and :math:`J` is known as minimum tracking method [Moynihan2017]_[Linscott2018]_.
 
 Minimum Tracking Method
 -----------------------
 The minimum tracking method is based on a reformulation of the response matrices
 based on the ground state density of the perturbed
-system. We can identify the interacting and noninteracting
-response matrices as:
+system. We can redefine the interacting and noninteracting response matrices as (in practice we’ll be using simpler yet equivalent formulae)
 
 .. math::
 
@@ -87,7 +81,7 @@ response matrices as:
 
 
 This allows us to work around the practical issues from the conventional linear response.
-This approach can also be extended to include the :math:`J` exchange term (The response matrices now become rank-four tensors [Linscott2018]_). 
+This approach can also be extended to include the :math:`J` exchange term
 In practice this is done by modifying the perturbation by including an additional term (spin-splitting):
 
 .. math::
@@ -98,7 +92,7 @@ In practice this is done by modifying the perturbation by including an additiona
 Setting up the calculations
 ===========================
 
-We will configure a set (9 total) of bulk hematite single point calculations to compute :math:`U` and :math:`J`  for the Fe :math:`3d` orbitals. We apply distinct labels to Fe atoms, 
+We will configure a set (9 total) of bulk hematite single-point calculations to compute :math:`U` and :math:`J`  for the Fe :math:`3d` orbitals. We apply distinct labels to Fe atoms, 
 enabling us to assign different parameters to spin-up and spin-down Fe atoms.
 We will be using a 4x4x1 supercell generated from the conventional cell.
 
@@ -119,23 +113,23 @@ The step by step approach to compute :math:`U` and  :math:`J` is:
    
    1. add :code:`hubbard_calculating_u : T` in the input file,
    
-   2. choose an atom for the atom type we want to compute :math:`U` or :math:`J` and label it differently. In our case you can see from the input file that we have labelled this single atom Fe1U. It does not matter whether we choose a spin up or spin down atom for an AFM material.
+   2. choose an atom for the atom type we want to compute :math:`U` or :math:`J` for, and label it differently. In our case you can see from the input file that we have labelled this single atom Fe1U. It does not matter whether we choose a spin up or spin down atom for an AFM material.
    
-   3. apply the perturbation to this atom only and perform single points calculations,
+   3. apply the perturbation to this atom only and perform single-points calculations,
    
-   4. Compute U and J with the following formulas:
+   4. compute :math:`U` and :math:`J` with the following formulas:
 
 .. math::
-   U = \frac{1}{2} \frac{\delta v^\uparrow_{Hxc} + \delta v^\downarrow_{Hxc}}{\delta(n^\uparrow + n^\downarrow)}
+   U = \frac{1}{2} \frac{\delta v^\uparrow_{\text{Hxc+local}} + \delta v^\downarrow_{\text{Hxc+local}}}{\delta(n^\uparrow + n^\downarrow)}
 
 
 .. math::
-   J = -\frac{1}{2} \frac{\delta v^\uparrow_{Hxc+local} - \delta v^\downarrow_{Hxc+local}}{\delta(n^\uparrow - n^\downarrow)}
+   J = -\frac{1}{2} \frac{\delta v^\uparrow_{\text{Hxc+local}} - \delta v^\downarrow_{\text{Hxc+local}}}{\delta(n^\uparrow - n^\downarrow)}
 
-where :math:`\delta v^\uparrow_{Hxc}` and :math:`\delta v^\downarrow_{Hxc}` represent the derivative of the Hxc+local potential with respect to the applied potential
+where :math:`\delta v^\uparrow_{\text{Hxc}}` and :math:`\delta v^\downarrow_{\text{Hxc}}` represent the derivative of the Hxc+local potential with respect to the applied potential
 (either :math:`\alpha` to compute :math:`U` or :math:`\beta` to compute :math:`J`)
 and  :math:`\delta(n^\uparrow + n^\downarrow)` and :math:`\delta(n^\uparrow - n^\downarrow)` represent the derivative of the total occupation :math:`n^\uparrow + n^\downarrow` with respect to :math:`\alpha` and of :math:`n^\uparrow - n^\downarrow` 
-with respect to :math:`\beta`
+with respect to :math:`\beta`.
 
 
 How and where to apply the perturbation
@@ -146,9 +140,9 @@ Looking at the input file provided you can see we activated the :code:`hubbard_c
 .. code-block:: none
 
    %BLOCK HUBBARD
-   Fe1  2 0.0 0.0 -10.0 0.00 0.0
-   Fe1U 2 0.0 0.0 -10.0 0.00 0.0
-   Fe2  2 0.0 0.0 -10.0 0.00 0.0
+   Fe1  2 0.0 0.0 -10.0 0.0 0.0
+   Fe1U 2 0.0 0.0 -10.0 0.0 0.0
+   Fe2  2 0.0 0.0 -10.0 0.0 0.0
    %ENDBLOCK HUBBARD
 
 where the columns of the ``hubbard`` block are described as follows:
@@ -161,7 +155,7 @@ where the columns of the ``hubbard`` block are described as follows:
 2. **Angular Momentum:** :math:`l`
 
    The angular momentum of the projectors which the Hubbard correction is applied to.
-   In this example :math:`l=2` which corresponds to d-orbitals
+   In this example :math:`l=2` which corresponds to d orbitals
    
 3. **Hubbard** :math:`U` **value**
    
@@ -174,24 +168,25 @@ where the columns of the ``hubbard`` block are described as follows:
    electron-volts. We are computing it so we can choose 0 as its value
 
 5. **Effective Charge** :math:`\mathbf{Z}` **and Projectors type**
-   The default projectors are NGWFs
+   The default projectors are NGWFs. For other possibility, refer to the
+   DFT\+ :math:`U` documentation
    
 6. **The** :math:`\alpha` **prefactor**
    
    The perturbation term needed to compute :math:`U` 
 
-7. **The spin-splitting factor :math:`\beta`**
+7. **The spin-splitting factor** :math:`\beta`
    
-   The perturbation term needed to compute :math:`J`
+   The perturbation term needed to compute :math:`J`.
 
 
 To compute  :math:`U` you need to change the :math:`\alpha` value while keeping :math:`\beta` equal to 0.
 To compute  :math:`J` you need to change the :math:`\beta` value while keeping :math:`\alpha` equal to 0.
 
-We have provided you only 1 input file the one corresponding to 0 for both  :math:`\alpha` and :math:`\alpha`
-you need to generate the remaining 8 file.
+We have provided you only 1 input file -- the one corresponding to 0 for both  :math:`\alpha` and :math:`\beta`,
+you need to generate the remaining 8 files.
 
-The :math:`\alpha` and :math:`\beta` values you need to use for the U calculation are = -0.2, -0.1, 0.0, 0.1, 0.2.
+The :math:`\alpha` and :math:`\beta` values you need to use for the :math:`U` calculation are = -0.2, -0.1, 0.0, 0.1, 0.2.
 
 Why these values?
 We want to apply a big enough perturbation to see an effect and to be able to compute derivatives but also remain in the linear regime. It is not necessary to use 5 datapoints
@@ -200,7 +195,7 @@ to obtain a good value but it's highly recommended.
 Evaluating the outputs
 ======================
 
-In order to compute :math:`U` and :math:`J` we need the values of the :math:`v^\uparrow_{Hxc}` and :math:`v^\downarrow_{Hxc}` which can be found
+In order to compute :math:`U` and :math:`J` we need the values of the :math:`v^\uparrow_{\text{Hxc}}` and :math:`v^\downarrow_{\text{Hxc}}`,which can be found
 in the following block:
 
 .. code-block:: none
@@ -215,10 +210,10 @@ in the following block:
    The average Hubbard potential is               -0.10000000 eV.
    ################################################################################
 
-note that we are looking only at the values for Fe1U atom which is the only atom we have applied the perturbation to. There are multiple instances of this block and we are only
+Note that we are looking only at the values for Fe1U atom which is the only atom we have applied the perturbation to. There are multiple instances of this block and we are only
 interested in the last one. 
 
-Next we need to look at occupation of the Hubbard manifold :math:`n^\uparrow + n^\downarrow` and :math:`n^\uparrow - n^\downarrow` which can be found in the following block:
+Next, we need to look at occupation of the Hubbard manifold :math:`n^\uparrow + n^\downarrow` and :math:`n^\uparrow - n^\downarrow`,which can be found in the following block:
 
 .. code-block:: none
 
@@ -248,11 +243,11 @@ Next we need to look at occupation of the Hubbard manifold :math:`n^\uparrow + n
    DFT+U energy of Hubbard site     72 is           -0.02349492 Ha
    ################################################################################
 
-the total occupancy of Hubbard site is the :math:`n^\uparrow + n^\downarrow`, while local magnetic moment of Hubbard site is the :math:`n^\uparrow - n^\downarrow`. 
-We now have all the data we need to compute :math:`U` and :math:`J`
+The total occupancy of Hubbard site is the :math:`n^\uparrow + n^\downarrow`, while the local magnetic moment of Hubbard site is the :math:`n^\uparrow - n^\downarrow`. 
+We now have all the data we need to compute :math:`U` and :math:`J`.
 
 Step by step to compute :math:`U` :
- - Calculate the slope of :math:`v^\uparrow_{Hxc}` and :math:`v^\downarrow_{Hxc}` with respect to :math:`\alpha`, these are the :math:`\delta v^\uparrow_{Hxc}` and :math:`\delta v^\downarrow_{Hxc}` that appear in the formula to compute :math:`U`
+ - Calculate the slope of :math:`v^\uparrow_{\text{Hxc}}` and :math:`v^\downarrow_{\text{Hxc}}` with respect to :math:`\alpha`, these are the :math:`\delta v^\uparrow_{\text{Hxc}}` and :math:`\delta v^\downarrow_{\text{Hxc}}` that appear in the formula to compute :math:`U`
  - Calculate the slope of the :math:`n^\uparrow + n^\downarrow` with respect to :math:`\alpha` this is the denominator appearing in the formula to compute :math:`U`
  - Compute :math:`U` using the formula provided above.
 
@@ -260,7 +255,7 @@ To compute :math:`J` follow similar procedure but the derivatives are with respe
 
 **IMPORTANT: The actual** :math:`\beta` **values in the calculations are half of the one specified in the input file.**
 
-To compute the slope we first plot the Hxc+local for spin 1 and spin 2 as well as the occupation number against the values of :math:`\beta`, the same should be done with values of beta to compute  :math:`J`
+To compute the slope, we first plot the Hxc+local for spin 1 and spin 2 as well as the occupation number against the values of :math:`\beta`, the same should be done with values of :math:`\beta` to compute  :math:`J`
 
 .. figure:: _static/tutorial_15/occ_u.png
    :align: center
@@ -276,7 +271,7 @@ To compute the slope we first plot the Hxc+local for spin 1 and spin 2 as well a
    :width: 49%
 
 You can see from the plots that while the changes of the occupation numbers are perfectly linear at all :math:`\alpha` values, this is not the case for the Hxc+local potential where a degree of non-linearity
-is present at a value of :math:`\alpha=0` this is VERY important as if we were to include this data point in our calculation of :math:`U`, we would retrieve a wrong value as our perturbation goes beyond the linear response regime.
+is present at a value of :math:`\alpha=0`, this is VERY important as if we were to include this data point in our calculation of :math:`U`, we would obtain a wrong value as our perturbation goes beyond the linear response regime.
 
 If you discard the non-linear data point, you should obtain the following values. 
 
@@ -292,3 +287,4 @@ The tutorial is now complete, but you could still move forward. What can you do 
 
 .. [Linscott2018] \ E.B. Linscott, D. J. Cole, M. C. Payne, D. D. O'Regan, Phys. Rev. B **98**, 235157 (2018). https://doi.org/10.1103/PhysRevB.98.235157
 .. [Moore2024] \ G. C. Moore, M. K. Horton, E. Linscott, A. M. Ganose, Ma. Siron, D. D. O'Regan, K. A. Persson Phys. Rev. Materials **8**, 014409 (2024). https://doi.org/10.1103/PhysRevMaterials.8.014409
+.. [Moynihan2017] \ G. Moynihan, G. Teobaldi, and D. D. O’Regan, A self-consistent ground-state formulation of the first-principles Hubbard U parameter validated on one-electron self- interaction error (2017), arXiv:1704.08076
