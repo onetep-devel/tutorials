@@ -25,6 +25,7 @@ Welcome to the ONETEP Tutorials!
    T12_pentacene_embedding.rst
    T13_EELS.rst
    T14_DFTB.rst
+   T15_hematite_linear_response.rst
    
 PDF version of all tutorials
 ============================
