@@ -16,7 +16,7 @@ The goal of the tutorial is to provide a working example on how it is possible t
 We will work on Hematite :code:`+-\-+` antiferromagnetic configuration as you should already be familiar with it, if not, refer to tutorial 9.
 
 The reason behind computing the parameters via first principles is because they directly correct the spurious localised self-interaction error (:math:`U`) and static correlation error (:math:`J`) and hence the physics of the system. While choosing and empirical :math:`U` and :math:`J` might give a better description of a specific property of the material, it does not guarantee that these errors are consistently corrected.
-.. _Figure fig:T15_1:
+
 .. figure:: _static/tutorial_9/hema_structure.png
    :alt: Primitive rhombohedral cell (left), conventional hexagonal cell (right). Fe atoms with spin up and down are in green and pink, respectively. O atoms are in orange.
    :name: fig:T15_1
@@ -62,13 +62,13 @@ The perturbation is applied by shifting the potential of the localised orbitals:
 
 
 This is the conventional linear response and its done in a supercell as the perturbation should not interact with its periodic images.
-Another approach to compute :math:`U` and :math:`J` is known as minimum tracking method [Moynihan2017]_[Linscott2018]_.
+Another approach to compute :math:`U` and :math:`J` is known as minimum tracking method [Moynihan2017]_ [Linscott2018]_.
 
 Minimum Tracking Method
 -----------------------
 The minimum tracking method is based on a reformulation of the response matrices
 based on the ground state density of the perturbed
-system. We can redefine the interacting and noninteracting response matrices as (in practice we’ll be using simpler yet equivalent formulae)
+system [Moore2024]_ . We can redefine the interacting and noninteracting response matrices as (in practice we’ll be using simpler yet equivalent formulae)
 
 .. math::
 
