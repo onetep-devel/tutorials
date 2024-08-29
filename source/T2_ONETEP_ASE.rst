@@ -8,7 +8,18 @@ Tutorial 2: ASE ONETEP interface
 .. role:: raw-latex(raw)
    :format: latex
 
-This tutorial will guide you through the use of the ASE interface to ONETEP. The Atomic Simulation Environment (ASE) is a set of tools and Python modules for setting up, manipulating, running, visualizing and analyzing atomistic simulations. The ASE interface to ONETEP allows you to set up and run ONETEP calculations from Python scripts.
+This tutorial will guide you through the use of the ASE interface to ONETEP. The Atomic Simulation Environment (ASE) is a set of tools and Python modules for setting up, manipulating, running, visualizing and analyzing atomistic simulations. The ASE interface to ONETEP allows you to set up and run ONETEP calculations from Python scripts. 
+
+Some tutorials (1, 4, 10) have Jupyter notebooks that you can use to run examples interactively. You can download them below, along with the needed pseudopotentials and ONETEP launching script:
+
+- :download:`Tutorials <jupyter_notebook_t1.ipynb>`
+- :download:`Tutorials <jupyter_notebook_t4.ipynb>`
+- :download:`Tutorials <jupyter_notebook_t10.ipynb>`
+- :download:`Pseudopotentials <_static/pseudos.zip>`
+- :download:`ONETEP launching script <_static/launch_onetep.sh>`
+- :download:`Silica structure <_static/tutorial_10/silica96.dat>`
+
+To run these tutorials, please have a look inside the `launch_onetep.sh` script you downloaded in order to load correctly all modules and environment variables needed on your machine. Similarly, you might need to change the paths of the `OnetepProfile` object inside the Jupyter Notebooks to match your paths. The OnetepProfile is an ASE object that must be created and passed to the ASE ONETEP calculator in order to specify both ONETEP command and pseudopotential path. More information is available just below.
 
 This tutorial will mainly focus on running ONETEP calculations with ASE, if you are not familiar with ASE as a whole, feel free to consult the mini-tutorial here:
 
