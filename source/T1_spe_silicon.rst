@@ -270,16 +270,28 @@ You will need to repeat the basis (atoms at (0, 0, 0) and
 0, 0), (1/2,1/2,0), (0,1/2,1/2), and (1/2, 0, 1/2,). Copy the result
 into your :code:`positions_abs` block. An example input file for this job can
 be found on the tutorial web page.
-The calculation should take around a few minutes. Feel free to stop it
+
+The calculation run for while but feel free to stop it
 as soon as you see what is happening, since you will find that the
 calculation fails to converge: the RMS gradient remains stuck above
 the threshold for convergence. Likewise, the total energy will not
-converge to a fixed value. Make a copy of your output and modify the
+converge to a fixed value. This illustrates a common type of convergence
+failure in solids, whereby the NGWF optimisation is failing to find a
+well-defined minimum energy. Several solutions are possible: increasing
+the NGWF radius or count, though both of these are relatively expensive in
+computational terms. You could make a copy of your output and modify the
 NGWF radius in the input file to 8.0 Bohr and the number of NGWFs per
 Si atom to 9. This introduces NGWFs with d-like symmetry rather than
-just s and p, allowing much more variational freedom. You should now
+just s and p, allowing much more variational freedom. You would now
 find the calculation converges nicely, but will take rather longer to
 run.
+
+Another option is to active adaptive kinetic energy preconditioning
+by setting :code:`kzero: -1`. This should result in convergence within
+about 9-10 iterations.
+
+Psinc Grids
+~~~~~~~~~~~
 
 Now try activating :code:`write_forces: T` to calculate the forces on each
 atom. All the forces should be small: in principle they are
