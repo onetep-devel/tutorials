@@ -16,7 +16,7 @@ EELS (Electron Energy Loss Spectroscopy) is a spectroscopic technique which
 combines high spatial resolution with fair energy resolution, and is thus
 sensitive to local electronic structure in a material. The theory behind
 EELS calculations in ONETEP is explained in the 
-`documentation page on EELS <https://docs.onetep.org/eels_in_onetep.html>`,
+`documentation page on EELS <https://docs.onetep.org/eels_in_onetep.html>`_,
 as well as in a paper giving an overview of the capabilities [1]_, and in the
 thesis of one of the authors (Edward Tait) [2]_. 
 

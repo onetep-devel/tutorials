@@ -35,8 +35,16 @@ numfig = True
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+html_logo = '_static/onetep_logo.svg'
+html_theme_options = {
+    'logo_only': True,
+    'display_version': True,
+}
 
 # --- Favicon ---
 favicons = [
     "favicon.ico",
 ]
+
+# Equation number appear above equations is a bug of "sphinx_rtd_dark_mode"
+# see https://github.com/readthedocs/sphinx_rtd_theme/issues/301

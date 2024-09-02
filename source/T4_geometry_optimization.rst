@@ -218,8 +218,8 @@ You are now familiar with the geometry optimization scheme in ONETEP.
 You might examine in more details the input variables that allow to control the
 process. The keywords associated with the geometry optimization all start with
 the :code:`geom_` prefix.
-Their description is found on the `ONETEP Documentation <https://docs.onetep.org>`_. In particular, take a few minutes
-to have a look at the variables: 
+Their description is found on the `ONETEP Documentation <https://docs.onetep.org>`_. 
+In particular, take a few minutes to have a look at the variables: 
 
 ::
 
@@ -291,8 +291,9 @@ computational time:
     read_denskern
     read_tightbox_ngwfs
 
-For example, to use :code:`write_converged_dkngwfs : T` is a good practice when running a molecular
-optimization as it avoid you to lose time in writing the density kernels and NGWFs on the disk.
+For example, to use :code:`write_converged_dkngwfs : T` is a good practice when 
+running a molecular optimization as it avoid you to lose time in writing the 
+density kernels and NGWFs on the disk.
 
 The Sucrose Molecule
 --------------------
