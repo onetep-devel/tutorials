@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     container: sphinxdoc/sphinx-latexpdf:5.3.0
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: sphinx
       run: |
         pip install sphinx-rtd-dark-mode
@@ -40,7 +40,7 @@ jobs:
     container: sphinxdoc/sphinx-latexpdf:5.3.0
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: sphinx
       run: |
         pip install sphinx-rtd-dark-mode
@@ -49,11 +49,11 @@ jobs:
         cp build/latex/oneteptutorials.pdf  source/_static/
         make html
     - name: upload
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
       with:
         # Upload entire repository
         path: './build/html/.'
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v1
+      uses: actions/deploy-pages@v4
 
