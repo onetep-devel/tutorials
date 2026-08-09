@@ -40,3 +40,8 @@ Thumbs.db
 # Editor backup files #
 #######################
 *~
+
+# Python #
+##########
+__pycache__/
+*.py[cod]

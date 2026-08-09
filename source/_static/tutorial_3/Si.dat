@@ -1,0 +1,62 @@
+!============================================================!
+! ~~~~~~~ Quality control test for the ONETEP program ~~~~~~~!
+!------------------------------------------------------------!
+! Si Diamond unitcell                                        !
+!------------------------------------------------------------!
+! Fully converged total energy: -16.239900900542             !
+! Fully converged in : 27 steps                              !
+! Fully converged final RMS gradient: 0.000001946122         !
+!------------------------------------------------------------!
+! Created by Chengcheng Xiao on 08/02/2025.                  !
+!============================================================!
+
+print_qc      : TRUE
+#output_detail : Normal
+output_detail : Verbose
+
+task : SinglePoint
+
+cutoff_energy : 500 eV
+xc_functional : PBE
+
+write_denskern : F
+write_tightbox_ngwfs : F
+maxit_ngwf_cg : 200
+
+use_cmplx_ngwfs : T
+extend_ngwf : T T T
+pub_ngwfs_init_recip : T
+kpoint_method : PW
+
+kpoint_grid_shift : 1 1 1
+kpoint_grid_size : 6 6 6
+
+num_kpars : 4
+
+edft : T
+edft_maxit : 4
+edft_smearing_width : 0.2 eV
+eigensolver_abstol : -1
+eigensolver_orfac : -1
+occ_mix : 1.0
+
+%BLOCK LATTICE_CART
+ang
+      3.86709000       0.00000000       0.00000000
+      1.93354500       3.34899818       0.00000000
+      1.93354500       1.11633273       3.15746576
+%ENDBLOCK LATTICE_CART
+
+%BLOCK POSITIONS_ABS
+ang
+   Si     0.000000     0.000000     0.000000
+   Si     1.933545     1.116333     0.789366
+%ENDBLOCK POSITIONS_ABS
+
+%BLOCK SPECIES
+Si Si 14 -1 2.0
+%ENDBLOCK SPECIES
+
+%BLOCK SPECIES_POT
+Si "Si_NCP19_PBE_OTF.usp"
+%ENDBLOCK SPECIES_POT

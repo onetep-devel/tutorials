@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'ONETEP Tutorials'
-copyright = '2024, ONETEP Collective'
+copyright = '2026, ONETEP Collective'
 author = 'ONETEP Collective'
 release = '0.0.1'
 

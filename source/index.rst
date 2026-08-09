@@ -13,7 +13,7 @@ Welcome to the ONETEP Tutorials!
    Introduction
    T1_spe_silicon.rst
    T2_ONETEP_ASE.rst
-   T3_spin_polarisation.rst
+   T3_spin_polarisation_and_kpoints.rst
    T4_geometry_optimization.rst
    T5_analysis_and_visualization.rst
    T6_TDDFT.rst
