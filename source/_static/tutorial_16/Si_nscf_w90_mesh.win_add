@@ -1,0 +1,30 @@
+num_iter  = 4000
+
+! --- Wannier function plotting ---
+wannier_plot            = true
+wannier_plot_list       = 1-16          ! which WFs to plot (default: all)
+wannier_plot_supercell  = 3            ! or "3 3 3" for per-direction
+wannier_plot_format     = xcrysden     ! xcrysden (.xsf) or cube
+wannier_plot_mode       = crystal      ! crystal or molecule
+
+! cube format only
+! wannier_plot_radius   = 3.5          ! cutoff radius around WF centre (Ang)
+! wannier_plot_scale    = 1.0
+
+! spinor calculations only
+! wannier_plot_spinor_mode  = total    ! total, up or down
+! wannier_plot_spinor_phase = true
+
+! optional
+! restart        = plot                ! plot from an existing .chk without re-wannierising
+! wvfn_formatted = true                ! if your UNK files are formatted
+
+! --- Band structure plotting ---
+! bands_plot = true
+! bands_num_points = 100
+!
+! begin kpoint_path
+!   G   0.0 0.0 0.0    X   0.5 0.0 0.0
+!   X   0.5 0.0 0.0    M   0.5 0.5 0.0
+!   M   0.5 0.5 0.0    G   0.0 0.0 0.0
+! end kpoint_path

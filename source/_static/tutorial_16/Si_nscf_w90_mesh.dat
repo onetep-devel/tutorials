@@ -1,0 +1,82 @@
+!============================================================!
+! ~~~~~~~ Quality control test for the ONETEP program ~~~~~~~!
+!------------------------------------------------------------!
+! Si Diamond unitcell (4 atoms), NSCF + Wannier90 interface  !
+!------------------------------------------------------------!
+! Aim: - Test the Wannier90 files from task NSCF with        !
+!        nscf_kpoints MESH: a Gamma-centred 4x2x3 mesh,      !
+!        which must be generated in wannier90 order          !
+!        (4-atom Si cell).                                   !
+!------------------------------------------------------------!
+! Created by Chengcheng Xiao (w90_nscf branch); converted    !
+! to nscf_kpoints MESH by Nicholas Hine on 21/11/2026.       !
+!============================================================!
+
+print_qc             : TRUE
+output_detail : Normal
+num_kpars : 4
+
+#task : Properties_NSCF
+task : SinglePoint NSCF Properties_NSCF
+
+cutoff_energy : 1200 eV
+xc_functional : PBE
+
+write_denskern : T
+write_tightbox_ngwfs : T
+! set this to 200 to fully converge the total energy
+maxit_ngwf_cg : 200
+maxit_palser_mano=-1
+
+use_cmplx_ngwfs : T
+extend_ngwf : T T T
+ngwfs_init_recip : T
+use_symmetry : T
+kpoint_method : PW
+kpoint_grid_size : 7 7 7
+kpoint_grid_shift : 0 0 0
+
+! bandstructure NGWFs: 8 valence bands of 4 Si atoms
+cond_num_states : 16
+cond_num_extra_its : 0
+nscf_kpoints : MESH
+nscf_kpoint_grid_size : 7 7 7
+nscf_kpoint_gamma_centred : T
+
+%BLOCK LATTICE_CART
+ang
+      7.73418000       0.00000000       0.00000000
+      1.93354500       3.34899818       0.00000000
+      1.93354500       1.11633273       3.15746576
+%ENDBLOCK LATTICE_CART
+
+%BLOCK POSITIONS_ABS
+ang
+   Si     0.000000     0.000000     0.000000
+   Si     1.933545     1.116333     0.789366
+   Si     3.867090     0.000000     0.000000
+   Si     5.800635     1.116333     0.789366
+%ENDBLOCK POSITIONS_ABS
+
+%BLOCK SPECIES
+Si Si 14 -1 3.0
+%ENDBLOCK SPECIES
+
+%BLOCK SPECIES_COND
+Si Si 14 -1 3.0
+%ENDBLOCK SPECIES_COND
+
+%BLOCK SPECIES_POT
+Si "./Si_NCP19_PBE_OTF.usp"
+%ENDBLOCK SPECIES_POT
+
+! Wannier90 files (.win/.mmn/.amn/.eig)
+w90_write_mmn : T
+w90_write_amn : T
+w90_write_eig : T
+w90_write_unk : T
+w90_num_wann : 16
+w90_num_bands : 16
+%block w90_projections
+Si:sp3
+%endblock w90_projections
