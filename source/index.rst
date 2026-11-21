@@ -26,6 +26,7 @@ Welcome to the ONETEP Tutorials!
    T13_EELS.rst
    T14_DFTB.rst
    T15_hematite_linear_response.rst
+   T16_wannier90.rst
    
 PDF version of all tutorials
 ============================
